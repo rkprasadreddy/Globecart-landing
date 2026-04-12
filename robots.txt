@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://globecart.one/sitemap.xml
