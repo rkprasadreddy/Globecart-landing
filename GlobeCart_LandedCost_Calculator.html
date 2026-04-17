@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Landed Cost Calculator — Cross-Border Duties, VAT & Shipping | globecart.one</title>
+<meta name="description" content="Calculate the full landed cost of your cross-border shipment before you sell. Duties, VAT, shipping, FX — one clear breakdown for US, Germany, France, Netherlands. Free tool by globecart.one">
+<meta name="keywords" content="landed cost calculator, cross-border shipping cost, import duty calculator, VAT calculator, US to EU shipping, customs duty estimate, DDP calculator, international shipping cost, ecommerce landed cost">
+<meta name="robots" content="index, follow">
+<meta name="author" content="globecart.one">
+<link rel="canonical" href="https://globecart.one/calculator">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Free Landed Cost Calculator — globecart.one">
+<meta property="og:description" content="Calculate duties, VAT, shipping & FX for cross-border shipments. US ↔ EU cost breakdown in seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://globecart.one/calculator">
+<meta property="og:site_name" content="globecart.one">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Landed Cost Calculator — globecart.one">
+<meta name="twitter:description" content="Calculate duties, VAT, shipping & FX for cross-border shipments. US ↔ EU cost breakdown in seconds.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Landed Cost Calculator",
+  "description": "Free tool to calculate the full landed cost of cross-border shipments including duties, VAT, shipping, and FX. Supports US, Germany, France, and Netherlands corridors.",
+  "url": "https://globecart.one/calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "globecart.one",
+    "url": "https://globecart.one"
+  }
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #080b10;
+    --bg2: #0d1219;
+    --bg3: #111820;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --white: #f0ede6;
+    --muted: rgba(240,237,230,0.45);
+    --border: rgba(201,168,76,0.2);
+    --accent: #2a6496;
+    --green: #4a9c6f;
+    --coral: #e07a5f;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--white);
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400;
+    overflow-x: hidden; min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(12px); background: rgba(8,11,16,0.85);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
+    letter-spacing: 0.05em; color: var(--white);
+    display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+  }
+  .logo-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; display: inline-block; animation: pulse 2s ease-in-out infinite; }
+  .logo-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--muted); margin-left: 0.3rem; text-transform: uppercase; font-weight: 400; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+  }
+  .nav-links a { color: inherit; text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.68rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--bg); background: var(--gold); border: none;
+    padding: 0.65rem 1.5rem; cursor: pointer;
+    transition: background 0.3s, transform 0.2s; text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* PAGE HERO */
+  .page-hero {
+    padding: 10rem 4rem 4rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .page-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-tag {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+    opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .page-tag::before, .page-tag::after { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+  .page-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300;
+    line-height: 1.1; color: var(--white); margin-bottom: 1rem;
+    opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  .page-h1 em { font-style: italic; color: var(--gold); }
+  .page-sub {
+    font-size: 0.82rem; line-height: 1.8; color: var(--muted);
+    max-width: 580px; margin: 0 auto;
+    opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+  .estimate-badge {
+    display: inline-block; margin-top: 1.2rem;
+    font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.35rem 1rem;
+    opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* CORRIDOR DISPLAY */
+  .corridor-display {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem; margin: 2rem auto 0; max-width: 300px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+  .corridor-flag {
+    font-size: 1.8rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .corridor-flag span { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .corridor-arrow { color: var(--gold); font-size: 1.2rem; opacity: 0.6; }
+
+  /* CALCULATOR LAYOUT */
+  .calc-wrapper {
+    max-width: 1100px; margin: 0 auto; padding: 0 4rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards;
+  }
+
+  /* INPUT PANEL */
+  .calc-input-panel { border: 1px solid var(--border); background: var(--bg2); padding: 2.5rem; }
+  .panel-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .panel-title::before { content: ''; width: 1.2rem; height: 1px; background: var(--gold); }
+
+  .form-group { margin-bottom: 1.5rem; }
+  .form-label {
+    display: block; font-size: 0.62rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .form-input {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); color: var(--white);
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem;
+    padding: 0.85rem 1.2rem; outline: none; transition: border-color 0.3s;
+  }
+  .form-input:focus { border-color: rgba(201,168,76,0.5); }
+  .form-input::placeholder { color: rgba(240,237,230,0.25); }
+  select.form-input {
+    appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 1.2rem center;
+  }
+  select.form-input option { background: var(--bg2); color: var(--white); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-divider { border: none; border-top: 1px solid var(--border); margin: 1.8rem 0; }
+  .form-divider-label {
+    font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(201,168,76,0.5); margin-bottom: 0.8rem; margin-top: -0.3rem;
+  }
+
+  /* CORRIDOR INFO */
+  .corridor-info {
+    display: none; padding: 0.8rem 1rem; margin-bottom: 1.5rem;
+    border: 1px solid rgba(201,168,76,0.15); background: rgba(201,168,76,0.03);
+    font-size: 0.65rem; color: var(--muted); line-height: 1.6;
+  }
+  .corridor-info.active { display: block; }
+  .corridor-info strong { color: var(--gold); font-weight: 500; }
+  .corridor-info .corridor-type {
+    display: inline-block; font-size: 0.55rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--bg); background: var(--gold);
+    padding: 0.15rem 0.5rem; margin-bottom: 0.4rem;
+  }
+
+  .same-country-warning {
+    display: none; padding: 0.8rem 1rem; margin-bottom: 1.5rem;
+    border: 1px solid rgba(224,122,95,0.3); background: rgba(224,122,95,0.05);
+    font-size: 0.65rem; color: var(--coral); line-height: 1.6;
+  }
+  .same-country-warning.active { display: block; }
+
+  .calc-btn {
+    width: 100%; background: var(--gold); color: var(--bg); border: none;
+    padding: 1rem 2rem; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.3s, transform 0.2s;
+    position: relative; overflow: hidden; margin-top: 0.5rem;
+  }
+  .calc-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .calc-btn::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.15); transform: translateX(-100%); transition: transform 0.3s ease;
+  }
+  .calc-btn:hover::after { transform: translateX(0); }
+
+  /* RESULTS PANEL */
+  .calc-results-panel {
+    border: 1px solid var(--border); background: var(--bg2);
+    padding: 2.5rem; position: relative; display: flex; flex-direction: column;
+  }
+  .results-empty {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 3rem 1.5rem;
+  }
+  .results-empty-icon {
+    width: 60px; height: 60px; border: 1px solid var(--border);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem; color: rgba(201,168,76,0.3); font-size: 1.5rem;
+  }
+  .results-empty-text { font-size: 0.75rem; color: var(--muted); line-height: 1.7; }
+  .results-content { display: none; flex-direction: column; flex: 1; }
+  .results-content.active { display: flex; }
+
+  .result-total-hero {
+    text-align: center; padding: 1.5rem 1rem 1.5rem;
+    border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;
+  }
+  .result-corridor-tag {
+    font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .result-total-label {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .result-total-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+  .result-total-sub { font-size: 0.65rem; color: var(--muted); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .result-estimate-tag {
+    display: inline-block; margin-top: 0.6rem;
+    font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--coral); border: 1px solid rgba(224,122,95,0.3); padding: 0.2rem 0.6rem;
+  }
+
+  .breakdown-section { flex: 1; }
+  .breakdown-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.7rem 0; border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-label {
+    font-size: 0.72rem; color: var(--muted);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .breakdown-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .breakdown-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 400; color: var(--white);
+  }
+  .breakdown-rate { font-size: 0.58rem; color: var(--muted); letter-spacing: 0.08em; margin-left: 0.5rem; }
+  .breakdown-divider { border: none; border-top: 1px solid var(--border); margin: 0.5rem 0; }
+
+  .margin-section {
+    margin-top: 1rem; padding: 1.2rem;
+    border: 1px solid var(--border); background: rgba(201,168,76,0.03);
+  }
+  .margin-header {
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .margin-row { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; }
+  .margin-label { font-size: 0.7rem; color: var(--muted); }
+  .margin-value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+  .margin-positive { color: var(--green); }
+  .margin-negative { color: var(--coral); }
+  .margin-warning {
+    margin-top: 0.8rem; padding: 0.6rem 0.8rem;
+    font-size: 0.62rem; line-height: 1.6; color: var(--coral);
+    border-left: 2px solid var(--coral);
+  }
+  .margin-good {
+    margin-top: 0.8rem; padding: 0.6rem 0.8rem;
+    font-size: 0.62rem; line-height: 1.6; color: var(--green);
+    border-left: 2px solid var(--green);
+  }
+
+  .results-actions { margin-top: 1.5rem; display: flex; gap: 0.8rem; }
+  .btn-download {
+    flex: 1; background: transparent; color: var(--gold);
+    border: 1px solid var(--gold); padding: 0.8rem 1.2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s; text-align: center;
+  }
+  .btn-download:hover { background: rgba(201,168,76,0.1); }
+  .btn-reset {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border); padding: 0.8rem 1.2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .btn-reset:hover { color: var(--white); border-color: var(--muted); }
+
+  /* HOW IT WORKS SECTION */
+  .how-calc-section {
+    max-width: 1100px; margin: 0 auto; padding: 0 4rem 4rem;
+  }
+  .how-calc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; color: var(--white); margin-bottom: 2rem;
+  }
+  .how-calc-title em { font-style: italic; color: var(--gold); }
+  .how-calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+  .how-calc-card { background: var(--bg2); padding: 1.8rem 1.5rem; }
+  .how-calc-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+    font-weight: 300; color: rgba(201,168,76,0.2); line-height: 1; margin-bottom: 0.6rem;
+  }
+  .how-calc-label {
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.72rem;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+  .how-calc-desc { font-size: 0.65rem; color: var(--muted); line-height: 1.7; }
+
+  /* DISCLAIMER */
+  .disclaimer { max-width: 1100px; margin: 0 auto; padding: 0 4rem 2rem; }
+  .disclaimer-box {
+    border: 1px solid rgba(201,168,76,0.1); padding: 1.5rem 2rem;
+    font-size: 0.62rem; color: var(--muted); line-height: 1.8;
+  }
+  .disclaimer-box strong { color: var(--gold); font-weight: 500; }
+
+  /* CTA */
+  .cta-section {
+    text-align: center; padding: 5rem 4rem; border-top: 1px solid var(--border);
+  }
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--white); margin-bottom: 1rem;
+  }
+  .cta-section h2 em { font-style: italic; color: var(--gold); }
+  .cta-section p {
+    font-size: 0.78rem; color: var(--muted); line-height: 1.8;
+    max-width: 500px; margin: 0 auto 2rem;
+  }
+  .cta-btn {
+    display: inline-block; background: var(--gold); color: var(--bg);
+    padding: 1rem 2.5rem; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.3s, transform 0.2s;
+  }
+  .cta-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-style: italic; color: var(--gold); opacity: 0.7;
+  }
+  .footer-copy { font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    nav .nav-links { display: none; }
+    .page-hero { padding: 8rem 1.5rem 3rem; }
+    .calc-wrapper { grid-template-columns: 1fr; padding: 0 1.5rem 4rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .how-calc-section { padding: 0 1.5rem 3rem; }
+    .how-calc-grid { grid-template-columns: 1fr 1fr; }
+    .disclaimer { padding: 0 1.5rem 2rem; }
+    .cta-section { padding: 4rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    .result-total-amount { font-size: 2.8rem; }
+    .results-actions { flex-direction: column; }
+    .logo-sub { display: none; }
+  }
+  @media (max-width: 480px) {
+    .how-calc-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://globecart.one" class="logo">
+    <span class="logo-dot"></span> GlobeCart <span class="logo-sub">globecart.one</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://globecart.one#features">Platform</a></li>
+    <li><a href="#calculator">Calculator</a></li>
+    <li><a href="https://globecart.one#pricing">Pricing</a></li>
+    <li><a href="https://globecart.one#signup">Partner</a></li>
+  </ul>
+  <a href="https://globecart.one#signup" class="nav-cta">Get Early Access</a>
+</nav>
+
+<!-- HERO -->
+<header class="page-hero">
+  <div class="page-tag">Free Tool</div>
+  <h1 class="page-h1">Know your <em>real cost</em><br>before you sell.</h1>
+  <p class="page-sub">Duties, VAT, shipping, FX — calculated upfront for US ↔ EU corridors. See exactly what cross-border costs before your first order ships.</p>
+  <div class="estimate-badge">Estimates only · Not financial advice</div>
+  <div class="corridor-display" id="corridorDisplay">
+    <div class="corridor-flag" id="originFlag">🇺🇸 <span>Origin</span></div>
+    <div class="corridor-arrow">→</div>
+    <div class="corridor-flag" id="destFlag">🇪🇺 <span>Destination</span></div>
+  </div>
+</header>
+
+<!-- CALCULATOR -->
+<main class="calc-wrapper" id="calculator">
+
+  <!-- INPUT SIDE -->
+  <div class="calc-input-panel">
+    <div class="panel-title">Shipment Details</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Origin Country</label>
+        <select class="form-input" id="originCountry" onchange="updateCorridor()">
+          <option value="">Select origin</option>
+          <option value="US" selected>United States 🇺🇸</option>
+          <option value="DE">Germany 🇩🇪</option>
+          <option value="FR">France 🇫🇷</option>
+          <option value="NL">Netherlands 🇳🇱</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Destination Country</label>
+        <select class="form-input" id="destination" onchange="updateCorridor()">
+          <option value="">Select destination</option>
+          <option value="DE">Germany 🇩🇪</option>
+          <option value="FR">France 🇫🇷</option>
+          <option value="NL">Netherlands 🇳🇱</option>
+          <option value="US">United States 🇺🇸</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Corridor info -->
+    <div class="corridor-info" id="corridorInfo"></div>
+    <div class="same-country-warning" id="sameCountryWarning">Origin and destination cannot be the same country. Please select different countries.</div>
+
+    <div class="form-group">
+      <label class="form-label">Product Name</label>
+      <input type="text" class="form-input" id="productName" placeholder="e.g. Wireless Earbuds, Silk Scarf...">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Product Category</label>
+      <select class="form-input" id="productCategory">
+        <option value="">Select category</option>
+        <option value="electronics">Electronics & Tech</option>
+        <option value="apparel">Apparel & Fashion</option>
+        <option value="footwear">Footwear</option>
+        <option value="beauty">Beauty & Cosmetics</option>
+        <option value="home">Home & Kitchen</option>
+        <option value="toys">Toys & Games</option>
+        <option value="sports">Sports & Outdoor</option>
+        <option value="jewelry">Jewelry & Accessories</option>
+        <option value="health">Health & Wellness</option>
+        <option value="food">Food & Beverages</option>
+        <option value="pet">Pet Products</option>
+        <option value="books">Books & Media</option>
+        <option value="auto">Auto Parts</option>
+        <option value="general">Other / General Goods</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Unit Cost (USD)</label>
+        <input type="number" class="form-input" id="unitCost" placeholder="0.00" min="0" step="0.01">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Quantity</label>
+        <input type="number" class="form-input" id="quantity" placeholder="1" min="1" step="1" value="1">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Weight per unit (kg)</label>
+        <input type="number" class="form-input" id="weight" placeholder="0.5" min="0.01" step="0.01">
+      </div>
+      <div class="form-group" style="display:flex; align-items:flex-end;">
+        <div style="font-size:0.62rem; color:var(--muted); line-height:1.6; padding-bottom: 0.85rem;">
+          Total: <span id="totalWeightPreview" style="color:var(--white);">—</span> kg
+        </div>
+      </div>
+    </div>
+
+    <hr class="form-divider">
+    <div class="form-divider-label">Optional — Margin Analysis</div>
+    <div class="form-group">
+      <label class="form-label">Your Selling Price per unit (USD)</label>
+      <input type="number" class="form-input" id="sellingPrice" placeholder="What you plan to charge per unit">
+    </div>
+
+    <button class="calc-btn" onclick="calculateLandedCost()">Calculate Landed Cost</button>
+  </div>
+
+  <!-- RESULTS SIDE -->
+  <div class="calc-results-panel">
+    <div class="panel-title">Cost Breakdown</div>
+
+    <div class="results-empty" id="resultsEmpty">
+      <div class="results-empty-icon">⟶</div>
+      <div class="results-empty-text">
+        Select origin & destination, enter product details,<br>and hit calculate for a full breakdown.
+      </div>
+    </div>
+
+    <div class="results-content" id="resultsContent">
+      <div class="result-total-hero">
+        <div class="result-corridor-tag" id="resultCorridorTag"></div>
+        <div class="result-total-label">Estimated Total Landed Cost</div>
+        <div class="result-total-amount" id="totalAmount">$0.00</div>
+        <div class="result-total-sub" id="totalSub"></div>
+        <div class="result-estimate-tag">Estimate · Actual costs may vary</div>
+      </div>
+
+      <div class="breakdown-section">
+        <div class="breakdown-row">
+          <span class="breakdown-label"><span class="breakdown-dot" style="background: var(--white);"></span> Product Cost</span>
+          <span class="breakdown-value" id="bkProduct">—</span>
+        </div>
+        <div class="breakdown-row" id="dutyRow">
+          <span class="breakdown-label"><span class="breakdown-dot" style="background: var(--coral);"></span> Est. Customs Duty <span class="breakdown-rate" id="bkDutyRate"></span></span>
+          <span class="breakdown-value" id="bkDuty">—</span>
+        </div>
+        <div class="breakdown-row" id="vatRow">
+          <span class="breakdown-label"><span class="breakdown-dot" style="background: var(--accent);"></span> <span id="vatLabel">VAT</span> <span class="breakdown-rate" id="bkVatRate"></span></span>
+          <span class="breakdown-value" id="bkVat">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label"><span class="breakdown-dot" style="background: var(--green);"></span> Est. Shipping</span>
+          <span class="breakdown-value" id="bkShipping">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label"><span class="breakdown-dot" style="background: var(--gold);"></span> FX Buffer <span class="breakdown-rate">~2%</span></span>
+          <span class="breakdown-value" id="bkFx">—</span>
+        </div>
+        <hr class="breakdown-divider">
+        <div class="breakdown-row" style="padding: 0.9rem 0;">
+          <span class="breakdown-label" style="color: var(--white); font-weight: 500;">Total Landed (est.)</span>
+          <span class="breakdown-value" style="color: var(--gold); font-size: 1.3rem;" id="bkTotal">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Per Unit Landed Cost</span>
+          <span class="breakdown-value" id="bkPerUnit">—</span>
+        </div>
+      </div>
+
+      <div class="margin-section" id="marginSection" style="display:none;">
+        <div class="margin-header">Margin Analysis (est.)</div>
+        <div class="margin-row">
+          <span class="margin-label">Revenue (total)</span>
+          <span class="margin-value" style="color: var(--white);" id="mgSelling">—</span>
+        </div>
+        <div class="margin-row">
+          <span class="margin-label">Landed Cost (est.)</span>
+          <span class="margin-value" style="color: var(--muted);" id="mgLanded">—</span>
+        </div>
+        <hr class="breakdown-divider">
+        <div class="margin-row">
+          <span class="margin-label">Est. Margin</span>
+          <span class="margin-value" id="mgAmount">—</span>
+        </div>
+        <div class="margin-row">
+          <span class="margin-label">Margin %</span>
+          <span class="margin-value" id="mgPercent">—</span>
+        </div>
+        <div id="marginMessage"></div>
+      </div>
+
+      <div class="results-actions">
+        <button class="btn-download" onclick="downloadPDF()">↓ Download Estimate Report</button>
+        <button class="btn-reset" onclick="resetCalculator()">Reset</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- HOW WE CALCULATE -->
+<section class="how-calc-section">
+  <h2 class="how-calc-title">How this <em>estimate</em> works</h2>
+  <div class="how-calc-grid">
+    <div class="how-calc-card">
+      <div class="how-calc-num">01</div>
+      <div class="how-calc-label">Customs Duty</div>
+      <div class="how-calc-desc">Estimated using average duty rates per product category. EU calculates duty on CIF value (product + shipping). EU de minimis: €150. US de minimis: $800.</div>
+    </div>
+    <div class="how-calc-card">
+      <div class="how-calc-num">02</div>
+      <div class="how-calc-label">VAT / Tax</div>
+      <div class="how-calc-desc">EU VAT applied on (product + shipping + duty). Rates: DE 19%, FR 20%, NL 21%. For US-bound: no federal VAT — state sales tax applies separately.</div>
+    </div>
+    <div class="how-calc-card">
+      <div class="how-calc-num">03</div>
+      <div class="how-calc-label">Shipping</div>
+      <div class="how-calc-desc">Estimated by total shipment weight using average economy/standard carrier rates. Actual rates depend on carrier, service level, dimensions, and volume.</div>
+    </div>
+    <div class="how-calc-card">
+      <div class="how-calc-num">04</div>
+      <div class="how-calc-label">FX Buffer</div>
+      <div class="how-calc-desc">A 2% buffer for currency conversion between USD and EUR. Actual FX fluctuation depends on timing, payment provider, and conversion method.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <div class="disclaimer-box">
+    <strong>Estimate Only — Not Financial Advice</strong> — This calculator provides directional estimates based on average duty rates by product category, standard VAT rates, and estimated shipping costs. Actual landed costs may vary based on specific HS code classification, product composition, carrier rates, exchange rate fluctuations, applicable trade agreements, and regulatory requirements. For precise, product-level calculations, globecart.one's platform will use real-time data and automated HS classification. <strong>All amounts shown in USD. This tool does not constitute financial, tax, or legal advice.</strong>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to sell <em>without surprises?</em></h2>
+  <p>The trust-first cross-border marketplace — full price transparency, real-time tracking, and hassle-free returns built in. One World, One Border.</p>
+  <a href="https://globecart.one#signup" class="cta-btn">Get Early Access</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://globecart.one" class="logo"><span class="logo-dot"></span> GlobeCart <span class="logo-sub">globecart.one</span></a>
+  <div class="footer-tagline">One world, One border.</div>
+  <div class="footer-copy">© 2026 globecart.one</div>
+</footer>
+
+<script>
+// ── DATA ──
+const FLAGS = { US: '🇺🇸', DE: '🇩🇪', FR: '🇫🇷', NL: '🇳🇱' };
+const COUNTRY_NAMES = { US: 'United States', DE: 'Germany', FR: 'France', NL: 'Netherlands' };
+
+// EU duty rates (avg by category)
+const EU_DUTY = {
+  electronics: { rate: 0.02, label: 'Electronics & Tech', note: 'Most consumer electronics 0-3% under ITA' },
+  apparel:     { rate: 0.12, label: 'Apparel & Fashion', note: 'Textiles 8-12% based on material' },
+  footwear:    { rate: 0.11, label: 'Footwear', note: 'Footwear 5-17% based on material/construction' },
+  beauty:      { rate: 0.05, label: 'Beauty & Cosmetics', note: 'Cosmetics 3-6.5%; CPNP notification may apply' },
+  home:        { rate: 0.04, label: 'Home & Kitchen', note: 'Homeware 2-6% depending on material' },
+  toys:        { rate: 0.035, label: 'Toys & Games', note: 'Toys 3-4.7%; EU Toy Safety Directive applies' },
+  sports:      { rate: 0.04, label: 'Sports & Outdoor', note: 'Sporting goods 2.7-4.7%' },
+  jewelry:     { rate: 0.035, label: 'Jewelry & Accessories', note: 'Jewelry 2.5-4%' },
+  health:      { rate: 0.045, label: 'Health & Wellness', note: 'Health products 3-6%; regulations vary' },
+  food:        { rate: 0.10, label: 'Food & Beverages', note: 'Food duties highly variable; phytosanitary checks may apply' },
+  pet:         { rate: 0.04, label: 'Pet Products', note: 'Pet products 2-5%' },
+  books:       { rate: 0.00, label: 'Books & Media', note: 'Printed books/media are duty-free in EU' },
+  auto:        { rate: 0.04, label: 'Auto Parts', note: 'Auto parts 3-4.5%' },
+  general:     { rate: 0.04, label: 'Other / General', note: 'Average rate; actual depends on HS code' }
+};
+
+// US duty rates (avg by category)
+const US_DUTY = {
+  electronics: { rate: 0.015, label: 'Electronics & Tech', note: 'Most electronics 0-2.6% under ITA/FTAs' },
+  apparel:     { rate: 0.15, label: 'Apparel & Fashion', note: 'Apparel 10-32% depending on material/origin' },
+  footwear:    { rate: 0.14, label: 'Footwear', note: 'Footwear 8-48%; highly variable by material' },
+  beauty:      { rate: 0.03, label: 'Beauty & Cosmetics', note: 'Cosmetics/skincare typically 0-5%' },
+  home:        { rate: 0.035, label: 'Home & Kitchen', note: 'Homeware 2-6% depending on material' },
+  toys:        { rate: 0.02, label: 'Toys & Games', note: 'Most toys 0-3%' },
+  sports:      { rate: 0.04, label: 'Sports & Outdoor', note: 'Sporting goods 3-5.6%' },
+  jewelry:     { rate: 0.055, label: 'Jewelry & Accessories', note: 'Jewelry/watches 3-6.5%' },
+  health:      { rate: 0.03, label: 'Health & Wellness', note: 'Health/wellness products 0-5%' },
+  food:        { rate: 0.08, label: 'Food & Beverages', note: 'Food duties variable; FDA requirements apply' },
+  pet:         { rate: 0.03, label: 'Pet Products', note: 'Pet products 0-5%' },
+  books:       { rate: 0.00, label: 'Books & Media', note: 'Printed books/media are duty-free' },
+  auto:        { rate: 0.03, label: 'Auto Parts', note: 'Auto parts 2.5-4%' },
+  general:     { rate: 0.035, label: 'Other / General', note: 'Average rate; actual depends on HTS code' }
+};
+
+const VAT_RATES = {
+  DE: { rate: 0.19, label: 'Germany' },
+  FR: { rate: 0.20, label: 'France' },
+  NL: { rate: 0.21, label: 'Netherlands' },
+  US: { rate: 0.00, label: 'United States' } // No federal VAT
+};
+
+const EU_COUNTRIES = ['DE', 'FR', 'NL'];
+const EU_DE_MINIMIS_USD = 163; // ~€150
+const US_DE_MINIMIS = 800;
+const FX_BUFFER = 0.02;
+
+function estimateShipping(weightKg, isIntraEU) {
+  if (isIntraEU) {
+    if (weightKg <= 1) return 7.00;
+    if (weightKg <= 2) return 10.00;
+    if (weightKg <= 5) return 16.00;
+    if (weightKg <= 10) return 25.00;
+    if (weightKg <= 20) return 40.00;
+    return 40 + (weightKg - 20) * 2.00;
+  }
+  // International US↔EU
+  if (weightKg <= 0.5) return 9.50;
+  if (weightKg <= 1) return 14.00;
+  if (weightKg <= 2) return 20.00;
+  if (weightKg <= 5) return 32.00;
+  if (weightKg <= 10) return 52.00;
+  if (weightKg <= 20) return 82.00;
+  if (weightKg <= 30) return 115.00;
+  return 115 + (weightKg - 30) * 3.50;
+}
+
+// ── CORRIDOR UPDATE ──
+function updateCorridor() {
+  const origin = document.getElementById('originCountry').value;
+  const dest = document.getElementById('destination').value;
+  const infoEl = document.getElementById('corridorInfo');
+  const warnEl = document.getElementById('sameCountryWarning');
+
+  // Update hero flags
+  if (origin) {
+    document.getElementById('originFlag').innerHTML = FLAGS[origin] + ' <span>' + COUNTRY_NAMES[origin] + '</span>';
+  }
+  if (dest) {
+    document.getElementById('destFlag').innerHTML = FLAGS[dest] + ' <span>' + COUNTRY_NAMES[dest] + '</span>';
+  }
+
+  // Same country check
+  if (origin && dest && origin === dest) {
+    warnEl.classList.add('active');
+    infoEl.classList.remove('active');
+    return;
+  }
+  warnEl.classList.remove('active');
+
+  if (!origin || !dest) { infoEl.classList.remove('active'); return; }
+
+  const isIntraEU = EU_COUNTRIES.includes(origin) && EU_COUNTRIES.includes(dest);
+  const isToEU = !EU_COUNTRIES.includes(origin) && EU_COUNTRIES.includes(dest);
+  const isToUS = EU_COUNTRIES.includes(origin) && dest === 'US';
+
+  let html = '';
+  if (isIntraEU) {
+    html = '<span class="corridor-type">Intra-EU</span><br><strong>No customs duty</strong> — single market. Destination VAT (' + (VAT_RATES[dest].rate * 100) + '%) applies via OSS. Lower shipping costs within EU.';
+  } else if (isToEU) {
+    html = '<span class="corridor-type">US → EU</span><br>EU customs duty + ' + (VAT_RATES[dest].rate * 100) + '% ' + COUNTRY_NAMES[dest] + ' VAT. De minimis threshold: €150 (goods under €150 are duty-free, VAT still applies).';
+  } else if (isToUS) {
+    html = '<span class="corridor-type">EU → US</span><br>US customs duty applies. De minimis: $800 (most small shipments enter duty-free). <strong>No federal VAT</strong> — state sales tax (0-10%) is not included in this estimate.';
+  }
+
+  infoEl.innerHTML = html;
+  infoEl.classList.add('active');
+
+  // Update weight preview
+  updateWeightPreview();
+}
+
+function updateWeightPreview() {
+  const w = parseFloat(document.getElementById('weight').value) || 0;
+  const q = parseInt(document.getElementById('quantity').value) || 1;
+  document.getElementById('totalWeightPreview').textContent = w > 0 ? (w * q).toFixed(2) : '—';
+}
+document.getElementById('weight').addEventListener('input', updateWeightPreview);
+document.getElementById('quantity').addEventListener('input', updateWeightPreview);
+
+// ── CALCULATION ──
+let lastCalc = null;
+
+function calculateLandedCost() {
+  const origin = document.getElementById('originCountry').value;
+  const dest = document.getElementById('destination').value;
+  const productName = document.getElementById('productName').value || 'Unnamed Product';
+  const category = document.getElementById('productCategory').value;
+  const unitCost = parseFloat(document.getElementById('unitCost').value);
+  const quantity = parseInt(document.getElementById('quantity').value) || 1;
+  const weight = parseFloat(document.getElementById('weight').value);
+  const sellingPrice = parseFloat(document.getElementById('sellingPrice').value) || 0;
+
+  if (!origin) return showError('Please select an origin country.');
+  if (!dest) return showError('Please select a destination country.');
+  if (origin === dest) return showError('Origin and destination must be different.');
+  if (!category) return showError('Please select a product category.');
+  if (!unitCost || unitCost <= 0) return showError('Please enter a valid unit cost.');
+  if (!weight || weight <= 0) return showError('Please enter a valid weight.');
+
+  const isIntraEU = EU_COUNTRIES.includes(origin) && EU_COUNTRIES.includes(dest);
+  const isToEU = !EU_COUNTRIES.includes(origin) && EU_COUNTRIES.includes(dest);
+  const isToUS = EU_COUNTRIES.includes(origin) && dest === 'US';
+
+  const productCost = unitCost * quantity;
+  const totalWeight = weight * quantity;
+  const shippingCost = estimateShipping(totalWeight, isIntraEU);
+  const cifValue = productCost + shippingCost;
+
+  let dutyCost = 0;
+  let dutyRate = 0;
+  let dutyLabel = '';
+  let dutyNote = '';
+  let vatCost = 0;
+  let vatRate = 0;
+  let vatLabel = 'VAT';
+  let corridorType = '';
+  let deMinimisApplied = false;
+
+  if (isIntraEU) {
+    // No customs duty within EU single market
+    corridorType = 'Intra-EU';
+    dutyCost = 0;
+    dutyRate = 0;
+    dutyLabel = 'No duty (single market)';
+    dutyNote = 'No customs duties within the EU single market.';
+    vatRate = VAT_RATES[dest].rate;
+    vatLabel = COUNTRY_NAMES[dest] + ' VAT';
+    vatCost = cifValue * vatRate; // VAT on product + shipping
+  } else if (isToEU) {
+    corridorType = 'US → EU';
+    const dutyInfo = EU_DUTY[category];
+    dutyRate = dutyInfo.rate;
+    dutyNote = dutyInfo.note;
+    // EU de minimis
+    if (productCost <= EU_DE_MINIMIS_USD && dutyRate > 0) {
+      dutyCost = 0;
+      deMinimisApplied = true;
+      dutyLabel = 'de minimis (under €150)';
+    } else {
+      dutyCost = cifValue * dutyRate;
+      dutyLabel = (dutyRate * 100).toFixed(1) + '%';
+    }
+    vatRate = VAT_RATES[dest].rate;
+    vatLabel = COUNTRY_NAMES[dest] + ' VAT';
+    vatCost = (cifValue + dutyCost) * vatRate;
+  } else if (isToUS) {
+    corridorType = 'EU → US';
+    const dutyInfo = US_DUTY[category];
+    dutyRate = dutyInfo.rate;
+    dutyNote = dutyInfo.note;
+    // US de minimis ($800)
+    if (productCost <= US_DE_MINIMIS && dutyRate > 0) {
+      dutyCost = 0;
+      deMinimisApplied = true;
+      dutyLabel = 'de minimis (under $800)';
+    } else {
+      dutyCost = cifValue * dutyRate;
+      dutyLabel = (dutyRate * 100).toFixed(1) + '%';
+    }
+    vatRate = 0;
+    vatLabel = 'Sales Tax (varies by state)';
+    vatCost = 0; // US has no federal VAT
+  }
+
+  const subtotal = productCost + dutyCost + vatCost + shippingCost;
+  const needsFx = (isToEU || isToUS); // FX only for cross-currency
+  const fxCost = needsFx ? subtotal * FX_BUFFER : 0;
+  const totalLanded = subtotal + fxCost;
+  const perUnit = totalLanded / quantity;
+
+  lastCalc = {
+    productName, category: (isToUS ? US_DUTY : EU_DUTY)[category]?.label || category,
+    unitCost, quantity, weight, totalWeight,
+    origin: COUNTRY_NAMES[origin], originCode: origin,
+    destination: COUNTRY_NAMES[dest], destCode: dest,
+    corridorType, isIntraEU, isToUS,
+    productCost, shippingCost,
+    dutyCost, dutyRate, dutyLabel, dutyNote, deMinimisApplied,
+    vatCost, vatRate, vatLabel,
+    fxCost, needsFx, totalLanded, perUnit,
+    sellingPrice: sellingPrice * quantity,
+    sellingPriceUnit: sellingPrice,
+    timestamp: new Date().toLocaleString()
+  };
+
+  // Render
+  document.getElementById('resultsEmpty').style.display = 'none';
+  document.getElementById('resultsContent').classList.add('active');
+
+  document.getElementById('resultCorridorTag').textContent = FLAGS[origin] + ' ' + COUNTRY_NAMES[origin] + ' → ' + FLAGS[dest] + ' ' + COUNTRY_NAMES[dest];
+  document.getElementById('totalAmount').textContent = fmt(totalLanded);
+
+  let subText = quantity > 1 ? fmt(perUnit) + ' per unit · ' + quantity + ' units' : '1 unit';
+  if (isToUS) subText += ' · excl. state sales tax';
+  document.getElementById('totalSub').textContent = subText;
+
+  document.getElementById('bkProduct').textContent = fmt(productCost);
+
+  // Duty row
+  document.getElementById('bkDuty').textContent = fmt(dutyCost);
+  document.getElementById('bkDutyRate').textContent = isIntraEU ? 'n/a' : dutyLabel;
+  if (isIntraEU) {
+    document.getElementById('dutyRow').style.opacity = '0.4';
+  } else {
+    document.getElementById('dutyRow').style.opacity = '1';
+  }
+
+  // VAT row
+  document.getElementById('vatLabel').textContent = vatLabel;
+  document.getElementById('bkVat').textContent = isToUS ? 'n/a' : fmt(vatCost);
+  document.getElementById('bkVatRate').textContent = vatRate > 0 ? (vatRate * 100) + '%' : '';
+  document.getElementById('vatRow').style.opacity = isToUS ? '0.4' : '1';
+
+  document.getElementById('bkShipping').textContent = fmt(shippingCost);
+  document.getElementById('bkFx').textContent = needsFx ? fmt(fxCost) : '$0.00';
+  document.getElementById('bkTotal').textContent = fmt(totalLanded);
+  document.getElementById('bkPerUnit').textContent = fmt(perUnit);
+
+  // Margin
+  const ms = document.getElementById('marginSection');
+  if (sellingPrice > 0) {
+    ms.style.display = 'block';
+    const totalSelling = sellingPrice * quantity;
+    const marginVal = totalSelling - totalLanded;
+    const marginPct = (marginVal / totalSelling) * 100;
+
+    document.getElementById('mgSelling').textContent = fmt(totalSelling);
+    document.getElementById('mgLanded').textContent = fmt(totalLanded);
+    document.getElementById('mgAmount').textContent = fmt(marginVal);
+    document.getElementById('mgAmount').className = 'margin-value ' + (marginVal >= 0 ? 'margin-positive' : 'margin-negative');
+    document.getElementById('mgPercent').textContent = marginPct.toFixed(1) + '%';
+    document.getElementById('mgPercent').className = 'margin-value ' + (marginVal >= 0 ? 'margin-positive' : 'margin-negative');
+
+    const msgEl = document.getElementById('marginMessage');
+    let extra = isToUS ? ' Note: US state sales tax is not included and would further affect margin.' : '';
+    if (marginPct < 0) {
+      msgEl.innerHTML = '<div class="margin-warning">At this price, you would lose money after estimated duties, VAT, shipping, and FX.' + extra + '</div>';
+    } else if (marginPct < 15) {
+      msgEl.innerHTML = '<div class="margin-warning">Thin margin territory. Returns, refunds, or FX swings could erode this.' + extra + '</div>';
+    } else if (marginPct < 25) {
+      msgEl.innerHTML = '<div class="margin-good">Workable margin, though buffer is limited. Watch FX movement and return rates.' + extra + '</div>';
+    } else {
+      msgEl.innerHTML = '<div class="margin-good">Healthy estimated margin for cross-border at this price point.' + extra + '</div>';
+    }
+  } else {
+    ms.style.display = 'none';
+  }
+
+  if (window.innerWidth <= 900) {
+    document.getElementById('resultsContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function showError(msg) {
+  const empty = document.getElementById('resultsEmpty');
+  empty.style.display = 'flex';
+  document.getElementById('resultsContent').classList.remove('active');
+  empty.querySelector('.results-empty-text').innerHTML = '<span style="color:var(--coral);">' + msg + '</span>';
+  setTimeout(() => {
+    empty.querySelector('.results-empty-text').innerHTML = 'Select origin & destination, enter product details,<br>and hit calculate for a full breakdown.';
+  }, 3000);
+}
+
+function resetCalculator() {
+  document.getElementById('productName').value = '';
+  document.getElementById('productCategory').value = '';
+  document.getElementById('unitCost').value = '';
+  document.getElementById('quantity').value = '1';
+  document.getElementById('weight').value = '';
+  document.getElementById('sellingPrice').value = '';
+  document.getElementById('resultsEmpty').style.display = 'flex';
+  document.getElementById('resultsContent').classList.remove('active');
+  document.getElementById('totalWeightPreview').textContent = '—';
+  lastCalc = null;
+}
+
+function fmt(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+// ── PDF ──
+function downloadPDF() {
+  if (!lastCalc) return;
+  const c = lastCalc;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const pageW = 210, margin = 20, contentW = pageW - margin * 2;
+  let y = margin;
+
+  const gold = [201,168,76], dark = [8,11,16], white = [240,237,230];
+  const muted = [140,137,130], coral = [224,122,95], green = [74,156,111];
+
+  doc.setFillColor(...dark);
+  doc.rect(0, 0, 210, 297, 'F');
+
+  // Header
+  doc.setFillColor(13, 18, 25);
+  doc.rect(0, 0, 210, 42, 'F');
+  doc.setDrawColor(...gold); doc.setLineWidth(0.3); doc.line(0, 42, 210, 42);
+
+  doc.setFillColor(...gold); doc.circle(margin + 2.5, 14, 2.5, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.setTextColor(...white);
+  doc.text('GlobeCart', margin + 8, 15.5);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...muted);
+  doc.text('globecart.one', margin + 38, 15.5);
+
+  doc.setFontSize(9); doc.setTextColor(...gold);
+  doc.text('Landed Cost Estimate Report', margin, 25);
+
+  doc.setFontSize(7); doc.setTextColor(...muted);
+  doc.text('Generated: ' + c.timestamp, margin, 31);
+  doc.text('Corridor: ' + c.origin + ' → ' + c.destination + ' (' + c.corridorType + ')', margin, 36);
+
+  // Estimate warning
+  doc.setFillColor(224, 122, 95); doc.setTextColor(...dark);
+  doc.setFontSize(5.5); doc.setFont('helvetica', 'bold');
+  const ewX = pageW - margin - 35;
+  doc.roundedRect(ewX, 28, 35, 6, 1, 1, 'F');
+  doc.text('ESTIMATE ONLY', ewX + 17.5, 32, { align: 'center' });
+
+  y = 52;
+
+  const addRow = (label, value, highlight) => {
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(...muted);
+    doc.text(label, margin, y);
+    doc.setFont('helvetica', 'bold'); doc.setTextColor(...(highlight || white));
+    doc.text(String(value), pageW - margin, y, { align: 'right' });
+    y += 7;
+  };
+
+  const addSectionHead = (title) => {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...gold);
+    doc.text(title, margin, y); y += 5;
+    doc.setDrawColor(201, 168, 76, 60); doc.setLineWidth(0.15);
+    doc.line(margin, y, margin + contentW, y); y += 6;
+  };
+
+  addSectionHead('PRODUCT DETAILS');
+  addRow('Product', c.productName);
+  addRow('Category', c.category);
+  addRow('Unit Cost', fmt(c.unitCost));
+  addRow('Quantity', c.quantity.toString());
+  addRow('Weight per Unit', c.weight + ' kg');
+  addRow('Total Weight', c.totalWeight.toFixed(2) + ' kg');
+  addRow('Origin', c.origin);
+  addRow('Destination', c.destination);
+  y += 4;
+
+  addSectionHead('ESTIMATED COST BREAKDOWN');
+  addRow('Product Cost (' + c.quantity + ' units)', fmt(c.productCost));
+
+  if (c.isIntraEU) {
+    addRow('Customs Duty (intra-EU: none)', '$0.00');
+  } else {
+    addRow('Est. Customs Duty (' + c.dutyLabel + ')', fmt(c.dutyCost));
+  }
+
+  if (c.isToUS) {
+    addRow('VAT/Sales Tax', 'n/a (state tax varies)');
+  } else {
+    addRow('Est. ' + c.vatLabel + ' (' + (c.vatRate * 100) + '%)', fmt(c.vatCost));
+  }
+
+  addRow('Est. Shipping', fmt(c.shippingCost));
+  addRow('FX Buffer (~2%)', c.needsFx ? fmt(c.fxCost) : '$0.00');
+  y += 2;
+
+  doc.setDrawColor(...gold); doc.setLineWidth(0.3);
+  doc.line(margin, y, margin + contentW, y); y += 8;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(...gold);
+  doc.text('Est. Total Landed Cost', margin, y);
+  doc.text(fmt(c.totalLanded), pageW - margin, y, { align: 'right' }); y += 7;
+  doc.setFontSize(9); doc.setTextColor(...muted);
+  doc.text('Per Unit Landed Cost (est.)', margin, y);
+  doc.setTextColor(...white);
+  doc.text(fmt(c.perUnit), pageW - margin, y, { align: 'right' }); y += 10;
+
+  if (c.sellingPrice > 0) {
+    addSectionHead('ESTIMATED MARGIN ANALYSIS');
+    const mg = c.sellingPrice - c.totalLanded;
+    const mgP = (mg / c.sellingPrice) * 100;
+    addRow('Revenue (total)', fmt(c.sellingPrice));
+    addRow('Est. Landed Cost', fmt(c.totalLanded));
+    addRow('Est. Margin', fmt(mg), mg >= 0 ? green : coral);
+    addRow('Margin %', mgP.toFixed(1) + '%', mg >= 0 ? green : coral);
+    y += 4;
+  }
+
+  // Disclaimer box
+  doc.setFillColor(13, 18, 25);
+  doc.roundedRect(margin, y, contentW, 28, 1, 1, 'F');
+  doc.setDrawColor(201, 168, 76, 40); doc.setLineWidth(0.15);
+  doc.roundedRect(margin, y, contentW, 28, 1, 1, 'S');
+  y += 5;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(...coral);
+  doc.text('ESTIMATE ONLY — NOT FINANCIAL ADVICE', margin + 4, y); y += 4;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(5.5); doc.setTextColor(...muted);
+  const noteLines = doc.splitTextToSize(
+    'This report provides directional estimates only. Actual landed costs may vary based on HS code classification, product composition, carrier rates, FX fluctuations, trade agreements, and regulatory requirements. Category note: ' + c.dutyNote + (c.isToUS ? ' US state sales tax is not included in this estimate.' : '') + ' All amounts in USD. This does not constitute financial, tax, or legal advice.',
+    contentW - 8
+  );
+  doc.text(noteLines, margin + 4, y);
+
+  // Footer
+  const footerY = 275;
+  doc.setDrawColor(...gold); doc.setLineWidth(0.3);
+  doc.line(margin, footerY, margin + contentW, footerY);
+  doc.setFillColor(...gold); doc.circle(margin + 2.5, footerY + 7, 1.8, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...white);
+  doc.text('GlobeCart', margin + 7, footerY + 8);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...muted);
+  doc.text('globecart.one', margin + 30, footerY + 8);
+  doc.setFont('helvetica', 'italic'); doc.setFontSize(7);
+  doc.text('One World, One Border.', margin + 7, footerY + 13);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(6.5);
+  doc.text('© 2026 globecart.one', pageW - margin, footerY + 13, { align: 'right' });
+
+  const safeName = c.productName.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
+  doc.save('GlobeCart_LandedCost_' + safeName + '.pdf');
+}
+
+// Init
+updateCorridor();
+</script>
+</body>
+</html>
