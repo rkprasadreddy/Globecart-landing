@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cross-Border Landed Cost Calculator | US ↔ EU | GlobeCart</title>
-<meta name="description" content="Free tool to calculate VAT, customs duties, shipping costs and landed cost for cross-border trade between the US and EU (Germany, France, Netherlands). Bidirectional calculator by GlobeCart.">
-<meta name="keywords" content="cross-border landed cost calculator, US EU landed cost, Germany import calculator, France VAT calculator, Netherlands duty calculator, cross-border ecommerce calculator, sell to Europe from USA, sell to USA from Europe, DDP calculator, international shipping cost">
+<meta name="description" content="Free tool to calculate VAT, customs duties, shipping costs, carrier handling fees, and full landed cost for cross-border trade between the US and EU (Germany, France, Netherlands). Bidirectional calculator by GlobeCart.">
+<meta name="keywords" content="cross-border landed cost calculator, US EU landed cost, Germany import calculator, France VAT calculator, Netherlands duty calculator, cross-border ecommerce calculator, sell to Europe from USA, sell to USA from Europe, DDP calculator, international shipping cost, carrier handling fee">
 <meta name="robots" content="index, follow">
 <meta name="author" content="GlobeCart">
 <link rel="canonical" href="https://globecart.one/calculator.html">
@@ -22,7 +22,7 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="Cross-Border Landed Cost Calculator | US ↔ EU | GlobeCart">
-<meta property="og:description" content="Free tool to calculate VAT, customs duties, shipping costs and landed cost for cross-border trade between the US and EU.">
+<meta property="og:description" content="Free tool to calculate VAT, customs duties, shipping, handling fees, and full landed cost for cross-border trade between the US and EU.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://globecart.one/calculator.html">
 <meta property="og:site_name" content="GlobeCart">
@@ -33,7 +33,7 @@
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cross-Border Landed Cost Calculator | US ↔ EU | GlobeCart">
-<meta name="twitter:description" content="Free tool to calculate VAT, customs duties, shipping costs and landed cost for cross-border trade between the US and EU.">
+<meta name="twitter:description" content="Free tool to calculate VAT, customs duties, shipping, handling fees, and full landed cost for cross-border trade between the US and EU.">
 <meta name="twitter:image" content="https://globecart.one/android-chrome-512x512.png">
 
 <!-- Structured Data -->
@@ -42,7 +42,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Cross-Border Landed Cost Calculator | US ↔ EU",
-  "description": "Free tool to calculate VAT, customs duties, shipping costs and landed cost for cross-border trade between the US and EU.",
+  "description": "Free tool to calculate VAT, customs duties, shipping, handling fees, and full landed cost for cross-border trade between the US and EU.",
   "url": "https://globecart.one/calculator.html",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Any",
@@ -577,8 +577,10 @@
         <div class="result-corridor-tag" id="resultCorridorTag"></div>
         <div class="result-total-label">Estimated Total Landed Cost</div>
         <div class="result-total-amount" id="totalAmount">$0.00</div>
+        <div class="result-total-range" id="totalRange" style="font-size:0.85rem; color:var(--muted); margin-top:0.3rem; letter-spacing:0.02em;"></div>
         <div class="result-total-sub" id="totalSub"></div>
-        <div class="result-estimate-tag">Estimate · Actual costs may vary</div>
+        <div id="confidenceBadge" style="display:inline-block; margin-top:0.6rem; padding:0.25rem 0.7rem; border-radius:3px; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; font-weight:600;"></div>
+        <div class="result-estimate-tag" style="margin-top:0.5rem;">Estimate · Actual costs may vary</div>
       </div>
 
       <div class="breakdown-section">
@@ -589,6 +591,10 @@
         <div class="breakdown-row" id="dutyRow">
           <span class="breakdown-label"><span class="breakdown-dot" style="background: var(--coral);"></span> Est. Customs Duty <span class="breakdown-rate" id="bkDutyRate"></span></span>
           <span class="breakdown-value" id="bkDuty">—</span>
+        </div>
+        <div class="breakdown-row" id="handlingRow">
+          <span class="breakdown-label"><span class="breakdown-dot" style="background: #b8825c;"></span> Carrier Handling Fee <span class="breakdown-rate">est.</span></span>
+          <span class="breakdown-value" id="bkHandling">—</span>
         </div>
         <div class="breakdown-row" id="vatRow">
           <span class="breakdown-label"><span class="breakdown-dot" style="background: var(--accent);"></span> <span id="vatLabel">VAT</span> <span class="breakdown-rate" id="bkVatRate"></span></span>
@@ -611,6 +617,18 @@
           <span class="breakdown-label">Per Unit Landed Cost</span>
           <span class="breakdown-value" id="bkPerUnit">—</span>
         </div>
+      </div>
+
+      <!-- RETURNS IMPACT FLAG -->
+      <div id="returnsImpactSection" style="display:none; margin-top:1rem; padding:0.9rem 1rem; background:rgba(224,122,95,0.06); border-left:2px solid var(--coral); border-radius:4px;">
+        <div style="font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--coral); margin-bottom:0.4rem; font-weight:600;">⚠ Returns Risk</div>
+        <div id="returnsImpactText" style="font-size:0.72rem; color:var(--muted); line-height:1.55;"></div>
+      </div>
+
+      <!-- CONFIDENCE NOTES -->
+      <div id="confidenceNotesSection" style="display:none; margin-top:0.8rem; padding:0.9rem 1rem; background:rgba(201,168,76,0.04); border-left:2px solid var(--gold); border-radius:4px;">
+        <div style="font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem; font-weight:600;">Why this range?</div>
+        <div id="confidenceNotesText" style="font-size:0.72rem; color:var(--muted); line-height:1.55;"></div>
       </div>
 
       <div class="margin-section" id="marginSection" style="display:none;">
@@ -655,7 +673,7 @@
     <div class="how-calc-card">
       <div class="how-calc-num">02</div>
       <div class="how-calc-label">VAT / Tax</div>
-      <div class="how-calc-desc">EU VAT applied on (product + shipping + duty). Rates: DE 19%, FR 20%, NL 21%. For US-bound: no federal VAT — state sales tax applies separately.</div>
+      <div class="how-calc-desc">EU VAT = % × (Product + Shipping + Duty + Handling Fee). Rates: DE 19%, FR 20%, NL 21%. For US-bound: no federal VAT — state sales tax applies separately and is not included.</div>
     </div>
     <div class="how-calc-card">
       <div class="how-calc-num">03</div>
@@ -770,6 +788,68 @@ const EU_DE_MINIMIS_USD = 163; // ~€150
 const US_DE_MINIMIS = 800;
 const FX_BUFFER = 0.02;
 
+// Carrier handling/clearance fees (DHL/FedEx/UPS charge this for customs clearance)
+// Range: $8-15. We use mid-range $12 as default. Set to 0 for intra-country (no customs).
+const HANDLING_FEE_DEFAULT = 12;
+const HANDLING_FEE_RANGE = { low: 8, high: 15 };
+
+// Expected return rate ranges by category (industry-observed, not yet validated by GlobeCart data)
+const RETURNS_RATES = {
+  apparel:     { low: 15, high: 30, level: 'high',   note: 'Apparel and footwear have the highest cross-border return rates — sizing, fit, and color expectations drive returns.' },
+  footwear:    { low: 15, high: 25, level: 'high',   note: 'Footwear returns are common cross-border — size standards differ between US and EU.' },
+  jewelry:     { low: 10, high: 20, level: 'medium', note: 'Jewelry returns vary by occasion and personal taste.' },
+  beauty:      { low: 2,  high: 5,  level: 'low',    note: 'Beauty/skincare has low return rates, but customs may flag certain ingredients.' },
+  electronics: { low: 5,  high: 12, level: 'medium', note: 'Electronics returns depend on compatibility (voltage, plug type, certification) — verify regional specs.' },
+  home:        { low: 5,  high: 12, level: 'medium', note: 'Home goods returns moderate; bulky items face high return shipping costs.' },
+  toys:        { low: 3,  high: 8,  level: 'low',    note: 'Toy returns relatively low; check CE/safety compliance for EU.' },
+  sports:      { low: 8,  high: 15, level: 'medium', note: 'Sporting goods returns often tied to sizing and material expectations.' },
+  health:      { low: 3,  high: 8,  level: 'low',    note: 'Health/wellness returns low; regulatory restrictions may block some categories.' },
+  food:        { low: 1,  high: 4,  level: 'low',    note: 'Food returns rare but spoilage/perishability is a real risk.' },
+  pet:         { low: 3,  high: 8,  level: 'low',    note: 'Pet product returns relatively low.' },
+  books:       { low: 2,  high: 5,  level: 'low',    note: 'Books and media have minimal returns.' },
+  auto:        { low: 8,  high: 18, level: 'medium', note: 'Auto parts returns often tied to fitment issues — verify vehicle compatibility.' },
+  general:     { low: 5,  high: 12, level: 'medium', note: 'General category — return rate varies widely. Validate against your actual product type.' }
+};
+
+// Confidence band — how much variance to apply to the total estimate
+// Returns a multiplier range applied to TOTAL landed cost
+function computeConfidence(category, productCost, deMinimisApplied, isIntraEU) {
+  let score = 0;
+  const notes = [];
+
+  // High value items have more cost variance
+  if (productCost > 500) { score += 2; notes.push('High product value increases variance in duty calculation.'); }
+  else if (productCost > 150) { score += 1; }
+
+  // Complex categories
+  const complexCats = ['apparel','footwear','food','health','auto'];
+  if (complexCats.includes(category)) {
+    score += 2;
+    notes.push('This category has variable duty rates depending on specific HS classification, material, and origin.');
+  }
+
+  // De minimis edge cases
+  if (deMinimisApplied) {
+    notes.push('De minimis exemption applied — no duty, but VAT and carrier handling fees still apply.');
+  }
+
+  // Always note: we use category averages, not HS codes
+  notes.push('Estimates use category-average duty rates. Actual rates depend on specific HS code classification.');
+
+  // Intra-EU has low variance
+  if (isIntraEU) {
+    score = Math.max(0, score - 2);
+    notes.push('Intra-EU shipments have low variance — no customs duty, single market rules.');
+  }
+
+  let level, variance, color;
+  if (score <= 1) { level = 'High'; variance = 0.05; color = 'var(--green)'; }
+  else if (score <= 3) { level = 'Medium'; variance = 0.10; color = 'var(--gold)'; }
+  else { level = 'Low'; variance = 0.15; color = 'var(--coral)'; }
+
+  return { level, variance, notes, color };
+}
+
 function estimateShipping(weightKg, isIntraEU) {
   if (isIntraEU) {
     if (weightKg <= 1) return 7.00;
@@ -823,7 +903,7 @@ function updateCorridor() {
   if (isIntraEU) {
     html = '<span class="corridor-type">Intra-EU</span><br><strong>No customs duty</strong> — single market. Destination VAT (' + (VAT_RATES[dest].rate * 100) + '%) applies via OSS. Lower shipping costs within EU.';
   } else if (isToEU) {
-    html = '<span class="corridor-type">US → EU</span><br>EU customs duty + ' + (VAT_RATES[dest].rate * 100) + '% ' + COUNTRY_NAMES[dest] + ' VAT. De minimis threshold: €150 (goods under €150 are duty-free, VAT still applies).';
+    html = '<span class="corridor-type">US → EU</span><br>EU customs duty + ' + (VAT_RATES[dest].rate * 100) + '% ' + COUNTRY_NAMES[dest] + ' VAT. <strong>De minimis:</strong> No import duty under €150, but VAT and carrier handling fees still apply.';
   } else if (isToUS) {
     html = '<span class="corridor-type">EU → US</span><br>US customs duty applies. De minimis: $800 (most small shipments enter duty-free). <strong>No federal VAT</strong> — state sales tax (0-10%) is not included in this estimate.';
   }
@@ -882,6 +962,14 @@ function calculateLandedCost() {
   let corridorType = '';
   let deMinimisApplied = false;
 
+  // Carrier handling/clearance fee — applies to cross-border shipments only
+  // (carriers charge this fee for handling customs paperwork)
+  let handlingFee = 0;
+  if (!isIntraEU && origin !== dest) {
+    // Cross-border: handling fee applies
+    handlingFee = HANDLING_FEE_DEFAULT;
+  }
+
   if (isIntraEU) {
     // No customs duty within EU single market
     corridorType = 'Intra-EU';
@@ -891,7 +979,8 @@ function calculateLandedCost() {
     dutyNote = 'No customs duties within the EU single market.';
     vatRate = VAT_RATES[dest].rate;
     vatLabel = COUNTRY_NAMES[dest] + ' VAT';
-    vatCost = cifValue * vatRate; // VAT on product + shipping
+    // Intra-EU: VAT on product + shipping (no duty, no handling fee for customs)
+    vatCost = cifValue * vatRate;
   } else if (isToEU) {
     corridorType = 'US → EU';
     const dutyInfo = EU_DUTY[category];
@@ -908,7 +997,9 @@ function calculateLandedCost() {
     }
     vatRate = VAT_RATES[dest].rate;
     vatLabel = COUNTRY_NAMES[dest] + ' VAT';
-    vatCost = (cifValue + dutyCost) * vatRate;
+    // EU VAT formula (explicit): VAT = % × (Product + Shipping + Duty + Handling Fee)
+    // EU customs law: handling fees ARE part of the VAT taxable base when charged at import
+    vatCost = (cifValue + dutyCost + handlingFee) * vatRate;
   } else if (isToUS) {
     corridorType = 'EU → US';
     const dutyInfo = US_DUTY[category];
@@ -928,22 +1019,32 @@ function calculateLandedCost() {
     vatCost = 0; // US has no federal VAT
   }
 
-  const subtotal = productCost + dutyCost + vatCost + shippingCost;
+  const subtotal = productCost + dutyCost + handlingFee + vatCost + shippingCost;
   const needsFx = (isToEU || isToUS); // FX only for cross-currency
   const fxCost = needsFx ? subtotal * FX_BUFFER : 0;
   const totalLanded = subtotal + fxCost;
   const perUnit = totalLanded / quantity;
 
+  // Compute confidence + range
+  const confidence = computeConfidence(category, productCost, deMinimisApplied, isIntraEU);
+  const rangeLow = totalLanded * (1 - confidence.variance);
+  const rangeHigh = totalLanded * (1 + confidence.variance);
+
+  // Returns risk for this category
+  const returnsRisk = RETURNS_RATES[category] || RETURNS_RATES.general;
+
   lastCalc = {
     productName, category: (isToUS ? US_DUTY : EU_DUTY)[category]?.label || category,
+    categoryKey: category,
     unitCost, quantity, weight, totalWeight,
     origin: COUNTRY_NAMES[origin], originCode: origin,
     destination: COUNTRY_NAMES[dest], destCode: dest,
     corridorType, isIntraEU, isToUS,
-    productCost, shippingCost,
+    productCost, shippingCost, handlingFee,
     dutyCost, dutyRate, dutyLabel, dutyNote, deMinimisApplied,
     vatCost, vatRate, vatLabel,
     fxCost, needsFx, totalLanded, perUnit,
+    rangeLow, rangeHigh, confidence, returnsRisk,
     sellingPrice: sellingPrice * quantity,
     sellingPriceUnit: sellingPrice,
     timestamp: new Date().toLocaleString()
@@ -953,8 +1054,20 @@ function calculateLandedCost() {
   document.getElementById('resultsEmpty').style.display = 'none';
   document.getElementById('resultsContent').classList.add('active');
 
+  // Corridor tag - use ↔ for bidirectional context but → for directional calculation
   document.getElementById('resultCorridorTag').textContent = FLAGS[origin] + ' ' + COUNTRY_NAMES[origin] + ' → ' + FLAGS[dest] + ' ' + COUNTRY_NAMES[dest];
   document.getElementById('totalAmount').textContent = fmt(totalLanded);
+
+  // Range display
+  document.getElementById('totalRange').textContent = 'Likely range: ' + fmt(rangeLow) + ' – ' + fmt(rangeHigh);
+
+  // Confidence badge
+  const confBadge = document.getElementById('confidenceBadge');
+  confBadge.textContent = 'Confidence: ' + confidence.level;
+  confBadge.style.color = confidence.color;
+  confBadge.style.background = confidence.color === 'var(--green)' ? 'rgba(74,156,111,0.12)' :
+                                confidence.color === 'var(--gold)' ? 'rgba(201,168,76,0.12)' :
+                                'rgba(224,122,95,0.12)';
 
   let subText = quantity > 1 ? fmt(perUnit) + ' per unit · ' + quantity + ' units' : '1 unit';
   if (isToUS) subText += ' · excl. state sales tax';
@@ -964,11 +1077,21 @@ function calculateLandedCost() {
 
   // Duty row
   document.getElementById('bkDuty').textContent = fmt(dutyCost);
-  document.getElementById('bkDutyRate').textContent = isIntraEU ? 'n/a' : dutyLabel;
+  let dutyDisplay = isIntraEU ? 'n/a' : dutyLabel;
+  document.getElementById('bkDutyRate').textContent = dutyDisplay;
   if (isIntraEU) {
     document.getElementById('dutyRow').style.opacity = '0.4';
   } else {
     document.getElementById('dutyRow').style.opacity = '1';
+  }
+
+  // Handling fee row - show only when applicable (cross-border)
+  const handlingRow = document.getElementById('handlingRow');
+  if (handlingFee > 0) {
+    handlingRow.style.display = 'flex';
+    document.getElementById('bkHandling').textContent = fmt(handlingFee);
+  } else {
+    handlingRow.style.display = 'none';
   }
 
   // VAT row
@@ -981,6 +1104,20 @@ function calculateLandedCost() {
   document.getElementById('bkFx').textContent = needsFx ? fmt(fxCost) : '$0.00';
   document.getElementById('bkTotal').textContent = fmt(totalLanded);
   document.getElementById('bkPerUnit').textContent = fmt(perUnit);
+
+  // Returns Risk disclaimer
+  const retSection = document.getElementById('returnsImpactSection');
+  const retText = document.getElementById('returnsImpactText');
+  retSection.style.display = 'block';
+  retText.innerHTML = '<strong>Expected return rate for ' + (EU_DUTY[category]?.label || category) + ': ' +
+    returnsRisk.low + '–' + returnsRisk.high + '%</strong> &nbsp;·&nbsp; ' + returnsRisk.note +
+    ' Returns are not included in this estimate but materially affect effective margin.';
+
+  // Confidence notes
+  const confSection = document.getElementById('confidenceNotesSection');
+  const confText = document.getElementById('confidenceNotesText');
+  confSection.style.display = 'block';
+  confText.innerHTML = confidence.notes.map(n => '· ' + n).join('<br>');
 
   // Margin
   const ms = document.getElementById('marginSection');
@@ -999,14 +1136,16 @@ function calculateLandedCost() {
 
     const msgEl = document.getElementById('marginMessage');
     let extra = isToUS ? ' Note: US state sales tax is not included and would further affect margin.' : '';
+    // Mention returns impact in margin message
+    const retImpactNote = ' Account for the ' + returnsRisk.low + '–' + returnsRisk.high + '% expected return rate when assessing real margin.';
     if (marginPct < 0) {
-      msgEl.innerHTML = '<div class="margin-warning">At this price, you would lose money after estimated duties, VAT, shipping, and FX.' + extra + '</div>';
+      msgEl.innerHTML = '<div class="margin-warning">At this price, you would lose money after estimated duties, handling, VAT, shipping, and FX.' + extra + retImpactNote + '</div>';
     } else if (marginPct < 15) {
-      msgEl.innerHTML = '<div class="margin-warning">Thin margin territory. Returns, refunds, or FX swings could erode this.' + extra + '</div>';
+      msgEl.innerHTML = '<div class="margin-warning">Thin margin territory. Returns, refunds, or FX swings could erode this.' + extra + retImpactNote + '</div>';
     } else if (marginPct < 25) {
-      msgEl.innerHTML = '<div class="margin-good">Workable margin, though buffer is limited. Watch FX movement and return rates.' + extra + '</div>';
+      msgEl.innerHTML = '<div class="margin-good">Workable margin, though buffer is limited.' + extra + retImpactNote + '</div>';
     } else {
-      msgEl.innerHTML = '<div class="margin-good">Healthy estimated margin for cross-border at this price point.' + extra + '</div>';
+      msgEl.innerHTML = '<div class="margin-good">Healthy estimated margin for cross-border at this price point.' + extra + retImpactNote + '</div>';
     }
   } else {
     ms.style.display = 'none';
@@ -1133,6 +1272,11 @@ function downloadPDF() {
     addRow('Est. Customs Duty (' + c.dutyLabel + ')', fmt(c.dutyCost));
   }
 
+  // Carrier handling fee (cross-border only)
+  if (c.handlingFee > 0) {
+    addRow('Carrier Handling Fee (est.)', fmt(c.handlingFee));
+  }
+
   if (c.isToUS) {
     addRow('VAT/Sales Tax', 'n/a (state tax varies)');
   } else {
@@ -1147,11 +1291,29 @@ function downloadPDF() {
   doc.line(margin, y, margin + contentW, y); y += 8;
   doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(...gold);
   doc.text('Est. Total Landed Cost', margin, y);
-  doc.text(fmt(c.totalLanded), pageW - margin, y, { align: 'right' }); y += 7;
+  doc.text(fmt(c.totalLanded), pageW - margin, y, { align: 'right' }); y += 6;
+
+  // Range + confidence
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...muted);
+  doc.text('Likely range: ' + fmt(c.rangeLow) + ' – ' + fmt(c.rangeHigh) + '   ·   Confidence: ' + c.confidence.level, margin, y); y += 6;
+
   doc.setFontSize(9); doc.setTextColor(...muted);
   doc.text('Per Unit Landed Cost (est.)', margin, y);
   doc.setTextColor(...white);
   doc.text(fmt(c.perUnit), pageW - margin, y, { align: 'right' }); y += 10;
+
+  // Returns Risk callout
+  doc.setFillColor(224, 122, 95, 30);
+  doc.roundedRect(margin, y, contentW, 16, 1, 1, 'F');
+  y += 5;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(...coral);
+  doc.text('RETURNS RISK', margin + 4, y); y += 4;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(6.5); doc.setTextColor(...muted);
+  const retLines = doc.splitTextToSize(
+    'Expected return rate for ' + c.category + ': ' + c.returnsRisk.low + '-' + c.returnsRisk.high + '%. ' + c.returnsRisk.note + ' Not included in landed cost, but affects effective margin.',
+    contentW - 8
+  );
+  doc.text(retLines, margin + 4, y); y += 10;
 
   if (c.sellingPrice > 0) {
     addSectionHead('ESTIMATED MARGIN ANALYSIS');
@@ -1166,18 +1328,19 @@ function downloadPDF() {
 
   // Disclaimer box
   doc.setFillColor(13, 18, 25);
-  doc.roundedRect(margin, y, contentW, 28, 1, 1, 'F');
+  doc.roundedRect(margin, y, contentW, 32, 1, 1, 'F');
   doc.setDrawColor(201, 168, 76, 40); doc.setLineWidth(0.15);
-  doc.roundedRect(margin, y, contentW, 28, 1, 1, 'S');
+  doc.roundedRect(margin, y, contentW, 32, 1, 1, 'S');
   y += 5;
   doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(...coral);
   doc.text('ESTIMATE ONLY — NOT FINANCIAL ADVICE', margin + 4, y); y += 4;
   doc.setFont('helvetica', 'normal'); doc.setFontSize(5.5); doc.setTextColor(...muted);
   const noteLines = doc.splitTextToSize(
-    'This report provides directional estimates only. Actual landed costs may vary based on HS code classification, product composition, carrier rates, FX fluctuations, trade agreements, and regulatory requirements. Category note: ' + c.dutyNote + (c.isToUS ? ' US state sales tax is not included in this estimate.' : '') + ' All amounts in USD. This does not constitute financial, tax, or legal advice.',
+    'This report provides directional estimates only. Actual landed costs may vary based on HS code classification, product composition, carrier rates, FX fluctuations, trade agreements, and regulatory requirements. Carrier handling fees default to $' + HANDLING_FEE_DEFAULT + ' (typical range $' + HANDLING_FEE_RANGE.low + '-$' + HANDLING_FEE_RANGE.high + '); actual fees vary by carrier (DHL/FedEx/UPS). Category note: ' + c.dutyNote + (c.isToUS ? ' US state sales tax is not included in this estimate.' : '') + ' All amounts in USD. This does not constitute financial, tax, or legal advice.',
     contentW - 8
   );
   doc.text(noteLines, margin + 4, y);
+  y += 26;
 
   // Footer
   const footerY = 275;

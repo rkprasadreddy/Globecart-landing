@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow"> <!-- EXPERIMENTAL - DO NOT INDEX -->
+<title>Portfolio View (Experimental) | GlobeCart</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  --bg: #080b10;
+  --bg-2: #0d1219;
+  --bg-3: #11171f;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --white: #f0ede6;
+  --muted: #8c8982;
+  --muted-2: #6a6760;
+  --accent: #2a6496;
+  --green: #4a9c6f;
+  --coral: #e07a5f;
+  --border: #1a1f28;
+  --border-2: #232934;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Experimental Banner */
+.exp-banner {
+  background: linear-gradient(90deg, rgba(224,122,95,0.15), rgba(201,168,76,0.15));
+  border-bottom: 1px solid rgba(224,122,95,0.3);
+  padding: 0.6rem 2rem;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-weight: 600;
+}
+.exp-banner strong { color: var(--gold); }
+
+/* Header */
+header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.logo-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--gold);
+}
+.back-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.back-link:hover { color: var(--gold); }
+
+/* Page Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.page-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.8rem;
+}
+.page-h1 em { color: var(--gold); font-style: italic; font-weight: 600; }
+.page-sub {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 700px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+/* Section */
+.section {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.8rem;
+  margin-bottom: 1.8rem;
+}
+.section-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.section-label::before {
+  content: ''; width: 14px; height: 1px; background: var(--gold);
+}
+
+/* Product Input Row */
+.product-card {
+  background: var(--bg-3);
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.product-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+.product-card-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.btn-remove {
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--muted);
+  padding: 0.3rem 0.7rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+.btn-remove:hover { color: var(--coral); border-color: var(--coral); }
+
+.input-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1fr 0.8fr 1fr;
+  gap: 0.8rem;
+}
+.input-grid label {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+.input-grid input, .input-grid select {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  border-radius: 3px;
+  padding: 0.6rem 0.7rem;
+  color: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.input-grid input:focus, .input-grid select:focus { border-color: var(--gold); }
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 0.9rem 1.4rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s;
+  border: none;
+}
+.btn-add {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.btn-add:hover { background: rgba(201,168,76,0.1); }
+.btn-calc {
+  background: var(--gold);
+  color: var(--bg);
+}
+.btn-calc:hover { background: var(--gold-light); }
+.btn-pdf {
+  background: var(--accent);
+  color: var(--white);
+}
+.btn-pdf:hover { background: #357bb0; }
+.btn-reset {
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--muted);
+}
+.btn-reset:hover { color: var(--white); border-color: var(--muted); }
+
+/* Results Section */
+.results-section {
+  display: none;
+}
+.results-section.active { display: block; }
+
+/* Comparison Table */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.78rem;
+}
+.compare-table th {
+  text-align: left;
+  padding: 0.7rem 0.6rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--border-2);
+}
+.compare-table td {
+  padding: 0.85rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.compare-table tr:hover { background: rgba(201,168,76,0.03); }
+.compare-table .col-name { color: var(--white); font-weight: 500; }
+.compare-table .col-cost { color: var(--gold); font-weight: 600; font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+
+/* Risk badges */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.badge-low { background: rgba(74,156,111,0.15); color: var(--green); }
+.badge-medium { background: rgba(201,168,76,0.15); color: var(--gold); }
+.badge-high { background: rgba(224,122,95,0.15); color: var(--coral); }
+
+/* Insights */
+.insight-list {
+  list-style: none;
+  padding: 0;
+}
+.insight-list li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+  display: flex;
+  gap: 0.8rem;
+}
+.insight-list li::before {
+  content: '→';
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.insight-list li strong { color: var(--white); font-weight: 500; }
+
+/* Decision Cards */
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.decision-card {
+  background: var(--bg-3);
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  padding: 1.2rem;
+  border-left: 3px solid var(--gold);
+}
+.decision-card.prioritize { border-left-color: var(--green); }
+.decision-card.optimize { border-left-color: var(--gold); }
+.decision-card.caution { border-left-color: var(--coral); }
+.decision-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+.decision-label.prioritize { color: var(--green); }
+.decision-label.optimize { color: var(--gold); }
+.decision-label.caution { color: var(--coral); }
+.decision-product {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.decision-reason {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* Disclaimer */
+.disclaimer {
+  background: var(--bg-3);
+  border: 1px solid var(--border-2);
+  border-left: 2px solid var(--coral);
+  padding: 1rem 1.2rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 1.5rem;
+  border-radius: 4px;
+}
+.disclaimer strong { color: var(--coral); }
+
+@media (max-width: 900px) {
+  .input-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .container { padding: 1.5rem 1rem; }
+  header { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- EXPERIMENTAL BANNER -->
+<div class="exp-banner">
+  ⚠ <strong>Experimental Feature</strong> · Internal testing only · Not linked from main site · v0.1
+</div>
+
+<!-- Header -->
+<header>
+  <a href="index.html" class="logo">
+    <span class="logo-dot"></span>
+    GlobeCart
+  </a>
+  <a href="calculator.html" class="back-link">← Back to Calculator</a>
+</header>
+
+<div class="container">
+
+  <h1 class="page-h1">Portfolio <em>Analysis</em></h1>
+  <p class="page-sub">
+    Compare landed cost, margin pressure, and return risk across multiple products in a single cross-border view. Decide which products to scale, optimize, or hold back — backed by data, not guesses.
+  </p>
+
+  <!-- CORRIDOR SELECTION -->
+  <div class="section">
+    <div class="section-label">Step 1 — Corridor</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+      <div>
+        <label style="display:block; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem;">Origin</label>
+        <select id="portfolioOrigin" style="width:100%; background:var(--bg); border:1px solid var(--border-2); border-radius:3px; padding:0.7rem; color:var(--white); font-family:inherit;">
+          <option value="US">🇺🇸 United States</option>
+          <option value="DE">🇩🇪 Germany</option>
+          <option value="FR">🇫🇷 France</option>
+          <option value="NL">🇳🇱 Netherlands</option>
+        </select>
+      </div>
+      <div>
+        <label style="display:block; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem;">Destination</label>
+        <select id="portfolioDest" style="width:100%; background:var(--bg); border:1px solid var(--border-2); border-radius:3px; padding:0.7rem; color:var(--white); font-family:inherit;">
+          <option value="DE">🇩🇪 Germany</option>
+          <option value="FR">🇫🇷 France</option>
+          <option value="NL">🇳🇱 Netherlands</option>
+          <option value="US">🇺🇸 United States</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="section">
+    <div class="section-label">Step 2 — Add Products (2-7)</div>
+    <div id="productsList"></div>
+
+    <div class="btn-row">
+      <button class="btn btn-add" onclick="addProduct()">+ Add Product</button>
+      <button class="btn btn-calc" onclick="analyzePortfolio()">Analyze Portfolio →</button>
+      <button class="btn btn-reset" onclick="resetAll()">Reset</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section" id="resultsSection">
+
+    <!-- Comparison Table -->
+    <div class="section">
+      <div class="section-label">Product Comparison</div>
+      <div style="overflow-x:auto;">
+        <table class="compare-table" id="compareTable">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Unit Price</th>
+              <th>Landed Cost</th>
+              <th>Margin Pressure</th>
+              <th>Return Risk</th>
+              <th>Confidence</th>
+            </tr>
+          </thead>
+          <tbody id="compareBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Insights -->
+    <div class="section">
+      <div class="section-label">Key Insights</div>
+      <ul class="insight-list" id="insightsList"></ul>
+    </div>
+
+    <!-- Decisions -->
+    <div class="section">
+      <div class="section-label">Recommended Strategy</div>
+      <div class="decision-grid" id="decisionGrid"></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="btn-row">
+      <button class="btn btn-pdf" onclick="downloadPortfolioPDF()">↓ Download Portfolio Report (PDF)</button>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <strong>Experimental Feature — Estimates Only.</strong> All figures are directional estimates based on category-average duty rates, standard VAT, and typical shipping ranges. Margin pressure, return risk, and confidence levels are derived from industry-observed patterns, not validated against your specific products. Use this as a directional decision aid, not as final cost or risk data.
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// PORTFOLIO VIEW — Experimental v0.1
+// Reuses calculation logic from main calculator
+// ============================================================
+
+const CATEGORIES = [
+  ['electronics', 'Electronics & Tech'],
+  ['apparel', 'Apparel & Fashion'],
+  ['footwear', 'Footwear'],
+  ['beauty', 'Beauty & Cosmetics'],
+  ['home', 'Home & Kitchen'],
+  ['toys', 'Toys & Games'],
+  ['sports', 'Sports & Outdoor'],
+  ['jewelry', 'Jewelry & Accessories'],
+  ['health', 'Health & Wellness'],
+  ['food', 'Food & Beverages'],
+  ['pet', 'Pet Products'],
+  ['books', 'Books & Media'],
+  ['auto', 'Auto Parts'],
+  ['general', 'Other / General']
+];
+
+const EU_DUTY = {
+  electronics: { rate: 0.02, label: 'Electronics & Tech' },
+  apparel:     { rate: 0.12, label: 'Apparel & Fashion' },
+  footwear:    { rate: 0.12, label: 'Footwear' },
+  beauty:      { rate: 0.04, label: 'Beauty & Cosmetics' },
+  home:        { rate: 0.04, label: 'Home & Kitchen' },
+  toys:        { rate: 0.045, label: 'Toys & Games' },
+  sports:      { rate: 0.04, label: 'Sports & Outdoor' },
+  jewelry:     { rate: 0.04, label: 'Jewelry & Accessories' },
+  health:      { rate: 0.04, label: 'Health & Wellness' },
+  food:        { rate: 0.075, label: 'Food & Beverages' },
+  pet:         { rate: 0.04, label: 'Pet Products' },
+  books:       { rate: 0.00, label: 'Books & Media' },
+  auto:        { rate: 0.04, label: 'Auto Parts' },
+  general:     { rate: 0.04, label: 'Other / General' }
+};
+const US_DUTY = {
+  electronics: { rate: 0.015, label: 'Electronics & Tech' },
+  apparel:     { rate: 0.15, label: 'Apparel & Fashion' },
+  footwear:    { rate: 0.14, label: 'Footwear' },
+  beauty:      { rate: 0.03, label: 'Beauty & Cosmetics' },
+  home:        { rate: 0.035, label: 'Home & Kitchen' },
+  toys:        { rate: 0.02, label: 'Toys & Games' },
+  sports:      { rate: 0.04, label: 'Sports & Outdoor' },
+  jewelry:     { rate: 0.055, label: 'Jewelry & Accessories' },
+  health:      { rate: 0.03, label: 'Health & Wellness' },
+  food:        { rate: 0.08, label: 'Food & Beverages' },
+  pet:         { rate: 0.03, label: 'Pet Products' },
+  books:       { rate: 0.00, label: 'Books & Media' },
+  auto:        { rate: 0.03, label: 'Auto Parts' },
+  general:     { rate: 0.035, label: 'Other / General' }
+};
+const VAT_RATES = {
+  DE: { rate: 0.19, label: 'Germany' },
+  FR: { rate: 0.20, label: 'France' },
+  NL: { rate: 0.21, label: 'Netherlands' },
+  US: { rate: 0.00, label: 'United States' }
+};
+const RETURNS_RATES = {
+  apparel:     { low: 15, high: 30, level: 'high' },
+  footwear:    { low: 15, high: 25, level: 'high' },
+  jewelry:     { low: 10, high: 20, level: 'medium' },
+  beauty:      { low: 2,  high: 5,  level: 'low' },
+  electronics: { low: 5,  high: 12, level: 'medium' },
+  home:        { low: 5,  high: 12, level: 'medium' },
+  toys:        { low: 3,  high: 8,  level: 'low' },
+  sports:      { low: 8,  high: 15, level: 'medium' },
+  health:      { low: 3,  high: 8,  level: 'low' },
+  food:        { low: 1,  high: 4,  level: 'low' },
+  pet:         { low: 3,  high: 8,  level: 'low' },
+  books:       { low: 2,  high: 5,  level: 'low' },
+  auto:        { low: 8,  high: 18, level: 'medium' },
+  general:     { low: 5,  high: 12, level: 'medium' }
+};
+
+const EU_COUNTRIES = ['DE','FR','NL'];
+const EU_DE_MIN = 163;
+const US_DE_MIN = 800;
+const FX_BUFFER = 0.02;
+const HANDLING_FEE = 12;
+
+function shipping(weightKg, isIntraEU) {
+  if (isIntraEU) {
+    if (weightKg <= 1) return 7;
+    if (weightKg <= 2) return 10;
+    if (weightKg <= 5) return 16;
+    return 25;
+  }
+  if (weightKg <= 0.5) return 14;
+  if (weightKg <= 1) return 22;
+  if (weightKg <= 2) return 32;
+  if (weightKg <= 5) return 55;
+  return 90;
+}
+
+function computeConfidence(category, productCost, isIntraEU) {
+  let score = 0;
+  if (productCost > 500) score += 2;
+  else if (productCost > 150) score += 1;
+  if (['apparel','footwear','food','health','auto'].includes(category)) score += 2;
+  if (isIntraEU) score = Math.max(0, score - 2);
+  if (score <= 1) return 'High';
+  if (score <= 3) return 'Medium';
+  return 'Low';
+}
+
+function calcLandedCost(p, origin, dest) {
+  const isIntraEU = EU_COUNTRIES.includes(origin) && EU_COUNTRIES.includes(dest);
+  const isToEU = origin === 'US' && EU_COUNTRIES.includes(dest);
+  const isToUS = EU_COUNTRIES.includes(origin) && dest === 'US';
+
+  const productCost = p.price * p.quantity;
+  const totalWeight = p.weight * p.quantity;
+  const shippingCost = shipping(totalWeight, isIntraEU);
+  const cifValue = productCost + shippingCost;
+
+  let dutyCost = 0, vatCost = 0, handlingFee = 0;
+  let deMin = false;
+
+  if (!isIntraEU && origin !== dest) handlingFee = HANDLING_FEE;
+
+  if (isIntraEU) {
+    vatCost = cifValue * VAT_RATES[dest].rate;
+  } else if (isToEU) {
+    const dr = EU_DUTY[p.category].rate;
+    if (productCost > EU_DE_MIN) dutyCost = cifValue * dr;
+    else deMin = true;
+    vatCost = (cifValue + dutyCost + handlingFee) * VAT_RATES[dest].rate;
+  } else if (isToUS) {
+    const dr = US_DUTY[p.category].rate;
+    if (productCost > US_DE_MIN) dutyCost = cifValue * dr;
+    else deMin = true;
+  }
+
+  const subtotal = productCost + dutyCost + handlingFee + vatCost + shippingCost;
+  const fxCost = (isToEU || isToUS) ? subtotal * FX_BUFFER : 0;
+  const total = subtotal + fxCost;
+  const perUnit = total / p.quantity;
+
+  return {
+    productCost, shippingCost, dutyCost, handlingFee, vatCost, fxCost,
+    total, perUnit, deMin,
+    confidence: computeConfidence(p.category, p.price, isIntraEU),
+    returns: RETURNS_RATES[p.category]
+  };
+}
+
+// Margin pressure: ratio of landed cost (per unit) to unit price
+function marginPressure(perUnitLanded, unitPrice) {
+  const ratio = perUnitLanded / unitPrice;
+  if (ratio < 1.5) return 'low';
+  if (ratio < 2.0) return 'medium';
+  return 'high';
+}
+
+// ============================================================
+// UI
+// ============================================================
+
+let productCount = 0;
+let lastAnalysis = null;
+
+function addProduct() {
+  const list = document.getElementById('productsList');
+  if (list.children.length >= 7) {
+    alert('Maximum 7 products per portfolio analysis.');
+    return;
+  }
+  productCount++;
+  const id = 'p' + productCount;
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.dataset.id = id;
+  card.innerHTML = `
+    <div class="product-card-header">
+      <span class="product-card-num">Product ${list.children.length + 1}</span>
+      <button class="btn-remove" onclick="removeProduct(this)">× Remove</button>
+    </div>
+    <div class="input-grid">
+      <div>
+        <label>Product Name</label>
+        <input type="text" data-field="name" placeholder="e.g. CeraVe Cleanser">
+      </div>
+      <div>
+        <label>Category</label>
+        <select data-field="category">
+          ${CATEGORIES.map(c => `<option value="${c[0]}">${c[1]}</option>`).join('')}
+        </select>
+      </div>
+      <div>
+        <label>Unit Price ($)</label>
+        <input type="number" data-field="price" step="0.01" min="0" placeholder="29.99">
+      </div>
+      <div>
+        <label>Weight (kg)</label>
+        <input type="number" data-field="weight" step="0.01" min="0" placeholder="0.5">
+      </div>
+      <div>
+        <label>Quantity</label>
+        <input type="number" data-field="quantity" min="1" value="1">
+      </div>
+      <div>
+        <label>Sell Price ($) <span style="color:var(--muted-2); text-transform:none; letter-spacing:0;">(opt.)</span></label>
+        <input type="number" data-field="sellPrice" step="0.01" min="0" placeholder="49.99">
+      </div>
+    </div>
+  `;
+  list.appendChild(card);
+  updateProductNumbers();
+}
+
+function removeProduct(btn) {
+  btn.closest('.product-card').remove();
+  updateProductNumbers();
+}
+
+function updateProductNumbers() {
+  document.querySelectorAll('#productsList .product-card-num').forEach((el, i) => {
+    el.textContent = `Product ${i + 1}`;
+  });
+}
+
+function readProducts() {
+  const cards = document.querySelectorAll('#productsList .product-card');
+  const products = [];
+  cards.forEach(card => {
+    const get = (f) => card.querySelector(`[data-field="${f}"]`).value;
+    const name = get('name').trim();
+    const category = get('category');
+    const price = parseFloat(get('price')) || 0;
+    const weight = parseFloat(get('weight')) || 0;
+    const quantity = parseInt(get('quantity')) || 1;
+    const sellPrice = parseFloat(get('sellPrice')) || 0;
+    if (name && price > 0 && weight > 0) {
+      products.push({ name, category, price, weight, quantity, sellPrice });
+    }
+  });
+  return products;
+}
+
+function analyzePortfolio() {
+  const products = readProducts();
+  if (products.length < 2) {
+    alert('Add at least 2 products to compare. Need product name, price, and weight filled in.');
+    return;
+  }
+
+  const origin = document.getElementById('portfolioOrigin').value;
+  const dest = document.getElementById('portfolioDest').value;
+
+  if (origin === dest) {
+    alert('Origin and destination must be different.');
+    return;
+  }
+
+  // Calculate each product
+  const results = products.map(p => {
+    const calc = calcLandedCost(p, origin, dest);
+    const pressure = marginPressure(calc.perUnit, p.price);
+    return { product: p, calc, pressure };
+  });
+
+  lastAnalysis = { origin, dest, results };
+
+  // Render comparison table
+  const tbody = document.getElementById('compareBody');
+  tbody.innerHTML = results.map(r => `
+    <tr>
+      <td class="col-name">${r.product.name}</td>
+      <td>${EU_DUTY[r.product.category].label}</td>
+      <td>$${r.product.price.toFixed(2)}</td>
+      <td class="col-cost">$${r.calc.perUnit.toFixed(2)}</td>
+      <td><span class="badge badge-${r.pressure}">${r.pressure}</span></td>
+      <td><span class="badge badge-${r.calc.returns.level}">${r.calc.returns.low}-${r.calc.returns.high}%</span></td>
+      <td><span class="badge badge-${r.calc.confidence.toLowerCase() === 'high' ? 'low' : r.calc.confidence.toLowerCase() === 'medium' ? 'medium' : 'high'}">${r.calc.confidence}</span></td>
+    </tr>
+  `).join('');
+
+  // Generate insights
+  const insights = generateInsights(results);
+  document.getElementById('insightsList').innerHTML = insights.map(i => `<li>${i}</li>`).join('');
+
+  // Generate decisions
+  const decisions = generateDecisions(results);
+  document.getElementById('decisionGrid').innerHTML = decisions.map(d => `
+    <div class="decision-card ${d.type}">
+      <div class="decision-label ${d.type}">${d.type === 'prioritize' ? '✓ Prioritize' : d.type === 'optimize' ? '⚙ Optimize' : '⚠ Caution'}</div>
+      <div class="decision-product">${d.product}</div>
+      <div class="decision-reason">${d.reason}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('resultsSection').classList.add('active');
+  document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+function generateInsights(results) {
+  const insights = [];
+
+  // High return risk products
+  const highReturn = results.filter(r => r.calc.returns.level === 'high');
+  if (highReturn.length > 0) {
+    insights.push(`<strong>${highReturn.length} product${highReturn.length > 1 ? 's' : ''}</strong> in your portfolio have high return risk (15-30%): ${highReturn.map(r => r.product.name).join(', ')}. Cross-border returns are economically expensive — factor this into pricing.`);
+  }
+
+  // High margin pressure
+  const highPressure = results.filter(r => r.pressure === 'high');
+  if (highPressure.length > 0) {
+    insights.push(`<strong>High landed-cost-to-price ratio</strong> on ${highPressure.map(r => r.product.name).join(', ')} — landed cost is over 2× the unit price. Likely unprofitable unless sell price is significantly raised in the destination market.`);
+  }
+
+  // Low value products
+  const lowValue = results.filter(r => r.product.price < 20);
+  if (lowValue.length > 0) {
+    insights.push(`<strong>${lowValue.length} low-value product${lowValue.length > 1 ? 's' : ''}</strong> (under $20) — fixed shipping and handling fees disproportionately impact landed cost. Consider bundling or minimum order requirements.`);
+  }
+
+  // De minimis benefit
+  const deMin = results.filter(r => r.calc.deMin);
+  if (deMin.length > 0) {
+    insights.push(`<strong>De minimis exemption applies</strong> to ${deMin.length} product${deMin.length > 1 ? 's' : ''} (no import duty), but VAT and carrier handling fees still apply. Don't assume "no extra cost."`);
+  }
+
+  // Confidence
+  const lowConf = results.filter(r => r.calc.confidence === 'Low');
+  if (lowConf.length > 0) {
+    insights.push(`<strong>Low-confidence estimates</strong> on ${lowConf.map(r => r.product.name).join(', ')} — duty rates in these categories vary significantly by HS code. Verify with a customs broker before scaling.`);
+  }
+
+  // Quantity efficiency
+  const bundles = results.filter(r => r.product.quantity > 1);
+  if (bundles.length > 0) {
+    insights.push(`<strong>Multi-unit shipments</strong> have lower per-unit shipping cost. ${bundles.map(r => r.product.name).join(', ')} benefit from this — consider bundling more products with similar characteristics.`);
+  }
+
+  // Best margin candidate
+  if (results.some(r => r.product.sellPrice > 0)) {
+    const margined = results.filter(r => r.product.sellPrice > 0).map(r => {
+      const m = ((r.product.sellPrice - r.calc.perUnit) / r.product.sellPrice) * 100;
+      return { name: r.product.name, m };
+    });
+    if (margined.length > 0) {
+      margined.sort((a,b) => b.m - a.m);
+      insights.push(`<strong>Highest projected margin:</strong> ${margined[0].name} at ${margined[0].m.toFixed(1)}% (before returns impact).`);
+    }
+  }
+
+  if (insights.length === 0) {
+    insights.push('All products show reasonable cross-border economics for this corridor. Proceed with confidence-level adjustments based on category.');
+  }
+
+  return insights;
+}
+
+function generateDecisions(results) {
+  const decisions = [];
+
+  results.forEach(r => {
+    const isLowReturn = r.calc.returns.level === 'low';
+    const isLowPressure = r.pressure === 'low';
+    const isHighReturn = r.calc.returns.level === 'high';
+    const isHighPressure = r.pressure === 'high';
+
+    if (isHighReturn && isHighPressure) {
+      decisions.push({
+        type: 'caution',
+        product: r.product.name,
+        reason: `Both high return risk (${r.calc.returns.low}-${r.calc.returns.high}%) and high margin pressure. Hold back on scaling this product cross-border until you have stronger margin or proven returns infrastructure.`
+      });
+    } else if (isHighReturn) {
+      decisions.push({
+        type: 'caution',
+        product: r.product.name,
+        reason: `High return risk (${r.calc.returns.low}-${r.calc.returns.high}%) is the main concern. Consider stricter return policies, better sizing/specs info, or a local returns warehouse before scaling.`
+      });
+    } else if (isLowReturn && isLowPressure) {
+      decisions.push({
+        type: 'prioritize',
+        product: r.product.name,
+        reason: `Low return risk and healthy landed-cost-to-price ratio. Strong candidate for cross-border expansion in this corridor.`
+      });
+    } else if (isHighPressure) {
+      decisions.push({
+        type: 'optimize',
+        product: r.product.name,
+        reason: `Margin under pressure. Test higher sell price in destination market, or bundle with lower-cost items to spread shipping/handling.`
+      });
+    } else {
+      decisions.push({
+        type: 'optimize',
+        product: r.product.name,
+        reason: `Workable economics with room to improve. Validate pricing against destination market norms before committing to volume.`
+      });
+    }
+  });
+
+  return decisions;
+}
+
+function resetAll() {
+  document.getElementById('productsList').innerHTML = '';
+  document.getElementById('resultsSection').classList.remove('active');
+  lastAnalysis = null;
+  productCount = 0;
+  // Add 2 empty products by default
+  addProduct(); addProduct();
+}
+
+// ============================================================
+// PDF EXPORT
+// ============================================================
+
+function downloadPortfolioPDF() {
+  if (!lastAnalysis) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const pageW = 210, margin = 14, contentW = pageW - margin * 2;
+  let y = 18;
+
+  const bg = [8,11,16], gold = [201,168,76], white = [240,237,230], muted = [140,137,130],
+        coral = [224,122,95], green = [74,156,111], accent = [42,100,150];
+
+  // Cover background
+  doc.setFillColor(...bg);
+  doc.rect(0, 0, pageW, 297, 'F');
+
+  // Gold accent top
+  doc.setFillColor(...gold);
+  doc.rect(0, 0, pageW, 2, 'F');
+
+  // Logo
+  doc.setFillColor(...gold);
+  doc.circle(margin + 2, y - 2, 1.6, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(...white);
+  doc.text('GlobeCart', margin + 6, y);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(6.5); doc.setTextColor(...muted);
+  doc.text('ONE WORLD, ONE BORDER', margin + 30, y);
+
+  // Experimental badge
+  doc.setFillColor(224, 122, 95, 30);
+  doc.roundedRect(pageW - margin - 35, y - 4, 35, 5, 1, 1, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(6); doc.setTextColor(...coral);
+  doc.text('EXPERIMENTAL v0.1', pageW - margin - 17.5, y - 0.5, { align: 'center' });
+
+  y += 12;
+  doc.setDrawColor(...gold); doc.setLineWidth(0.3);
+  doc.line(margin, y, margin + contentW, y); y += 10;
+
+  // Title
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(20); doc.setTextColor(...gold);
+  doc.text('Portfolio Analysis', margin, y); y += 7;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(...muted);
+  doc.text('Multi-Product Cross-Border Cost & Risk Comparison', margin, y); y += 12;
+
+  // Corridor info
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...white);
+  doc.text(`Corridor: ${lastAnalysis.origin} → ${lastAnalysis.dest}`, margin, y);
+  doc.setFont('helvetica', 'normal'); doc.setTextColor(...muted);
+  doc.text(new Date().toLocaleString(), pageW - margin, y, { align: 'right' });
+  y += 10;
+
+  // ─── Section: Comparison Table ───
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...gold);
+  doc.text('PRODUCT COMPARISON', margin, y); y += 5;
+
+  // Table header
+  doc.setFillColor(13, 18, 25);
+  doc.rect(margin, y, contentW, 6, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(...gold);
+  doc.text('Product', margin + 2, y + 4);
+  doc.text('Category', margin + 50, y + 4);
+  doc.text('Unit $', margin + 90, y + 4);
+  doc.text('Landed', margin + 110, y + 4);
+  doc.text('Pressure', margin + 130, y + 4);
+  doc.text('Return %', margin + 152, y + 4);
+  doc.text('Conf.', margin + 172, y + 4);
+  y += 6;
+
+  // Table rows
+  lastAnalysis.results.forEach((r, i) => {
+    if (y > 260) { doc.addPage(); doc.setFillColor(...bg); doc.rect(0,0,pageW,297,'F'); y = 18; }
+    if (i % 2 === 1) {
+      doc.setFillColor(13, 18, 25, 50);
+      doc.rect(margin, y, contentW, 7, 'F');
+    }
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...white);
+    const name = r.product.name.length > 26 ? r.product.name.substring(0, 24) + '..' : r.product.name;
+    doc.text(name, margin + 2, y + 5);
+    doc.setTextColor(...muted);
+    const cat = EU_DUTY[r.product.category].label;
+    doc.text(cat.length > 20 ? cat.substring(0,18)+'..' : cat, margin + 50, y + 5);
+    doc.text('$' + r.product.price.toFixed(2), margin + 90, y + 5);
+    doc.setFont('helvetica', 'bold'); doc.setTextColor(...gold);
+    doc.text('$' + r.calc.perUnit.toFixed(2), margin + 110, y + 5);
+    doc.setFont('helvetica', 'normal');
+    const pcolor = r.pressure === 'low' ? green : r.pressure === 'medium' ? gold : coral;
+    doc.setTextColor(...pcolor);
+    doc.text(r.pressure.toUpperCase(), margin + 130, y + 5);
+    const rcolor = r.calc.returns.level === 'low' ? green : r.calc.returns.level === 'medium' ? gold : coral;
+    doc.setTextColor(...rcolor);
+    doc.text(r.calc.returns.low + '-' + r.calc.returns.high + '%', margin + 152, y + 5);
+    doc.setTextColor(...muted);
+    doc.text(r.calc.confidence, margin + 172, y + 5);
+    y += 7;
+  });
+
+  y += 5;
+  doc.setDrawColor(...gold, 80); doc.setLineWidth(0.15);
+  doc.line(margin, y, margin + contentW, y); y += 8;
+
+  // ─── Section: Insights ───
+  if (y > 230) { doc.addPage(); doc.setFillColor(...bg); doc.rect(0,0,pageW,297,'F'); y = 18; }
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...gold);
+  doc.text('KEY INSIGHTS', margin, y); y += 6;
+
+  const insights = generateInsights(lastAnalysis.results);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...muted);
+  insights.forEach(insight => {
+    // Strip HTML
+    const clean = insight.replace(/<[^>]*>/g, '');
+    const lines = doc.splitTextToSize('· ' + clean, contentW);
+    if (y + lines.length * 3.5 > 280) { doc.addPage(); doc.setFillColor(...bg); doc.rect(0,0,pageW,297,'F'); y = 18; }
+    doc.text(lines, margin, y);
+    y += lines.length * 3.5 + 2;
+  });
+
+  y += 5;
+
+  // ─── Section: Decisions ───
+  if (y > 240) { doc.addPage(); doc.setFillColor(...bg); doc.rect(0,0,pageW,297,'F'); y = 18; }
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...gold);
+  doc.text('RECOMMENDED STRATEGY', margin, y); y += 6;
+
+  const decisions = generateDecisions(lastAnalysis.results);
+  decisions.forEach(d => {
+    if (y > 270) { doc.addPage(); doc.setFillColor(...bg); doc.rect(0,0,pageW,297,'F'); y = 18; }
+    const dcolor = d.type === 'prioritize' ? green : d.type === 'optimize' ? gold : coral;
+    doc.setDrawColor(...dcolor); doc.setLineWidth(0.6);
+    doc.line(margin, y, margin, y + 12);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(...dcolor);
+    doc.text(d.type.toUpperCase(), margin + 3, y + 3);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...white);
+    doc.text(d.product, margin + 3, y + 7);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(6.5); doc.setTextColor(...muted);
+    const rlines = doc.splitTextToSize(d.reason, contentW - 4);
+    doc.text(rlines, margin + 3, y + 10.5);
+    y += 11 + rlines.length * 2.5 + 4;
+  });
+
+  // Disclaimer
+  if (y > 260) { doc.addPage(); doc.setFillColor(...bg); doc.rect(0,0,pageW,297,'F'); y = 18; }
+  doc.setFillColor(13, 18, 25);
+  doc.roundedRect(margin, y, contentW, 22, 1, 1, 'F');
+  doc.setDrawColor(224, 122, 95, 50);
+  doc.roundedRect(margin, y, contentW, 22, 1, 1, 'S');
+  y += 5;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(...coral);
+  doc.text('EXPERIMENTAL FEATURE — DIRECTIONAL ESTIMATES ONLY', margin + 4, y); y += 4;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(5.5); doc.setTextColor(...muted);
+  const dlines = doc.splitTextToSize(
+    'This portfolio analysis is an experimental feature in development. Margin pressure, return risk, and confidence scores are derived from category-level patterns observed across the industry, not validated against your specific products or historical data. Use as directional decision support, not as final pricing or risk data. All costs in USD. Not financial, tax, or legal advice.',
+    contentW - 8
+  );
+  doc.text(dlines, margin + 4, y);
+
+  // Footer
+  const footerY = 287;
+  doc.setDrawColor(...gold, 60); doc.setLineWidth(0.15);
+  doc.line(margin, footerY - 4, margin + contentW, footerY - 4);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(6); doc.setTextColor(...muted);
+  doc.text('globecart.one  ·  prasad@globecart.one', margin, footerY);
+  doc.text('One World, One Border.', pageW - margin, footerY, { align: 'right' });
+
+  // Save
+  const filename = `GlobeCart_Portfolio_${lastAnalysis.origin}-${lastAnalysis.dest}_${new Date().toISOString().slice(0,10)}.pdf`;
+  doc.save(filename);
+}
+
+// Initialize with 2 empty product slots
+resetAll();
+</script>
+</body>
+</html>

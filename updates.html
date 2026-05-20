@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What's Happening — GlobeCart | Updates & Milestones</title>
+  <meta name="description" content="Follow GlobeCart's journey — real milestones, active programs, and transparent progress updates from the team building trust infrastructure for cross-border commerce."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://globecart.one/updates.html"/>
+  <link rel="icon" href="favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080b10;
+      --bg2: #0d1219;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #f0ede6;
+      --muted: #8c8982;
+      --border: #1a1f28;
+      --accent: #2a6496;
+      --green: #4a9c6f;
+      --coral: #e07a5f;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.4rem 4rem; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(12px); background: rgba(8,11,16,0.85); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--white); display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; display: inline-block; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)} }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-back { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-cta { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--gold); border: none; padding: 0.6rem 1.4rem; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* ── HERO ── */
+    .page-hero { padding: 8rem 4rem 3rem; max-width: 900px; margin: 0 auto; }
+    .page-tag { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
+    .page-tag::before { content:''; display:block; width:1.5rem; height:1px; background:var(--gold); }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf7d; animation: pulse 2s ease-in-out infinite; }
+    .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); color: var(--white); margin-bottom: 1rem; line-height: 1.1; }
+    .page-hero p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; max-width: 620px; }
+    .gold-line { width: 3rem; height: 2px; background: var(--gold); margin: 1.5rem 0; }
+
+    /* ── FEATURED CARD ── */
+    .featured-wrap { max-width: 900px; margin: 0 auto 3rem; padding: 0 4rem; }
+    .featured-card { border: 1px solid var(--gold); background: rgba(201,168,76,0.04); padding: 2rem 2.5rem; position: relative; }
+    .featured-label { position: absolute; top: -0.6rem; left: 1.5rem; background: var(--gold); color: var(--bg); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.15rem 0.6rem; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .featured-badge { display: inline-block; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); border: 1px solid rgba(74,156,111,0.4); padding: 0.2rem 0.5rem; margin-bottom: 0.8rem; }
+    .featured-card h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--white); margin-bottom: 0.7rem; }
+    .featured-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; }
+    .featured-details { display: flex; gap: 2rem; margin-bottom: 1.5rem; }
+    .featured-detail { font-size: 0.72rem; }
+    .featured-detail strong { color: var(--white); display: block; font-size: 0.65rem; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+    .featured-detail span { color: var(--muted); }
+    .btn-gold { display: inline-block; background: var(--gold); color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.75rem 1.8rem; text-decoration: none; font-weight: 700; transition: background 0.2s; cursor: pointer; border: none; }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-outline { display: inline-block; color: var(--muted); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; text-decoration: none; border: 1px solid var(--border); margin-left: 1rem; transition: border-color 0.2s, color 0.2s; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── UPDATES TIMELINE ── */
+    .updates-wrap { max-width: 900px; margin: 0 auto; padding: 0 4rem 6rem; }
+    .updates-header { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; }
+    .updates-header::before { content:''; display:block; width:1.5rem; height:1px; background:var(--gold); }
+    .timeline { position: relative; }
+    .timeline::before { content:''; position:absolute; left: 5.5rem; top:0; bottom:0; width:1px; background:var(--border); }
+    .update-entry { display: flex; gap: 2rem; padding: 1.8rem 0; border-bottom: 1px solid var(--border); position: relative; }
+    .update-entry:last-child { border-bottom: none; }
+    .update-date { font-size: 0.65rem; color: var(--muted); text-align: right; width: 4rem; flex-shrink: 0; padding-top: 0.1rem; line-height: 1.4; }
+    .update-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: 1.5px solid var(--muted); flex-shrink: 0; margin-top: 0.25rem; position: relative; z-index: 1; }
+    .update-dot.active { background: var(--gold); border-color: var(--gold); }
+    .update-dot.milestone { background: var(--green); border-color: var(--green); }
+    .update-dot.tool { background: var(--accent); border-color: var(--accent); }
+    .update-dot.partnership { background: #9b59b6; border-color: #9b59b6; }
+    .update-body { flex: 1; }
+    .update-badge { display: inline-block; font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.15rem 0.45rem; margin-bottom: 0.5rem; border-width: 1px; border-style: solid; }
+    .badge-program { color: var(--gold); border-color: rgba(201,168,76,0.4); }
+    .badge-milestone { color: var(--green); border-color: rgba(74,156,111,0.4); }
+    .badge-tool { color: #5b9bd5; border-color: rgba(42,100,150,0.4); }
+    .badge-partnership { color: #bb8fce; border-color: rgba(155,89,182,0.4); }
+    .badge-validation { color: #f0b27a; border-color: rgba(230,126,34,0.4); }
+    .update-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--white); margin-bottom: 0.4rem; }
+    .update-desc { font-size: 0.74rem; color: var(--muted); line-height: 1.75; }
+    .update-link { display: inline-block; margin-top: 0.6rem; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+    .update-link:hover { text-decoration: underline; }
+
+    /* ── CTA SECTION ── */
+    .cta-section { max-width: 900px; margin: 0 auto; padding: 0 4rem 6rem; }
+    .cta-box { border: 1px solid var(--border); background: var(--bg2); padding: 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .cta-box h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--white); margin-bottom: 0.4rem; }
+    .cta-box p { font-size: 0.75rem; color: var(--muted); line-height: 1.6; max-width: 480px; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-left { font-size: 0.68rem; color: var(--muted); }
+    .footer-left a { color: var(--gold); text-decoration: none; }
+    .footer-right { font-size: 0.65rem; color: var(--muted); font-style: italic; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .page-hero, .featured-wrap, .updates-wrap, .cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .timeline::before { left: 4.5rem; }
+      .featured-details { flex-direction: column; gap: 1rem; }
+      .cta-box { flex-direction: column; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html"><span class="logo-dot"></span> GlobeCart</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Back to site</a>
+    <a href="calculator.html" class="nav-cta">Try Calculator</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-tag"><span class="live-dot"></span> Building in Public</div>
+  <h1>What's Happening<br>at GlobeCart</h1>
+  <p>We build in public — sharing real milestones, active programs, and honest progress. If you're a seller, brand founder, or investor, this is the most direct way to follow what we're building and why.</p>
+  <div class="gold-line"></div>
+</div>
+
+<!-- FEATURED: ACTIVE PROGRAM -->
+<div class="featured-wrap">
+  <div class="featured-card">
+    <div class="featured-label">Active Now</div>
+    <div class="featured-badge">Program — Open</div>
+    <h2>Accuracy Proof Initiative</h2>
+    <p>We're inviting a small group of active US↔EU sellers to test our landed cost calculator against real shipment data. Before your next shipment, run it through our calculator. After it clears customs, share the actual duty invoice. We compare, document the gap, explain why, and publish the result — publicly, with your permission.</p>
+    <div class="featured-details">
+      <div class="featured-detail">
+        <strong>What you do</strong>
+        <span>Run calculator → share actual invoice</span>
+      </div>
+      <div class="featured-detail">
+        <strong>Your time</strong>
+        <span>~20 minutes total</span>
+      </div>
+      <div class="featured-detail">
+        <strong>What you get</strong>
+        <span>Free side-by-side cost analysis + early platform access</span>
+      </div>
+      <div class="featured-detail">
+        <strong>Spots open</strong>
+        <span>Limited to 20 sellers</span>
+      </div>
+    </div>
+    <a href="apply.html" class="btn-gold">Apply to Participate →</a>
+    <a href="calculator.html" class="btn-outline">Try the calculator first</a>
+  </div>
+</div>
+
+<!-- FULL TIMELINE -->
+<div class="updates-wrap">
+  <div class="updates-header">All Updates</div>
+  <div class="timeline">
+
+    <!-- Entry: Accuracy Proof Initiative -->
+    <div class="update-entry">
+      <div class="update-date">May<br>2026</div>
+      <div class="update-dot active"></div>
+      <div class="update-body">
+        <div class="update-badge badge-program">Program</div>
+        <div class="update-title">Accuracy Proof Initiative launched</div>
+        <div class="update-desc">Inviting active US↔EU sellers to test our calculator estimates against real shipment data. The output: a publicly published accuracy dataset showing estimated vs. actual landed costs. No competitor currently shows this. We do.</div>
+        <a href="apply.html" class="update-link">Join the program →</a>
+      </div>
+    </div>
+
+    <!-- Entry: Calculator launch -->
+    <div class="update-entry">
+      <div class="update-date">Apr<br>2026</div>
+      <div class="update-dot tool"></div>
+      <div class="update-body">
+        <div class="update-badge badge-tool">Tool</div>
+        <div class="update-title">Landed cost calculator live at globecart.one/calculator.html</div>
+        <div class="update-desc">Free, no signup required. Covers 14 product categories, 4 countries (US, Germany, France, Netherlands), bidirectional US↔EU. Full breakdown: duties, VAT, shipping, FX. Downloadable PDF report. Being used by sellers to benchmark their current solutions.</div>
+        <a href="calculator.html" class="update-link">Use the calculator →</a>
+      </div>
+    </div>
+
+    <!-- Entry: EU operator validation -->
+    <div class="update-entry">
+      <div class="update-date">Apr<br>2026</div>
+      <div class="update-dot partnership"></div>
+      <div class="update-body">
+        <div class="update-badge badge-partnership">Partnership</div>
+        <div class="update-title">EU logistics operator validates thesis and confirms partnership interest</div>
+        <div class="update-desc">A Netherlands-based logistics and operations specialist working with cross-border SMEs confirmed on a discovery call that VAT handling, returns infrastructure, and cost predictability are the three largest execution gaps for brands entering cross-border. Has expressed interest in supporting GlobeCart's operations when seller volume is live.</div>
+      </div>
+    </div>
+
+    <!-- Entry: V2 validation -->
+    <div class="update-entry">
+      <div class="update-date">Mar–Apr<br>2026</div>
+      <div class="update-dot milestone"></div>
+      <div class="update-body">
+        <div class="update-badge badge-validation">Validation</div>
+        <div class="update-title">37+ data points collected — V2 validation complete</div>
+        <div class="update-desc">Two structured validation rounds completed. 8 in-depth interviews with active sellers, operators, and logistics professionals. 28+ market evidence items from seller communities. 7/7 core assumptions validated. Core finding confirmed: uncertainty — not cost — is what stops SMEs from going global.</div>
+      </div>
+    </div>
+
+    <!-- Entry: Website live -->
+    <div class="update-entry">
+      <div class="update-date">Apr<br>2026</div>
+      <div class="update-dot tool"></div>
+      <div class="update-body">
+        <div class="update-badge badge-tool">Tool</div>
+        <div class="update-title">GlobeCart website live at globecart.one</div>
+        <div class="update-desc">Full branded site with platform overview, 6 trust layers, pricing model, early access signup, and Supabase analytics tracking. Partner signup system with role-based early access for sellers, operators, and investors.</div>
+        <a href="index.html" class="update-link">Visit the site →</a>
+      </div>
+    </div>
+
+    <!-- Entry: V1 validation -->
+    <div class="update-entry">
+      <div class="update-date">Feb<br>2026</div>
+      <div class="update-dot milestone"></div>
+      <div class="update-body">
+        <div class="update-badge badge-milestone">Milestone</div>
+        <div class="update-title">First validation round complete — thesis confirmed</div>
+        <div class="update-desc">8 initial data points from real seller and operator conversations. The core thesis — uncertainty, not cost, stops SMEs from going global — confirmed across all early conversations. "It's just scary for small and new businesses to mess up anything that has the word duties or taxes in." — Early-stage seller, V1 interview.</div>
+      </div>
+    </div>
+
+    <!-- Entry: Company founded -->
+    <div class="update-entry">
+      <div class="update-date">Late<br>2025</div>
+      <div class="update-dot milestone"></div>
+      <div class="update-body">
+        <div class="update-badge badge-milestone">Milestone</div>
+        <div class="update-title">GlobeCart founded</div>
+        <div class="update-desc">After evaluating multiple opportunities, committed to cross-border commerce infrastructure. The insight: the trust layer that domestic commerce takes for granted — pricing transparency, compliance automation, product verification, returns, protection — simply doesn't exist for cross-border. Building it from scratch.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-box">
+    <div>
+      <h3>Selling cross-border between the US and EU?</h3>
+      <p>We're looking for active sellers to join the Accuracy Proof Initiative and be among our first design partners when the platform launches.</p>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="mailto:prasad@globecart.one?subject=Interested in GlobeCart" class="btn-gold">Get in touch →</a>
+      <a href="calculator.html" class="btn-outline">Try the calculator</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <a href="index.html">← globecart.one</a> &nbsp;·&nbsp; prasad@globecart.one &nbsp;·&nbsp; One World, One Border
+  </div>
+  <div class="footer-right">Building in public · Updates added as milestones happen</div>
+</footer>
+
+</body>
+</html>

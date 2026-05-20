@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GlobeCart | Cross-Border Marketplace with Transparent Pricing</title>
-<meta name="description" content="Sell from the US to Europe with full landed cost visibility. GlobeCart helps sellers expand confidently into Germany, France and Netherlands with transparent cross-border pricing.">
-<meta name="keywords" content="cross-border marketplace, sell to Europe from USA, sell to USA from Europe, international ecommerce platform, transparent landed cost pricing, cross-border seller platform, US EU ecommerce, bidirectional cross-border, GlobeCart">
+<title>GlobeCart | Cross-Border Marketplace for US ↔ EU Sellers</title>
+<meta name="description" content="GlobeCart is a cross-border ecommerce marketplace for US ↔ EU sellers. Built-in trust infrastructure: pricing, compliance, verification, returns, and transaction protection — all in one platform.">
+<meta name="keywords" content="cross-border marketplace, sell to Europe from USA, sell to USA from Europe, international ecommerce platform, cross-border trust infrastructure, landed cost calculator, US EU ecommerce, bidirectional cross-border, GlobeCart">
 <meta name="robots" content="index, follow">
 <meta name="author" content="GlobeCart">
 <link rel="canonical" href="https://globecart.one/">
@@ -21,8 +21,8 @@
 <meta name="msapplication-TileColor" content="#080b10">
 
 <!-- Open Graph -->
-<meta property="og:title" content="GlobeCart | Cross-Border Marketplace with Transparent Pricing">
-<meta property="og:description" content="Sell from the US to Europe with full landed cost visibility. GlobeCart helps sellers expand confidently into Germany, France and Netherlands.">
+<meta property="og:title" content="GlobeCart | Cross-Border Marketplace for US ↔ EU Sellers">
+<meta property="og:description" content="GlobeCart is a cross-border ecommerce marketplace for US ↔ EU sellers. Built-in trust infrastructure: pricing, compliance, verification, returns, and transaction protection.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://globecart.one/">
 <meta property="og:site_name" content="GlobeCart">
@@ -32,8 +32,8 @@
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GlobeCart | Cross-Border Marketplace with Transparent Pricing">
-<meta name="twitter:description" content="Sell from the US to Europe with full landed cost visibility. GlobeCart helps sellers expand confidently into Germany, France and Netherlands.">
+<meta name="twitter:title" content="GlobeCart | Cross-Border Marketplace for US ↔ EU Sellers">
+<meta name="twitter:description" content="GlobeCart is a cross-border ecommerce marketplace for US ↔ EU sellers. Built-in trust infrastructure: pricing, compliance, verification, returns, and transaction protection.">
 <meta name="twitter:image" content="https://globecart.one/android-chrome-512x512.png">
 
 <!-- Structured Data: Organization -->
@@ -44,7 +44,7 @@
   "name": "GlobeCart",
   "url": "https://globecart.one",
   "logo": "https://globecart.one/android-chrome-512x512.png",
-  "description": "The trust-first cross-border marketplace. Sell from the US to Europe with full landed cost visibility, transparent pricing, and zero surprise fees.",
+  "description": "The trust-first cross-border marketplace. Built-in trust infrastructure for US ↔ EU sellers: pricing, compliance, verification, returns, and transaction protection — all in one platform.",
   "sameAs": [
     "https://x.com/PReddy2689",
     "https://www.linkedin.com/in/prasad-reddy-11554b392/",
@@ -60,7 +60,7 @@
   "@type": "WebSite",
   "name": "GlobeCart",
   "url": "https://globecart.one",
-  "description": "Cross-border marketplace with transparent pricing for US and EU sellers."
+  "description": "Cross-border ecommerce marketplace with built-in trust infrastructure for US ↔ EU sellers."
 }
 </script>
 
@@ -90,6 +90,12 @@
     --accent: #2a6496;
     --green: #4a9c6f;
     --coral: #e07a5f;
+    --announce-h: 38px;
+  }
+  body.announce-dismissed { --announce-h: 0px; }
+  @media (max-width: 600px) {
+    :root { --announce-h: 56px; }
+    body.announce-dismissed { --announce-h: 0px; }
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -109,7 +115,44 @@
   .cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: transform 0.18s ease, width 0.2s, height 0.2s, opacity 0.2s; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(12px); background: rgba(8,11,16,0.7); border-bottom: 1px solid var(--border); }
+  /* ── ANNOUNCEMENT BAR ── */
+  .announce-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 101; height: var(--announce-h); background: var(--gold); display: flex; align-items: center; justify-content: center; padding: 0 3rem 0 1.5rem; gap: 0.7rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.74rem; letter-spacing: 0.03em; color: var(--bg); text-align: center; overflow: hidden; transition: opacity 0.3s, transform 0.3s; }
+  .announce-bar a { color: var(--bg); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+  .announce-bar a:hover { opacity: 0.75; }
+  .announce-dismiss { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--bg); font-size: 0.95rem; cursor: pointer; opacity: 0.55; line-height: 1; padding: 0.3rem 0.5rem; font-weight: 400; }
+  .announce-dismiss:hover { opacity: 1; }
+  .announce-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bg); opacity: 0.5; flex-shrink: 0; }
+  .announce-bar.hidden { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+  .announce-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @media (max-width: 600px) {
+    .announce-bar { font-size: 0.66rem; padding: 0 2.5rem 0 1rem; gap: 0.5rem; flex-wrap: wrap; line-height: 1.3; }
+    .announce-text { white-space: normal; text-overflow: clip; }
+    .announce-dismiss { right: 0.6rem; font-size: 0.85rem; }
+  }
+
+  /* ── WHAT'S HAPPENING (compact section before Problem) ── */
+  .whats-happening { padding: 2.4rem 4rem; border-bottom: 1px solid var(--border); background: rgba(201,168,76,0.025); }
+  .wh-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; gap: 2.5rem; }
+  .wh-label { font-family: 'Syne', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); white-space: nowrap; display: flex; align-items: center; gap: 0.6rem; padding-top: 0.4rem; flex-shrink: 0; }
+  .wh-label::before { content: ''; display: block; width: 1.2rem; height: 1px; background: var(--gold); }
+  .wh-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf7d; flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
+  .wh-card { display: flex; gap: 1.2rem; align-items: flex-start; flex: 1; }
+  .wh-badge { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.2rem 0.5rem; white-space: nowrap; flex-shrink: 0; margin-top: 0.35rem; }
+  .wh-content { flex: 1; }
+  .wh-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.92rem; color: var(--white); letter-spacing: 0.02em; margin-bottom: 0.45rem; }
+  .wh-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.6rem; }
+  .wh-read-more { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: gap 0.2s; }
+  .wh-read-more:hover { gap: 0.7rem; }
+  .wh-date { font-size: 0.62rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; padding-top: 0.45rem; }
+  @media (max-width: 768px) {
+    .whats-happening { padding: 1.8rem 1.5rem; }
+    .wh-inner { flex-direction: column; gap: 1rem; }
+    .wh-label { padding-top: 0; }
+    .wh-card { flex-wrap: wrap; }
+    .wh-date { padding-top: 0; }
+  }
+
+  nav { position: fixed; top: var(--announce-h); left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(12px); background: rgba(8,11,16,0.7); border-bottom: 1px solid var(--border); transition: top 0.3s; }
   .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--white); display: flex; align-items: center; gap: 0.5rem; }
   .logo-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; display: inline-block; animation: pulse 2s ease-in-out infinite; }
   @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
@@ -120,7 +163,7 @@
   .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
   /* HERO */
-  .hero { min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; padding: 8rem 4rem 8rem; overflow: hidden; }
+  .hero { min-height: calc(100vh - var(--announce-h)); position: relative; display: flex; align-items: center; justify-content: center; padding: calc(8rem + var(--announce-h)) 4rem 8rem; overflow: hidden; }
   .globe-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 60% 50%, rgba(201,168,76,0.06) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 20%, rgba(42,100,150,0.08) 0%, transparent 60%); pointer-events: none; }
   .globe-visual { position: absolute; right: -5%; top: 50%; transform: translateY(-50%); width: 55vw; height: 55vw; max-width: 750px; max-height: 750px; opacity: 0.12; animation: slowSpin 60s linear infinite; pointer-events: none; }
   @keyframes slowSpin { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
@@ -326,7 +369,7 @@
     .logo { font-size: 1rem; }
     .nav-cta { font-size: 0.6rem; padding: 0.55rem 1rem; letter-spacing: 0.08em; }
     section { padding: 4rem 1.5rem; }
-    .hero { padding: 7rem 2rem 2rem; min-height: auto; flex-direction: column; align-items: flex-start; }
+    .hero { padding: calc(7rem + var(--announce-h)) 2rem 2rem; min-height: auto; flex-direction: column; align-items: flex-start; }
     .hero-content { max-width: 100%; }
     .hero-tag { font-size: 0.55rem; letter-spacing: 0.15em; margin-bottom: 1.2rem; flex-wrap: wrap; }
     .hero-h1 { font-size: clamp(2.4rem, 9vw, 3.5rem); margin-bottom: 1.2rem; }
@@ -368,7 +411,7 @@
   }
   @media (max-width: 480px) {
     section { padding: 3rem 1.2rem; }
-    .hero { padding: 6rem 1.4rem 2rem; }
+    .hero { padding: calc(6rem + var(--announce-h)) 1.4rem 2rem; }
     .hero-tag { font-size: 0.5rem; gap: 0.5rem; }
     .hero-tag::before { width: 1rem; }
     .hero-h1 { font-size: 2rem; line-height: 1.05; margin-bottom: 1rem; }
@@ -391,6 +434,13 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar" id="announceBar" role="banner" aria-label="Site announcement">
+  <span class="announce-dot" aria-hidden="true"></span>
+  <span class="announce-text">✦ Accuracy Proof Initiative now open — testing our estimates against real shipments. <a href="apply.html">Join the program →</a></span>
+  <button class="announce-dismiss" id="announceDismiss" aria-label="Dismiss announcement">✕</button>
+</div>
+
 <!-- NAV -->
 <nav>
   <div class="logo"><span class="logo-dot"></span> GlobeCart</div>
@@ -400,7 +450,7 @@
     <li><a href="calculator.html">Calculator</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#sellers-buyers">For You</a></li>
-    <li><a href="#how">How it works</a></li>
+    <li><a href="updates.html">Updates</a></li>
     <li><a href="#signup">Partner</a></li>
   </ul>
   <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Get Early Access</button>
@@ -469,6 +519,22 @@
     <div class="ticker-item">Trust-First Commerce <span class="sep">✦</span></div>
     <div class="ticker-item">Easy Global Selling <span class="sep">✦</span></div>
     <div class="ticker-item">DDP Made Simple <span class="sep">✦</span></div>
+  </div>
+</div>
+
+<!-- WHAT'S HAPPENING -->
+<div class="whats-happening" id="updates-preview">
+  <div class="wh-inner">
+    <div class="wh-label"><span class="wh-live-dot"></span> What's Happening</div>
+    <div class="wh-card">
+      <div class="wh-badge">Program</div>
+      <div class="wh-content">
+        <div class="wh-title">Accuracy Proof Initiative — Now Open</div>
+        <div class="wh-desc">We're inviting active US↔EU sellers to run their next shipment through our calculator, then share the actual customs invoice. We compare, document the gap, and publish the result publicly. No commitment, no signup — just real data making cross-border estimates more trustworthy for everyone.</div>
+        <a href="updates.html" class="wh-read-more">Read all updates →</a>
+      </div>
+      <div class="wh-date">May 2026</div>
+    </div>
   </div>
 </div>
 
@@ -1290,5 +1356,34 @@
     });
   });
 </script>
+<!-- ANNOUNCEMENT BAR -->
+<script>
+(function() {
+  var bar = document.getElementById('announceBar');
+  var dismiss = document.getElementById('announceDismiss');
+  if (!bar) return;
+
+  // Check if previously dismissed
+  try {
+    if (localStorage.getItem('gc_announce_v1') === 'dismissed') {
+      document.body.classList.add('announce-dismissed');
+      bar.classList.add('hidden');
+    }
+  } catch(e) {}
+
+  // Dismiss handler
+  if (dismiss) {
+    dismiss.addEventListener('click', function() {
+      bar.classList.add('hidden');
+      // Small delay so the transition plays before layout shifts
+      setTimeout(function() {
+        document.body.classList.add('announce-dismissed');
+      }, 150);
+      try { localStorage.setItem('gc_announce_v1', 'dismissed'); } catch(e) {}
+    });
+  }
+})();
+</script>
+
 </body>
 </html>

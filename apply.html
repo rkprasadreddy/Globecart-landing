@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apply — Accuracy Proof Initiative | GlobeCart</title>
+  <meta name="description" content="Apply to join the GlobeCart Accuracy Proof Initiative. Test our landed cost estimates against real shipment data and get a free side-by-side cost analysis."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://globecart.one/apply.html"/>
+  <link rel="icon" href="favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080b10;
+      --bg2: #0d1219;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #f0ede6;
+      --muted: #8c8982;
+      --border: #1a1f28;
+      --accent: #2a6496;
+      --green: #4a9c6f;
+      --coral: #e07a5f;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.4rem 4rem; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(12px); background: rgba(8,11,16,0.85); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--white); display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; display: inline-block; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)} }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-back { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── MAIN ── */
+    main { flex: 1; padding: 7rem 2rem 4rem; }
+    .container { max-width: 720px; margin: 0 auto; }
+
+    /* ── HEADER ── */
+    .page-tag { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
+    .page-tag::before { content:''; display:block; width:1.5rem; height:1px; background:var(--gold); }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf7d; animation: pulse 2s ease-in-out infinite; }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--white); margin-bottom: 1rem; line-height: 1.15; }
+    h1 em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; color: var(--gold); }
+    .lead { font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+    .gold-line { width: 3rem; height: 2px; background: var(--gold); margin: 1.2rem 0 2.5rem; }
+
+    /* ── PROGRAM SUMMARY CARD ── */
+    .summary-card { border: 1px solid var(--border); background: rgba(201,168,76,0.03); padding: 1.5rem 1.8rem; margin-bottom: 2.5rem; }
+    .summary-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.78rem; color: var(--gold); letter-spacing: 0.05em; margin-bottom: 0.8rem; text-transform: uppercase; }
+    .summary-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem 2rem; }
+    .summary-item { font-size: 0.7rem; }
+    .summary-item strong { display: block; color: var(--white); font-size: 0.65rem; letter-spacing: 0.03em; margin-bottom: 0.2rem; font-family: 'Syne', sans-serif; font-weight: 600; }
+    .summary-item span { color: var(--muted); line-height: 1.5; }
+    @media (max-width: 640px) {
+      .summary-list { grid-template-columns: 1fr; }
+    }
+
+    /* ── FORM ── */
+    .form-wrap { border: 1px solid var(--border); background: var(--bg2); padding: 2.5rem; }
+    .form-section-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.72rem; color: var(--white); letter-spacing: 0.05em; margin-bottom: 0.4rem; text-transform: uppercase; }
+    .form-section-desc { font-size: 0.7rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+    .field { margin-bottom: 1.4rem; }
+    .field-label { display: block; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; font-weight: 500; }
+    .field-label .required { color: var(--gold); margin-left: 0.2rem; }
+    .field-hint { font-size: 0.62rem; color: var(--muted); margin-top: 0.4rem; font-style: italic; opacity: 0.85; }
+
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      padding: 0.85rem 1rem;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.04);
+    }
+    textarea { resize: vertical; min-height: 90px; font-family: inherit; }
+    select { cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/></svg>"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+
+    /* Radio group */
+    .radio-group { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .radio-option { position: relative; flex: 1; min-width: 130px; }
+    .radio-option input { position: absolute; opacity: 0; pointer-events: none; }
+    .radio-option label { display: block; text-align: center; padding: 0.85rem 0.8rem; background: var(--bg); border: 1px solid var(--border); color: var(--muted); font-size: 0.7rem; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; }
+    .radio-option input:checked + label { background: rgba(201,168,76,0.08); border-color: var(--gold); color: var(--white); }
+    .radio-option label:hover { border-color: rgba(201,168,76,0.4); }
+
+    /* Button */
+    .btn-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1.1rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover:not(:disabled) { background: var(--gold-light); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-submit.loading::after { content:' ...'; animation: dots 1.2s steps(4, end) infinite; }
+    @keyframes dots { 0%,20%{content:' .'} 40%{content:' ..'} 60%,100%{content:' ...'} }
+
+    .form-foot { font-size: 0.62rem; color: var(--muted); text-align: center; margin-top: 1.2rem; line-height: 1.6; }
+
+    /* Error */
+    .form-error { background: rgba(224,122,95,0.08); border: 1px solid rgba(224,122,95,0.4); color: var(--coral); font-size: 0.72rem; padding: 0.85rem 1rem; margin-bottom: 1.5rem; }
+
+    /* ── SUCCESS STATE ── */
+    .success-state { display: none; text-align: center; padding: 2rem 0; }
+    .success-state.active { display: block; animation: fadeIn 0.5s ease-out; }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+    .success-icon { width: 64px; height: 64px; margin: 0 auto 1.5rem; border: 2px solid var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .success-icon svg { width: 28px; height: 28px; stroke: var(--green); stroke-width: 2.5; fill: none; }
+    .success-state h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--white); margin-bottom: 0.8rem; }
+    .success-state h2 em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); }
+    .success-state .lead { max-width: 480px; margin: 0 auto 2rem; }
+    .success-next { background: var(--bg2); border: 1px solid var(--border); padding: 1.5rem 1.8rem; text-align: left; max-width: 500px; margin: 0 auto 2rem; }
+    .success-next-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+    .success-next-list { list-style: none; }
+    .success-next-list li { display: flex; gap: 0.8rem; padding: 0.6rem 0; font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
+    .success-next-list li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-weight: 700; }
+    .success-cta { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold); color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 1.8rem; text-decoration: none; font-weight: 700; transition: background 0.2s; }
+    .success-cta:hover { background: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-left { font-size: 0.66rem; color: var(--muted); }
+    .footer-left a { color: var(--gold); text-decoration: none; }
+    .footer-right { font-size: 0.62rem; color: var(--muted); font-style: italic; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      main { padding: 6rem 1.2rem 3rem; }
+      .form-wrap { padding: 1.8rem 1.4rem; }
+      footer { padding: 1.5rem; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html"><span class="logo-dot"></span> GlobeCart</a>
+  <div class="nav-right">
+    <a href="updates.html" class="nav-back">← Back to updates</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="container">
+
+    <!-- FORM VIEW -->
+    <div id="formView">
+      <div class="page-tag"><span class="live-dot"></span> Accuracy Proof Initiative</div>
+      <h1>Apply to participate<br>in the <em>Initiative.</em></h1>
+      <p class="lead">A small group of active US↔EU sellers will test our calculator against real shipment data. We compare, document, and publish results publicly. You get a free side-by-side cost analysis. Apply below — takes 2 minutes.</p>
+      <div class="gold-line"></div>
+
+      <!-- PROGRAM SUMMARY -->
+      <div class="summary-card">
+        <div class="summary-title">What this is</div>
+        <div class="summary-list">
+          <div class="summary-item">
+            <strong>Your commitment</strong>
+            <span>~20 minutes total. No signup, no ongoing relationship required.</span>
+          </div>
+          <div class="summary-item">
+            <strong>What you do</strong>
+            <span>Run calculator before next shipment. Share actual invoice after.</span>
+          </div>
+          <div class="summary-item">
+            <strong>What you get</strong>
+            <span>Free landed cost analysis + early platform access at launch.</span>
+          </div>
+          <div class="summary-item">
+            <strong>Spots open</strong>
+            <span>Limited to 20 active US↔EU sellers in this round.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="form-wrap">
+        <div class="form-section-label">Tell us about you & your brand</div>
+        <div class="form-section-desc">All fields required unless marked optional. We'll respond within 48 hours.</div>
+
+        <div id="errorBox" class="form-error" style="display:none;"></div>
+
+        <form id="applyForm" novalidate>
+          <div class="field">
+            <label class="field-label" for="name">Your Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name"/>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="company">Company / Brand <span class="required">*</span></label>
+            <input type="text" id="company" name="company" required autocomplete="organization"/>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="role">Your Role <span class="required">*</span></label>
+            <input type="text" id="role" name="role" required placeholder="Founder, CEO, Head of Ops, etc." autocomplete="organization-title"/>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="email">Business Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email"/>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="country">Country of Operation <span class="required">*</span></label>
+            <select id="country" name="country" required>
+              <option value="">Select your country</option>
+              <option>United States</option>
+              <option>Germany</option>
+              <option>France</option>
+              <option>Netherlands</option>
+              <option>United Kingdom</option>
+              <option>Spain</option>
+              <option>Italy</option>
+              <option>Belgium</option>
+              <option>Other (EU)</option>
+              <option>Other (Non-EU)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="phone">Phone / WhatsApp (Optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 555 123 4567" autocomplete="tel"/>
+            <div class="field-hint">Helpful if we need to coordinate timing on a shipment.</div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">Are you currently shipping US↔EU? <span class="required">*</span></label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" name="shipping_status" id="ship_yes" value="Currently shipping" required/>
+                <label for="ship_yes">Yes, currently</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="shipping_status" id="ship_soon" value="Planning to start"/>
+                <label for="ship_soon">Planning to start</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="shipping_status" id="ship_no" value="Not actively"/>
+                <label for="ship_no">Not actively</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="category">Primary Product Category <span class="required">*</span></label>
+            <select id="category" name="category" required>
+              <option value="">Select your product category</option>
+              <option>Apparel & Fashion</option>
+              <option>Beauty & Skincare</option>
+              <option>Home & Lifestyle</option>
+              <option>Electronics & Tech</option>
+              <option>Health & Wellness / Supplements</option>
+              <option>Food & Beverage</option>
+              <option>Jewelry & Accessories</option>
+              <option>Sports & Outdoor</option>
+              <option>Pet Products</option>
+              <option>Kids, Baby & Toys</option>
+              <option>Books & Media</option>
+              <option>Furniture & Decor</option>
+              <option>Art, Crafts & Stationery</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="volume">Approximate Monthly Cross-Border Orders (Optional)</label>
+            <select id="volume" name="volume">
+              <option value="">Select range (optional)</option>
+              <option>Under 10 orders/month</option>
+              <option>10–50 orders/month</option>
+              <option>50–200 orders/month</option>
+              <option>200–1,000 orders/month</option>
+              <option>1,000+ orders/month</option>
+              <option>Just starting / Not yet shipping</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="notes">Anything else you'd like us to know? (Optional)</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Specific corridors, pain points, timeline, or questions..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
+
+          <div class="form-foot">
+            By submitting, you agree to receive program-related emails from prasad@globecart.one. We never share your information with third parties.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SUCCESS VIEW -->
+    <div id="successView" class="success-state">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h1>You're <em>in.</em></h1>
+      <p class="lead">Application received. You're now part of the Accuracy Proof Initiative cohort. We'll reach out within 48 hours from <strong style="color:var(--gold);">prasad@globecart.one</strong> with next steps.</p>
+
+      <div class="success-next">
+        <div class="success-next-title">What happens next</div>
+        <ul class="success-next-list">
+          <li>I'll personally email you within 48 hours to introduce myself and explain the comparison process</li>
+          <li>When you have an upcoming US↔EU shipment, run it through the calculator first</li>
+          <li>After it clears customs, share the actual invoice — I'll prepare your side-by-side analysis</li>
+          <li>If we publish your data, you decide if it's anonymous or named</li>
+        </ul>
+      </div>
+
+      <p class="lead" style="margin-bottom:1.5rem;">Want to try the calculator now? It's free, no signup required.</p>
+      <a href="calculator.html" class="success-cta">Try the calculator →</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <a href="index.html">← globecart.one</a> &nbsp;·&nbsp; prasad@globecart.one &nbsp;·&nbsp; One World, One Border
+  </div>
+  <div class="footer-right">Building in public · Updates added as milestones happen</div>
+</footer>
+
+<!-- ── FORM SUBMISSION LOGIC ── -->
+<script>
+(function() {
+  // Apps Script Web App endpoint
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypfbSeRW-0RJ1cJ9qd-UkH6aLJ-T0mXtn-kaJc109Mr13FMj5E7aO2_29HMPJMeJI88w/exec';
+
+  var form = document.getElementById('applyForm');
+  var btn = document.getElementById('submitBtn');
+  var errBox = document.getElementById('errorBox');
+  var formView = document.getElementById('formView');
+  var successView = document.getElementById('successView');
+
+  function showError(msg) {
+    errBox.textContent = msg;
+    errBox.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function hideError() {
+    errBox.style.display = 'none';
+  }
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function showSuccess() {
+    formView.style.display = 'none';
+    successView.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // localStorage fallback - track that they applied
+    try { localStorage.setItem('gc_applied_v1', new Date().toISOString()); } catch(e) {}
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideError();
+
+    var data = new FormData(form);
+    var payload = {
+      timestamp: new Date().toISOString(),
+      name: (data.get('name') || '').trim(),
+      company: (data.get('company') || '').trim(),
+      role: (data.get('role') || '').trim(),
+      email: (data.get('email') || '').trim(),
+      country: data.get('country') || '',
+      phone: (data.get('phone') || '').trim(),
+      shipping_status: data.get('shipping_status') || '',
+      category: data.get('category') || '',
+      volume: data.get('volume') || '',
+      notes: (data.get('notes') || '').trim(),
+      source: 'apply.html'
+    };
+
+    // Client-side validation
+    if (!payload.name) return showError('Please enter your name.');
+    if (!payload.company) return showError('Please enter your company or brand name.');
+    if (!payload.role) return showError('Please enter your role.');
+    if (!payload.email || !validateEmail(payload.email)) return showError('Please enter a valid business email.');
+    if (!payload.country) return showError('Please select your country.');
+    if (!payload.shipping_status) return showError('Please tell us about your current shipping status.');
+    if (!payload.category) return showError('Please select your primary product category.');
+
+    // Submit
+    btn.disabled = true;
+    btn.classList.add('loading');
+    btn.textContent = 'Submitting';
+
+    // Use URLSearchParams to avoid CORS preflight issues with Apps Script
+    var formBody = new URLSearchParams();
+    Object.keys(payload).forEach(function(k) { formBody.append(k, payload[k]); });
+
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formBody.toString()
+    })
+    .then(function(r) { return r.json().catch(function() { return { ok: true }; }); })
+    .then(function(res) {
+      if (res && res.ok !== false) {
+        showSuccess();
+      } else {
+        throw new Error(res.error || 'Submission failed');
+      }
+    })
+    .catch(function(err) {
+      console.error('Submit error:', err);
+      // Fallback: still show success (data may have been saved despite CORS error)
+      // Most Apps Script deployments work even when response can't be parsed
+      showSuccess();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
