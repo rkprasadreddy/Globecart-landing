@@ -66,7 +66,7 @@
 }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <style>
   :root {
@@ -88,7 +88,7 @@
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg); color: var(--white);
-    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 400;
     overflow-x: hidden; min-height: 100vh;
   }
 
@@ -437,6 +437,27 @@
   @media (max-width: 480px) {
     .how-calc-grid { grid-template-columns: 1fr; }
   }
+
+  /* SELLER SIGNAL (tool feedback strip) */
+  .signal-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 4rem; }
+  .signal-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .signal-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .signal-eyebrow .signal-dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf7d; }
+  .signal-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.12; color: var(--white); margin-bottom: 1rem; }
+  .signal-h2 em { font-style: italic; color: var(--gold); }
+  .signal-sub { font-size: 0.8rem; color: var(--muted); line-height: 1.8; max-width: 560px; margin: 0 auto; }
+  .signal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin: 3rem auto 0; text-align: left; }
+  .signal-card { border: 1px solid var(--border); background: var(--bg); padding: 2rem 1.9rem; display: flex; flex-direction: column; justify-content: space-between; transition: border-color 0.3s, transform 0.3s; }
+  .signal-card:hover { border-color: rgba(201,168,76,0.45); transform: translateY(-3px); }
+  .signal-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.12rem; font-style: italic; color: var(--white); line-height: 1.6; margin-bottom: 1.3rem; }
+  .signal-quote::before { content: '"'; color: var(--gold); font-size: 1.8rem; line-height: 0; position: relative; top: 0.3rem; margin-right: 0.15rem; }
+  .signal-src { display: flex; align-items: center; gap: 0.6rem; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .signal-src::before { content: ''; width: 1.2rem; height: 1px; background: var(--gold); opacity: 0.6; }
+  .signal-foot { margin-top: 2.5rem; font-size: 0.66rem; color: var(--muted); letter-spacing: 0.04em; }
+  @media (max-width: 768px) {
+    .signal-section { padding: 4rem 1.5rem; }
+    .signal-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -459,7 +480,7 @@
 <header class="page-hero">
   <div class="page-tag">Free Tool</div>
   <h1 class="page-h1">Cross-Border <em>Landed Cost</em><br>Calculator</h1>
-  <p class="page-sub">Duties, VAT, shipping, FX — calculated upfront for US ↔ EU corridors. See exactly what cross-border costs before your first order ships.</p>
+  <p class="page-sub">Duties, VAT, shipping, FX, calculated upfront for US ↔ EU corridors. See exactly what cross-border costs before your first order ships.</p>
   <div class="estimate-badge">Estimates only · Not financial advice</div>
   <div class="corridor-display" id="corridorDisplay">
     <div class="corridor-flag" id="originFlag">🇺🇸 <span>Origin</span></div>
@@ -554,9 +575,9 @@
     <div class="form-group">
       <label class="form-label">Shipping Service Level</label>
       <select class="form-input" id="serviceLevel">
-        <option value="standard">Standard — Priority Mail / DHL eCommerce (6-10 days, tracked)</option>
-        <option value="express">Express — DHL Express / FedEx Priority (2-5 days, tracked)</option>
-        <option value="economy">Economy — First-Class / postal (10-21 days, limited tracking)</option>
+        <option value="standard">Standard, Priority Mail / DHL eCommerce (6-10 days, tracked)</option>
+        <option value="express">Express, DHL Express / FedEx Priority (2-5 days, tracked)</option>
+        <option value="economy">Economy, First-Class / postal (10-21 days, limited tracking)</option>
       </select>
       <div style="font-size:0.6rem; color:var(--muted); line-height:1.55; margin-top:0.45rem;">
         Service level affects shipping cost significantly. Express can be 2-3× Standard. Economy is cheapest but slow with limited tracking.
@@ -575,7 +596,7 @@
     </div>
 
     <hr class="form-divider">
-    <div class="form-divider-label">Optional — Margin Analysis</div>
+    <div class="form-divider-label">Optional, Margin Analysis</div>
     <div class="form-group">
       <label class="form-label">Your Selling Price per unit (USD)</label>
       <input type="number" class="form-input" id="sellingPrice" placeholder="What you plan to charge per unit">
@@ -684,6 +705,34 @@
   </div>
 </main>
 
+<!-- SELLER SIGNAL -->
+<section class="signal-section" id="signal">
+  <div class="signal-inner">
+    <div class="signal-eyebrow"><span class="signal-dot"></span> Unprompted feedback from real sellers</div>
+    <h2 class="signal-h2">What sellers are <em>saying.</em></h2>
+    <p class="signal-sub">After we shared this tool publicly, working sellers wrote back about the exact gap it's built to close. In their words.</p>
+    <div class="signal-grid">
+      <div class="signal-card">
+        <div class="signal-quote">Our estimated landed costs were consistently 8 to 12% lower than what we actually paid.</div>
+        <div class="signal-src">Seller, US</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-quote">Calculator said around 15% duties, but customs classified it differently and hit me with 23%.</div>
+        <div class="signal-src">Seller, US ↔ NL</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-quote">That gap between estimated and actual costs... your calculator sounds like a good tool for that.</div>
+        <div class="signal-src">Seller, US</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-quote">Whoever solves predictability wins, not whoever is cheapest.</div>
+        <div class="signal-src">Seller, US ↔ EU</div>
+      </div>
+    </div>
+    <p class="signal-foot">Real sellers, lightly trimmed for length, shared anonymously.</p>
+  </div>
+</section>
+
 <!-- HOW WE CALCULATE -->
 <section class="how-calc-section">
   <h2 class="how-calc-title">How this <em>estimate</em> works</h2>
@@ -696,12 +745,12 @@
     <div class="how-calc-card">
       <div class="how-calc-num">02</div>
       <div class="how-calc-label">VAT / Tax</div>
-      <div class="how-calc-desc">EU VAT = % × (Product + Shipping + Duty + Handling Fee). Rates: DE 19%, FR 20%, NL 21%. For US-bound: no federal VAT — state sales tax applies separately and is not included.</div>
+      <div class="how-calc-desc">EU VAT = % × (Product + Shipping + Duty + Handling Fee). Rates: DE 19%, FR 20%, NL 21%. For US-bound: no federal VAT, state sales tax applies separately and is not included.</div>
     </div>
     <div class="how-calc-card">
       <div class="how-calc-num">03</div>
       <div class="how-calc-label">Shipping</div>
-      <div class="how-calc-desc">Estimated by weight and service level — Express (DHL/FedEx, 2-5 days), Standard (Priority Mail/DHL eCommerce, 6-10 days), or Economy (postal, 10-21 days). Rates based on real 2025-26 carrier pricing. For exact figures, enter your actual carrier rate — the tool will use it directly.</div>
+      <div class="how-calc-desc">Estimated by weight and service level, Express (DHL/FedEx, 2-5 days), Standard (Priority Mail/DHL eCommerce, 6-10 days), or Economy (postal, 10-21 days). Rates based on real 2025-26 carrier pricing. For exact figures, enter your actual carrier rate, the tool will use it directly.</div>
     </div>
     <div class="how-calc-card">
       <div class="how-calc-num">04</div>
@@ -714,14 +763,14 @@
 <!-- DISCLAIMER -->
 <div class="disclaimer">
   <div class="disclaimer-box">
-    <strong>Estimate Only — Not Financial Advice</strong> — This calculator provides directional estimates based on average duty rates by product category, standard VAT rates, and estimated shipping costs. Actual landed costs may vary based on specific HS code classification, product composition, carrier rates, exchange rate fluctuations, applicable trade agreements, and regulatory requirements. For precise, product-level calculations, globecart.one's platform will use real-time data and automated HS classification. <strong>All amounts shown in USD. This tool does not constitute financial, tax, or legal advice.</strong>
+    <strong>Estimate Only, Not Financial Advice</strong>, This calculator provides directional estimates based on average duty rates by product category, standard VAT rates, and estimated shipping costs. Actual landed costs may vary based on specific HS code classification, product composition, carrier rates, exchange rate fluctuations, applicable trade agreements, and regulatory requirements. For precise, product-level calculations, globecart.one's platform will use real-time data and automated HS classification. <strong>All amounts shown in USD. This tool does not constitute financial, tax, or legal advice.</strong>
   </div>
 </div>
 
 <!-- CTA -->
 <div class="cta-section">
   <h2>Ready to sell <em>without surprises?</em></h2>
-  <p>The trust-first cross-border marketplace — full price transparency, real-time tracking, and hassle-free returns built in. One World, One Border.</p>
+  <p>The trust-first cross-border marketplace, full price transparency, real-time tracking, and hassle-free returns built in. One World, One Border.</p>
   <a href="https://globecart.one#signup" class="cta-btn">Get Early Access</a>
 </div>
 
@@ -818,11 +867,11 @@ const HANDLING_FEE_RANGE = { low: 8, high: 15 };
 
 // Expected return rate ranges by category (industry-observed, not yet validated by GlobeCart data)
 const RETURNS_RATES = {
-  apparel:     { low: 15, high: 30, level: 'high',   note: 'Apparel and footwear have the highest cross-border return rates — sizing, fit, and color expectations drive returns.' },
-  footwear:    { low: 15, high: 25, level: 'high',   note: 'Footwear returns are common cross-border — size standards differ between US and EU.' },
+  apparel:     { low: 15, high: 30, level: 'high',   note: 'Apparel and footwear have the highest cross-border return rates, sizing, fit, and color expectations drive returns.' },
+  footwear:    { low: 15, high: 25, level: 'high',   note: 'Footwear returns are common cross-border, size standards differ between US and EU.' },
   jewelry:     { low: 10, high: 20, level: 'medium', note: 'Jewelry returns vary by occasion and personal taste.' },
   beauty:      { low: 2,  high: 5,  level: 'low',    note: 'Beauty/skincare has low return rates, but customs may flag certain ingredients.' },
-  electronics: { low: 5,  high: 12, level: 'medium', note: 'Electronics returns depend on compatibility (voltage, plug type, certification) — verify regional specs.' },
+  electronics: { low: 5,  high: 12, level: 'medium', note: 'Electronics returns depend on compatibility (voltage, plug type, certification), verify regional specs.' },
   home:        { low: 5,  high: 12, level: 'medium', note: 'Home goods returns moderate; bulky items face high return shipping costs.' },
   toys:        { low: 3,  high: 8,  level: 'low',    note: 'Toy returns relatively low; check CE/safety compliance for EU.' },
   sports:      { low: 8,  high: 15, level: 'medium', note: 'Sporting goods returns often tied to sizing and material expectations.' },
@@ -830,11 +879,11 @@ const RETURNS_RATES = {
   food:        { low: 1,  high: 4,  level: 'low',    note: 'Food returns rare but spoilage/perishability is a real risk.' },
   pet:         { low: 3,  high: 8,  level: 'low',    note: 'Pet product returns relatively low.' },
   books:       { low: 2,  high: 5,  level: 'low',    note: 'Books and media have minimal returns.' },
-  auto:        { low: 8,  high: 18, level: 'medium', note: 'Auto parts returns often tied to fitment issues — verify vehicle compatibility.' },
-  general:     { low: 5,  high: 12, level: 'medium', note: 'General category — return rate varies widely. Validate against your actual product type.' }
+  auto:        { low: 8,  high: 18, level: 'medium', note: 'Auto parts returns often tied to fitment issues, verify vehicle compatibility.' },
+  general:     { low: 5,  high: 12, level: 'medium', note: 'General category, return rate varies widely. Validate against your actual product type.' }
 };
 
-// Confidence band — how much variance to apply to the total estimate
+// Confidence band, how much variance to apply to the total estimate
 // Returns a multiplier range applied to TOTAL landed cost
 function computeConfidence(category, productCost, deMinimisApplied, isIntraEU) {
   let score = 0;
@@ -853,7 +902,7 @@ function computeConfidence(category, productCost, deMinimisApplied, isIntraEU) {
 
   // De minimis edge cases
   if (deMinimisApplied) {
-    notes.push('De minimis exemption applied — no duty, but VAT and carrier handling fees still apply.');
+    notes.push('De minimis exemption applied, no duty, but VAT and carrier handling fees still apply.');
   }
 
   // Always note: we use category averages, not HS codes
@@ -862,7 +911,7 @@ function computeConfidence(category, productCost, deMinimisApplied, isIntraEU) {
   // Intra-EU has low variance
   if (isIntraEU) {
     score = Math.max(0, score - 2);
-    notes.push('Intra-EU shipments have low variance — no customs duty, single market rules.');
+    notes.push('Intra-EU shipments have low variance, no customs duty, single market rules.');
   }
 
   let level, variance, color;
@@ -881,7 +930,7 @@ function estimateShipping(weightKg, isIntraEU, serviceLevel) {
   serviceLevel = serviceLevel || 'standard';
 
   if (isIntraEU) {
-    // Intra-EU single market — much cheaper, no customs leg
+    // Intra-EU single market, much cheaper, no customs leg
     if (serviceLevel === 'economy') {
       if (weightKg <= 1) return 5.00;
       if (weightKg <= 2) return 8.00;
@@ -907,11 +956,11 @@ function estimateShipping(weightKg, isIntraEU, serviceLevel) {
 
   // International US↔EU
   if (serviceLevel === 'economy') {
-    // Postal economy — practically capped ~2kg; beyond that falls back to standard
+    // Postal economy, practically capped ~2kg; beyond that falls back to standard
     if (weightKg <= 0.5) return 18.00;
     if (weightKg <= 1) return 26.00;
     if (weightKg <= 2) return 38.00;
-    // Economy not practical above 2kg — use standard rates with a note handled in UI
+    // Economy not practical above 2kg, use standard rates with a note handled in UI
     if (weightKg <= 5) return 90.00;
     if (weightKg <= 10) return 135.00;
     return 135 + (weightKg - 10) * 4.00;
@@ -926,7 +975,7 @@ function estimateShipping(weightKg, isIntraEU, serviceLevel) {
     if (weightKg <= 20) return 400.00;
     return 400 + (weightKg - 20) * 14.00;
   }
-  // standard — Priority Mail Intl / DHL eCommerce
+  // standard, Priority Mail Intl / DHL eCommerce
   if (weightKg <= 0.5) return 35.00;
   if (weightKg <= 1) return 45.00;
   if (weightKg <= 2) return 60.00;
@@ -975,11 +1024,11 @@ function updateCorridor() {
 
   let html = '';
   if (isIntraEU) {
-    html = '<span class="corridor-type">Intra-EU</span><br><strong>No customs duty</strong> — single market. Destination VAT (' + (VAT_RATES[dest].rate * 100) + '%) applies via OSS. Lower shipping costs within EU.';
+    html = '<span class="corridor-type">Intra-EU</span><br><strong>No customs duty</strong>, single market. Destination VAT (' + (VAT_RATES[dest].rate * 100) + '%) applies via OSS. Lower shipping costs within EU.';
   } else if (isToEU) {
     html = '<span class="corridor-type">US → EU</span><br>EU customs duty + ' + (VAT_RATES[dest].rate * 100) + '% ' + COUNTRY_NAMES[dest] + ' VAT. <strong>De minimis:</strong> No import duty under €150, but VAT and carrier handling fees still apply.';
   } else if (isToUS) {
-    html = '<span class="corridor-type">EU → US</span><br>US customs duty applies. De minimis: $800 (most small shipments enter duty-free). <strong>No federal VAT</strong> — state sales tax (0-10%) is not included in this estimate.';
+    html = '<span class="corridor-type">EU → US</span><br>US customs duty applies. De minimis: $800 (most small shipments enter duty-free). <strong>No federal VAT</strong>, state sales tax (0-10%) is not included in this estimate.';
   }
 
   infoEl.innerHTML = html;
@@ -1041,7 +1090,7 @@ function calculateLandedCost() {
     shippingMethod = slLabel;
     shippingIsManual = false;
   }
-  // Economy not practical above 2kg internationally — flag it
+  // Economy not practical above 2kg internationally, flag it
   const economyOverweight = (!isIntraEU && serviceLevel === 'economy' && totalWeight > 2 && !shippingIsManual);
 
   const cifValue = productCost + shippingCost;
@@ -1056,7 +1105,7 @@ function calculateLandedCost() {
   let corridorType = '';
   let deMinimisApplied = false;
 
-  // Carrier handling/clearance fee — applies to cross-border shipments only
+  // Carrier handling/clearance fee, applies to cross-border shipments only
   // (carriers charge this fee for handling customs paperwork)
   let handlingFee = 0;
   if (!isIntraEU && origin !== dest) {
@@ -1216,12 +1265,12 @@ function calculateLandedCost() {
   confSection.style.display = 'block';
   let allNotes = confidence.notes.slice();
   if (shippingIsManual) {
-    allNotes.unshift('Shipping uses your actual carrier rate — most accurate input.');
+    allNotes.unshift('Shipping uses your actual carrier rate, most accurate input.');
   } else {
     allNotes.unshift('Shipping is an estimate for ' + (serviceLevel === 'express' ? 'Express' : serviceLevel === 'economy' ? 'Economy' : 'Standard') + ' service. For best accuracy, enter your real carrier rate.');
   }
   if (economyOverweight) {
-    allNotes.unshift('⚠ Economy/postal service is typically capped around 2kg internationally. For ' + totalWeight.toFixed(1) + 'kg, Standard or Express is more realistic — this economy estimate may be unavailable in practice.');
+    allNotes.unshift('⚠ Economy/postal service is typically capped around 2kg internationally. For ' + totalWeight.toFixed(1) + 'kg, Standard or Express is more realistic, this economy estimate may be unavailable in practice.');
   }
   confText.innerHTML = allNotes.map(n => '· ' + n).join('<br>');
 
@@ -1445,10 +1494,10 @@ function downloadPDF() {
   doc.roundedRect(margin, y, contentW, 32, 1, 1, 'S');
   y += 5;
   doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(...coral);
-  doc.text('ESTIMATE ONLY — NOT FINANCIAL ADVICE', margin + 4, y); y += 4;
+  doc.text('ESTIMATE ONLY, NOT FINANCIAL ADVICE', margin + 4, y); y += 4;
   doc.setFont('helvetica', 'normal'); doc.setFontSize(5.5); doc.setTextColor(...muted);
   const noteLines = doc.splitTextToSize(
-    'This report provides directional estimates only. Actual landed costs may vary based on HS code classification, product composition, carrier rates, FX fluctuations, trade agreements, and regulatory requirements. ' + (c.shippingIsManual ? 'Shipping reflects the actual rate you provided. ' : 'Shipping is an estimate for ' + (c.serviceLevel || 'standard') + ' service — real carrier rates vary by account, volume, fuel surcharges, and dimensions. For best accuracy, use your actual carrier rate. ') + 'Carrier handling fees default to $' + HANDLING_FEE_DEFAULT + ' (typical range $' + HANDLING_FEE_RANGE.low + '-$' + HANDLING_FEE_RANGE.high + '); actual fees vary by carrier (DHL/FedEx/UPS). Category note: ' + c.dutyNote + (c.isToUS ? ' US state sales tax is not included in this estimate.' : '') + ' All amounts in USD. This does not constitute financial, tax, or legal advice.',
+    'This report provides directional estimates only. Actual landed costs may vary based on HS code classification, product composition, carrier rates, FX fluctuations, trade agreements, and regulatory requirements. ' + (c.shippingIsManual ? 'Shipping reflects the actual rate you provided. ' : 'Shipping is an estimate for ' + (c.serviceLevel || 'standard') + ' service, real carrier rates vary by account, volume, fuel surcharges, and dimensions. For best accuracy, use your actual carrier rate. ') + 'Carrier handling fees default to $' + HANDLING_FEE_DEFAULT + ' (typical range $' + HANDLING_FEE_RANGE.low + '-$' + HANDLING_FEE_RANGE.high + '); actual fees vary by carrier (DHL/FedEx/UPS). Category note: ' + c.dutyNote + (c.isToUS ? ' US state sales tax is not included in this estimate.' : '') + ' All amounts in USD. This does not constitute financial, tax, or legal advice.',
     contentW - 8
   );
   doc.text(noteLines, margin + 4, y);

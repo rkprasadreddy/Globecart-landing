@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GlobeCart | Cross-Border Marketplace for US ↔ EU Sellers</title>
-<meta name="description" content="GlobeCart is a cross-border ecommerce marketplace for US ↔ EU sellers. Built-in trust infrastructure: pricing, compliance, verification, returns, and transaction protection — all in one platform.">
+<meta name="description" content="GlobeCart is a cross-border ecommerce marketplace for US ↔ EU sellers. Built-in trust infrastructure: pricing, compliance, verification, returns, and transaction protection - all in one platform.">
 <meta name="keywords" content="cross-border marketplace, sell to Europe from USA, sell to USA from Europe, international ecommerce platform, cross-border trust infrastructure, landed cost calculator, US EU ecommerce, bidirectional cross-border, GlobeCart">
 <meta name="robots" content="index, follow">
 <meta name="author" content="GlobeCart">
@@ -44,7 +44,7 @@
   "name": "GlobeCart",
   "url": "https://globecart.one",
   "logo": "https://globecart.one/android-chrome-512x512.png",
-  "description": "The trust-first cross-border marketplace. Built-in trust infrastructure for US ↔ EU sellers: pricing, compliance, verification, returns, and transaction protection — all in one platform.",
+  "description": "The trust-first cross-border marketplace. Built-in trust infrastructure for US ↔ EU sellers: pricing, compliance, verification, returns, and transaction protection - all in one platform.",
   "sameAs": [
     "https://x.com/PReddy2689",
     "https://www.linkedin.com/in/prasad-reddy-11554b392/",
@@ -64,7 +64,7 @@
 }
 </script>
 
-<!-- Google Analytics placeholder — replace GA_MEASUREMENT_ID with your actual ID -->
+<!-- Google Analytics placeholder - replace GA_MEASUREMENT_ID with your actual ID -->
 <!-- Get yours at: https://analytics.google.com → Create property → Get Measurement ID -->
 <!--
 <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
@@ -76,7 +76,7 @@
 </script>
 -->
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #080b10;
@@ -104,15 +104,15 @@
   body {
     background: var(--bg);
     color: var(--white);
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 400;
     overflow-x: hidden;
-    cursor: none;
   }
+  @media (pointer: fine) { body { cursor: none; } }
 
   /* Custom cursor */
-  .cursor { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.1s ease; mix-blend-mode: screen; }
-  .cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: transform 0.18s ease, width 0.2s, height 0.2s, opacity 0.2s; }
+  .cursor { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; will-change: transform; transform: translate3d(-100px, -100px, 0); }
+  .cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; will-change: transform; transform: translate3d(-100px, -100px, 0); transition: width 0.2s, height 0.2s, border-color 0.2s, opacity 0.2s; }
 
   /* NAV */
   /* ── ANNOUNCEMENT BAR ── */
@@ -137,6 +137,12 @@
   .wh-label::before { content: ''; display: block; width: 1.2rem; height: 1px; background: var(--gold); }
   .wh-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf7d; flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
   .wh-card { display: flex; gap: 1.2rem; align-items: flex-start; flex: 1; }
+  .wh-stage { position: relative; flex: 1; min-height: 96px; }
+  .wh-slide { position: absolute; inset: 0; width: 100%; display: flex; gap: 1.2rem; align-items: flex-start; opacity: 0; visibility: hidden; transition: opacity 0.55s ease; pointer-events: none; }
+  .wh-slide.active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .wh-dots { display: flex; gap: 0.5rem; align-items: center; padding-top: 0.5rem; flex-shrink: 0; }
+  .wh-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(201,168,76,0.3); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+  .wh-dot.active { background: var(--gold); transform: scale(1.3); }
   .wh-badge { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.2rem 0.5rem; white-space: nowrap; flex-shrink: 0; margin-top: 0.35rem; }
   .wh-content { flex: 1; }
   .wh-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.92rem; color: var(--white); letter-spacing: 0.02em; margin-bottom: 0.45rem; }
@@ -149,6 +155,8 @@
     .wh-inner { flex-direction: column; gap: 1rem; }
     .wh-label { padding-top: 0; }
     .wh-card { flex-wrap: wrap; }
+    .wh-stage { width: 100%; min-height: 188px; }
+    .wh-slide { flex-wrap: wrap; }
     .wh-date { padding-top: 0; }
   }
 
@@ -170,7 +178,8 @@
   .hero-content { position: relative; max-width: 700px; z-index: 2; }
   .hero-tag { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
   .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
-  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 300; line-height: 1.0; letter-spacing: -0.01em; color: var(--white); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4.4vw, 3.5rem); font-weight: 400; line-height: 1.16; letter-spacing: -0.01em; color: var(--white); margin-bottom: 1.8rem; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+  .hero-h1 em { font-style: italic; color: var(--gold); font-weight: 400; font-size: 0.86em; }
   .hero-h1 em { font-style: italic; color: var(--gold); }
   .hero-sub { font-size: 0.82rem; line-height: 1.9; color: var(--muted); max-width: 520px; margin-bottom: 3rem; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
   .hero-actions { display: flex; gap: 1.2rem; align-items: center; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
@@ -214,7 +223,7 @@
   .problem-text strong { display: block; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.05em; color: var(--white); margin-bottom: 0.3rem; }
   .problem-text p { font-size: 0.72rem; line-height: 1.7; color: var(--muted); }
 
-  /* PROBLEM VISUAL — SIDE PANEL */
+  /* PROBLEM VISUAL - SIDE PANEL */
   .problem-visual { position: relative; padding: 2.5rem; border: 1px solid var(--border); background: var(--bg2); overflow: hidden; }
   .pv-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
   .pv-stat-row { display: flex; gap: 1.5rem; margin-bottom: 2rem; }
@@ -223,6 +232,60 @@
   .pv-stat-label { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .pv-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--white); line-height: 1.6; padding: 1.2rem; border-left: 2px solid var(--gold); margin-bottom: 1rem; }
   .pv-quote-src { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-left: 1.2rem; }
+
+  /* WHO IT'S FOR (two co-equal panels) */
+  .whofor-section { max-width: 1200px; margin: 0 auto; }
+  .whofor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .whofor-card { border: 1px solid var(--border); padding: 2.8rem 2.4rem; position: relative; overflow: hidden; transition: border-color 0.4s, transform 0.3s; background: rgba(201,168,76,0.02); }
+  .whofor-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .whofor-icon { width: 40px; height: 40px; margin-bottom: 1.4rem; }
+  .whofor-badge { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .whofor-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--white); margin-bottom: 1.2rem; line-height: 1.2; }
+  .whofor-card h3 em { font-style: italic; color: var(--gold); }
+  .whofor-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+  .whofor-list li { font-size: 0.8rem; line-height: 1.65; color: var(--muted); padding-left: 1.3rem; position: relative; }
+  .whofor-list li::before { content: ''; position: absolute; left: 0; top: 0.5rem; width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); }
+
+  /* JOURNEY FLOW (Where cross-border breaks) */
+  .journey-section { max-width: 1200px; margin: 0 auto; }
+  .journey-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3.5rem; position: relative; }
+  .journey-line { position: absolute; top: 38px; left: 12%; right: 12%; height: 1px; background: rgba(201,168,76,0.25); overflow: hidden; }
+  .journey-line::after { content: ''; position: absolute; top: 0; left: -30%; width: 30%; height: 100%; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: journeyPulse 4.5s linear infinite; }
+  @keyframes journeyPulse { from { left: -30%; } to { left: 100%; } }
+  @keyframes journeyPulseV { from { top: -25%; } to { top: 100%; } }
+  @keyframes nodeGlow {
+    0% { border-color: var(--border); box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    5% { border-color: var(--gold); box-shadow: 0 0 18px 1px rgba(201,168,76,0.45); }
+    15% { border-color: var(--border); box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    100% { border-color: var(--border); box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  }
+  .journey-stage { position: relative; padding: 0 1.4rem; text-align: center; }
+  .journey-node { width: 76px; height: 76px; margin: 0 auto 1.5rem; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg); position: relative; z-index: 2; transition: border-color 0.3s, transform 0.3s; }
+  .journey-stage:hover .journey-node { border-color: var(--gold); transform: translateY(-3px); }
+  .journey-step { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--gold); margin-bottom: 0.5rem; }
+  .journey-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.03em; color: var(--white); margin-bottom: 0.7rem; }
+  .journey-desc { font-size: 0.72rem; line-height: 1.7; color: var(--muted); }
+  .journey-payoff { text-align: center; max-width: 720px; margin: 4rem auto 0; }
+  .journey-payoff p { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; line-height: 1.5; color: var(--white); }
+  .journey-payoff em { color: var(--gold); font-style: italic; }
+
+  /* WHAT IT COSTS - the uncertainty ledger */
+  .cost-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .cost-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+  .ledger { max-width: 680px; margin: 3.5rem auto 0; border: 1px solid var(--border); background: var(--bg); text-align: left; position: relative; overflow: hidden; }
+  .ledger::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); opacity: 0.5; }
+  .ledger-head { display: flex; align-items: center; justify-content: space-between; padding: 1.3rem 2rem; border-bottom: 1px solid var(--border); background: rgba(201,168,76,0.03); }
+  .ledger-head-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+  .ledger-head-meta { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .ledger-row { display: flex; align-items: baseline; gap: 0.8rem; padding: 1rem 2rem; border-bottom: 1px dashed rgba(201,168,76,0.18); }
+  .ledger-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--white); white-space: nowrap; }
+  .ledger-leader { flex: 1; border-bottom: 1px dotted rgba(201,168,76,0.3); transform: translateY(-3px); }
+  .ledger-value { font-size: 0.76rem; color: var(--muted); text-align: right; white-space: nowrap; }
+  .ledger-total { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.6rem 2rem; background: rgba(201,168,76,0.05); border-top: 1px solid var(--gold); }
+  .ledger-total-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .ledger-total-value { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.45rem; color: var(--white); line-height: 1.3; text-align: right; }
+  .cost-closer { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--white); line-height: 1.5; max-width: 640px; margin: 3rem auto 0; }
+  .cost-closer em { color: var(--gold); }
 
   /* FEATURES */
   .features-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -240,7 +303,79 @@
   .feature-desc { font-size: 0.72rem; line-height: 1.8; color: var(--muted); }
   .feature-tag { display: inline-block; margin-top: 1.2rem; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.3); padding: 0.3rem 0.8rem; }
 
-  /* FOR SELLERS / FOR BUYERS — dual audience */
+  /* WHY GLOBECART - comparison table */
+  .why-section { background: var(--bg); border-top: 1px solid var(--border); }
+  .why-inner { max-width: 1000px; margin: 0 auto; }
+  .why-compare { margin-top: 3.5rem; overflow-x: auto; }
+  .why-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); }
+  .why-table th, .why-table td { text-align: left; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); vertical-align: middle; }
+  .why-table th:last-child, .why-table td:last-child { border-right: none; }
+  .why-table tbody tr:last-child td { border-bottom: none; }
+  .why-table th { font-family: 'Syne', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.66rem; }
+  .why-th-metric { width: 26%; background: transparent; }
+  .why-th-old { width: 37%; color: var(--muted); font-weight: 600; background: rgba(255,255,255,0.015); }
+  .why-th-new { width: 37%; color: var(--gold); background: rgba(201,168,76,0.06); }
+  .why-td-metric { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.76rem; color: var(--white); }
+  .why-td-old { font-size: 0.76rem; line-height: 1.55; color: var(--muted); background: rgba(255,255,255,0.012); }
+  .why-td-new { font-size: 0.76rem; line-height: 1.55; color: var(--white); background: rgba(201,168,76,0.045); }
+  .why-td-new strong { color: var(--gold); font-weight: 600; }
+
+  /* SIX-LAYER CORE (radial system) */
+  .core-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .core-wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; align-items: center; max-width: 1150px; margin: 3rem auto 0; }
+  .core-stage { position: relative; width: 100%; max-width: 460px; margin: 0 auto; aspect-ratio: 1; }
+  .core-stage svg { width: 100%; height: 100%; overflow: visible; }
+  .core-line { stroke: rgba(201,168,76,0.22); stroke-width: 1; fill: none; }
+  .core-orbit { stroke: rgba(201,168,76,0.12); stroke-width: 1; fill: none; }
+  .core-pulse { stroke: var(--gold); stroke-width: 1.6; fill: none; stroke-dasharray: 5 150; stroke-linecap: round; opacity: 0.85; animation: corePulseTravel 2.8s linear infinite; }
+  @keyframes corePulseTravel { from { stroke-dashoffset: 155; } to { stroke-dashoffset: 0; } }
+  .core-node-num { font-family: 'Cormorant Garamond', serif; font-size: 19px; fill: #c9a84c; opacity: 0.5; transition: opacity 0.4s; }
+  .core-node { cursor: pointer; }
+  .core-node.active .core-node-num { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .core-pulse, .core-center-glow, .journey-line::after, .journey-node { animation: none !important; } }
+  .core-node-ring { fill: var(--bg); stroke: rgba(201,168,76,0.3); stroke-width: 1; transition: stroke 0.4s, fill 0.4s; }
+  .core-node:hover .core-node-ring { stroke: rgba(201,168,76,0.6); }
+  .core-node.active .core-node-ring { stroke: var(--gold); fill: rgba(201,168,76,0.08); }
+  .core-center-hit { cursor: pointer; }
+  .core-center { fill: rgba(201,168,76,0.06); stroke: var(--gold); stroke-width: 1.2; pointer-events: none; }
+  .core-center-glow { fill: var(--gold); opacity: 0.06; animation: coreGlow 4s ease-in-out infinite; pointer-events: none; }
+  @keyframes coreGlow { 0%,100% { opacity: 0.05; } 50% { opacity: 0.13; } }
+  .core-readout-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .core-readout-wrap { position: relative; min-height: 230px; }
+  .core-readout-item { opacity: 0; position: absolute; top: 0; left: 0; right: 0; transition: opacity 0.55s ease; pointer-events: none; }
+  .core-readout-item.active { opacity: 1; pointer-events: auto; }
+  .core-readout-viz { width: 100%; height: 86px; margin-bottom: 1.3rem; border: 1px solid rgba(201,168,76,0.12); border-radius: 6px; background: rgba(201,168,76,0.025); display: flex; align-items: center; justify-content: center; }
+  .core-readout-viz svg { max-height: 64px; }
+  .core-readout-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 0.6rem; }
+  .core-readout-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--white); margin-bottom: 0.8rem; letter-spacing: 0.02em; }
+  .core-readout-desc { font-size: 0.82rem; line-height: 1.75; color: var(--muted); max-width: 360px; }
+  .core-hint { font-size: 0.62rem; color: var(--muted); margin-top: 1.6rem; letter-spacing: 0.04em; opacity: 0.7; }
+
+  /* CALCULATOR DEMO SCREEN */
+  .calc-demo-wrap { max-width: 480px; margin: 0 auto 2.8rem; }
+  .calc-screen { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg2); box-shadow: 0 30px 80px -30px rgba(0,0,0,0.7); }
+  .calc-chrome { display: flex; align-items: center; gap: 0.4rem; padding: 0.7rem 1rem; background: rgba(255,255,255,0.025); border-bottom: 1px solid var(--border); }
+  .calc-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(201,168,76,0.3); }
+  .calc-chrome-label { margin-left: 0.6rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .calc-body { padding: 1.5rem 1.6rem 1.7rem; text-align: left; }
+  .calc-field { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.9rem; border: 1px solid var(--border); border-radius: 5px; margin-bottom: 0.7rem; font-size: 0.72rem; color: var(--muted); }
+  .calc-field .calc-val { color: var(--white); font-weight: 500; opacity: 0; transition: opacity 0.5s ease; }
+  .calc-field.filled .calc-val { opacity: 1; }
+  .calc-rows { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .calc-line { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); padding: 0.32rem 0; opacity: 0; transition: opacity 0.5s ease; }
+  .calc-line.show { opacity: 1; }
+  .calc-line .calc-amt { color: var(--white); font-variant-numeric: tabular-nums; }
+  .calc-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--gold); opacity: 0; transition: opacity 0.6s ease; }
+  .calc-total.show { opacity: 1; }
+  .calc-total-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+  .calc-total-amt { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--gold); line-height: 1; }
+  .calc-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; min-height: 56px; }
+  .calc-stat { text-align: center; opacity: 0; transition: opacity 0.6s ease; }
+  .calc-stat.show { opacity: 1; }
+  .calc-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--gold); font-weight: 300; }
+  .calc-stat-label { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  /* FOR SELLERS / FOR BUYERS - dual audience */
   .audience-section { max-width: 1200px; margin: 0 auto; }
   .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
   .audience-card { border: 1px solid var(--border); padding: 3rem 2.5rem; position: relative; overflow: hidden; transition: border-color 0.4s; }
@@ -288,7 +423,7 @@
   /* PARTNER SIGNUP */
   .signup-section { background: var(--bg); }
   .signup-container { max-width: 900px; margin: 0 auto; }
-  .role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 3rem 0 2.5rem; }
+  .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 3rem auto 2.5rem; max-width: 520px; }
   .role-card { border: 1px solid var(--border); padding: 1.8rem 1.2rem; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; }
   .role-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
   .role-card.selected { border-color: var(--gold); background: rgba(201,168,76,0.1); }
@@ -308,6 +443,23 @@
   .signup-success { display: none; text-align: center; padding: 2rem; border: 1px solid var(--gold); background: rgba(201,168,76,0.08); }
   .signup-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 0.5rem; }
   .signup-success p { font-size: 0.75rem; color: var(--muted); }
+
+  /* FOUNDER */
+  .founder-section { background: var(--bg2); border-top: 1px solid var(--border); }
+  .founder-wrap { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 3.5rem; align-items: center; }
+  .founder-photo-col { text-align: center; }
+  .founder-photo { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 1px solid var(--gold); padding: 5px; background: var(--bg); }
+  .founder-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); margin-top: 1.4rem; letter-spacing: 0.02em; }
+  .founder-role { font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-top: 0.4rem; }
+  .founder-social { display: flex; gap: 1rem; justify-content: center; margin-top: 1.2rem; }
+  .founder-social a { color: var(--muted); transition: color 0.3s; display: inline-flex; }
+  .founder-social a:hover { color: var(--gold); }
+  .founder-social svg { width: 16px; height: 16px; fill: currentColor; }
+  .founder-body h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; line-height: 1.2; color: var(--white); margin-bottom: 1.4rem; }
+  .founder-body h2 em { font-style: italic; color: var(--gold); }
+  .founder-body p { font-size: 0.82rem; line-height: 1.85; color: var(--muted); margin-bottom: 1rem; }
+  .founder-body p:last-child { margin-bottom: 0; }
+  .founder-body .founder-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--white); border-left: 2px solid var(--gold); padding-left: 1.2rem; margin: 1.4rem 0; }
 
   /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg); }
@@ -345,7 +497,17 @@
   .price-cta-outline:hover { background: rgba(201,168,76,0.1); }
   .price-note { font-size: 0.62rem; color: var(--muted); text-align: center; margin-top: 0.8rem; }
   .price-plus { font-size: 0.6rem; color: var(--gold); letter-spacing: 0.08em; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-  .pricing-footer { text-align: center; max-width: 600px; margin: 3rem auto 0; }
+  .pricing-footer { text-align: center; max-width: 720px; margin: 3rem auto 0; }
+  .compare-track { display: flex; align-items: stretch; gap: 1.2rem; justify-content: center; }
+  .compare-card { flex: 1; padding: 1.8rem 1.6rem; border: 1px solid var(--border); text-align: left; transition: transform 0.3s, border-color 0.3s; }
+  .compare-old { background: rgba(255,255,255,0.015); opacity: 0.78; }
+  .compare-new { background: rgba(201,168,76,0.05); border-color: var(--gold); transform: translateY(-6px); }
+  .compare-tag { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+  .compare-new .compare-tag { color: var(--gold); }
+  .compare-rate { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--white); margin-bottom: 0.8rem; }
+  .compare-new .compare-rate { color: var(--gold); }
+  .compare-note { font-size: 0.72rem; line-height: 1.7; color: var(--muted); }
+  .compare-vs { align-self: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--gold); flex-shrink: 0; }
   .pricing-footer p { font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
   .pricing-footer strong { color: var(--gold); font-weight: 400; }
 
@@ -353,6 +515,20 @@
   .footer-social { display: flex; gap: 1.5rem; align-items: center; }
 
   /* VOICES SECTION */
+  /* TOOL SIGNAL (compact seller quotes inside free-tool section) */
+  .tool-signal { max-width: 760px; margin: 3.5rem auto 0; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  .tool-signal-head { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-bottom: 1.8rem; }
+  .tool-signal-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+  .tool-signal-dot { width: 5px; height: 5px; border-radius: 50%; background: #4caf7d; animation: pulse 2s ease-in-out infinite; }
+  .tool-signal-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; color: var(--white); }
+  .tool-signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; text-align: left; }
+  .tool-chip { border: 1px solid var(--border); background: rgba(201,168,76,0.025); border-radius: 6px; padding: 1.15rem 1.3rem; display: flex; flex-direction: column; gap: 0.55rem; transition: border-color 0.3s, transform 0.3s; }
+  .tool-chip:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
+  .tool-chip p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.98rem; line-height: 1.45; color: var(--white); position: relative; padding-left: 0.9rem; }
+  .tool-chip p::before { content: '"'; position: absolute; left: 0; top: 0.1rem; color: var(--gold); font-size: 1.3rem; line-height: 1; }
+  .tool-chip span { display: flex; align-items: center; gap: 0.45rem; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .tool-chip span::before { content: ''; width: 0.9rem; height: 1px; background: var(--gold); opacity: 0.5; }
+
   .voices-section { background: var(--bg); border-top: 1px solid var(--border); }
   .voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); max-width: 1100px; margin: 3rem auto 0; }
   .voice-card { background: var(--bg); padding: 2.2rem 2rem; display: flex; flex-direction: column; justify-content: space-between; }
@@ -363,11 +539,6 @@
   .footer-social a:hover { color: var(--gold); }
   .footer-social svg { width: 14px; height: 14px; fill: currentColor; }
 
-  .founder-section { background: var(--bg2); border-top: 1px solid var(--border); padding: 7rem 4rem; }
-  .founder-container { max-width: 1100px; margin: 0 auto; }
-  .founder-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: center; }
-  .founder-photo-col { text-align: center; }
-
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; }
     nav .nav-links { display: none; }
@@ -377,7 +548,7 @@
     .hero { padding: calc(7rem + var(--announce-h)) 2rem 2rem; min-height: auto; flex-direction: column; align-items: flex-start; }
     .hero-content { max-width: 100%; }
     .hero-tag { font-size: 0.55rem; letter-spacing: 0.15em; margin-bottom: 1.2rem; flex-wrap: wrap; }
-    .hero-h1 { font-size: clamp(2.4rem, 9vw, 3.5rem); margin-bottom: 1.2rem; }
+    .hero-h1 { font-size: clamp(1.9rem, 6.6vw, 2.7rem); line-height: 1.18; margin-bottom: 1.3rem; }
     .hero-sub { font-size: 0.78rem; line-height: 1.8; margin-bottom: 2rem; max-width: 100%; }
     .hero-actions { flex-direction: column; gap: 0.8rem; width: 100%; margin-bottom: 2.5rem; }
     .btn-primary { text-align: center; width: 100%; padding: 1rem 2rem; }
@@ -390,6 +561,33 @@
     .section-h2 { font-size: clamp(1.8rem, 6vw, 3rem); }
     .problem-grid { grid-template-columns: 1fr; }
     .problem-item { padding: 1rem; }
+    .whofor-grid { grid-template-columns: 1fr; }
+    .journey-flow { grid-template-columns: 1fr; gap: 2.5rem; position: relative; }
+    .journey-line { display: block; top: 0; bottom: 0; left: 50%; right: auto; width: 1px; height: auto; transform: translateX(-50%); background: rgba(201,168,76,0.06); overflow: visible; z-index: 0; }
+    .journey-line::after { left: 0; top: -25%; width: 100%; height: 25%; background: linear-gradient(180deg, transparent, var(--gold), transparent); opacity: 0.45; animation: journeyPulseV 5s linear infinite; }
+    .journey-stage { padding: 0; position: relative; z-index: 1; }
+    .journey-node { animation: nodeGlow 5s ease-in-out infinite; }
+    .journey-stage:nth-of-type(1) .journey-node { animation-delay: 0.2s; }
+    .journey-stage:nth-of-type(2) .journey-node { animation-delay: 1.45s; }
+    .journey-stage:nth-of-type(3) .journey-node { animation-delay: 2.7s; }
+    .journey-stage:nth-of-type(4) .journey-node { animation-delay: 3.95s; }
+    .journey-title, .journey-desc, .journey-step { position: relative; z-index: 1; }
+    .ledger-row, .ledger-total { flex-wrap: wrap; padding-left: 1.2rem; padding-right: 1.2rem; }
+    .ledger-leader { display: none; }
+    .ledger-value { text-align: left; white-space: normal; }
+    .ledger-total-value { font-size: 1.2rem; text-align: left; }
+    .journey-payoff p, .cost-closer { font-size: 1.25rem; }
+    .why-table th, .why-table td { padding: 0.9rem 1rem; }
+    .why-th-metric, .why-td-metric { width: 28%; }
+    .core-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .core-stage { max-width: 320px; }
+    .core-readout { text-align: center; }
+    .core-readout-desc { margin: 0 auto; }
+    .compare-track { flex-direction: column; gap: 0.8rem; }
+    .compare-new { transform: none; }
+    .founder-wrap { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+    .founder-photo { width: 160px; height: 160px; }
+    .founder-body h2 { text-align: center; }
     .features-grid { grid-template-columns: 1fr; }
     .feature-visual { height: 120px; }
     .feature-visual svg { transform: scale(0.9); }
@@ -407,9 +605,7 @@
     .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
     .price-card.featured { margin-top: 0; }
     .voices-grid { grid-template-columns: 1fr; }
-    .founder-section { padding: 4rem 1.5rem; }
-    .founder-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .founder-photo-col { order: -1; }
+    .tool-signal-grid { grid-template-columns: 1fr; }
     .signup-row { flex-direction: column; }
     footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
     .footer-social { justify-content: center; flex-wrap: wrap; }
@@ -422,7 +618,7 @@
     .hero { padding: calc(6rem + var(--announce-h)) 1.4rem 2rem; }
     .hero-tag { font-size: 0.5rem; gap: 0.5rem; }
     .hero-tag::before { width: 1rem; }
-    .hero-h1 { font-size: 2rem; line-height: 1.05; margin-bottom: 1rem; }
+    .hero-h1 { font-size: 1.7rem; line-height: 1.2; margin-bottom: 1rem; }
     .hero-sub { font-size: 0.74rem; line-height: 1.75; margin-bottom: 1.5rem; }
     .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
     .stat-num { font-size: 1.3rem; }
@@ -434,8 +630,6 @@
     .feature-visual svg { transform: scale(0.8); }
     .stat-num { font-size: 1.4rem; }
     .price-amount { font-size: 2.8rem; }
-    .founder-section { padding: 3rem 1.2rem; }
-    .founder-grid { gap: 2rem; }
   }
 </style>
 </head>
@@ -447,7 +641,7 @@
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar" id="announceBar" role="banner" aria-label="Site announcement">
   <span class="announce-dot" aria-hidden="true"></span>
-  <span class="announce-text">✦ Accuracy Proof Initiative now open — testing our estimates against real shipments. <a href="apply.html">Join the program →</a></span>
+  <span class="announce-text">✦ Accuracy Proof Initiative now open - testing our estimates against real shipments. <a href="apply.html">Join the program →</a></span>
   <button class="announce-dismiss" id="announceDismiss" aria-label="Dismiss announcement">✕</button>
 </div>
 
@@ -461,10 +655,9 @@
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#sellers-buyers">For You</a></li>
     <li><a href="updates.html">Updates</a></li>
-    <li><a href="#founder">Founder</a></li>
-    <li><a href="#signup">Partner</a></li>
+    <li><a href="design-partners.html">Partner</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Get Early Access</button>
+  <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Investors &amp; Buyers</button>
 </nav>
 
 <!-- HERO -->
@@ -488,14 +681,14 @@
   </svg>
 
   <div class="hero-content">
-    <div class="hero-tag">The global cross-border marketplace · US ↔ EU</div>
-    <h1 class="hero-h1">One World,<br><em>One Border.</em></h1>
+    <div class="hero-tag">One World, One Border · US ↔ EU</div>
+    <h1 class="hero-h1">Sell to the world.<br>Buy from anywhere.<br><em>Without the cross-border guesswork.</em></h1>
     <p class="hero-sub">
-      The trust-first cross-border marketplace. Sell globally with margin clarity. Buy internationally with zero surprises. GlobeCart connects brands, sellers, and buyers across borders — with full price transparency, real-time tracking, and hassle-free returns built in.
+      GlobeCart is a trust-first cross-border marketplace. Transparent pricing, customs, delivery, returns, and payment protection are built into every order, so going global finally feels as simple as selling at home.
     </p>
     <div class="hero-actions">
-      <a href="#signup" class="btn-primary">Get Early Access</a>
-      <a href="#features" class="btn-ghost">See the platform <span>↓</span></a>
+      <a href="design-partners.html" class="btn-primary">Become a Design Partner</a>
+      <a href="calculator.html" class="btn-ghost">Try the free calculator <span>↓</span></a>
     </div>
   </div>
 
@@ -537,284 +730,373 @@
 <div class="whats-happening" id="updates-preview">
   <div class="wh-inner">
     <div class="wh-label"><span class="wh-live-dot"></span> What's Happening</div>
-    <div class="wh-card">
-      <div class="wh-badge">Program</div>
-      <div class="wh-content">
-        <div class="wh-title">Accuracy Proof Initiative — Now Open</div>
-        <div class="wh-desc">We're inviting active US↔EU sellers to run their next shipment through our calculator, then share the actual customs invoice. We compare, document the gap, and publish the result publicly. No commitment, no signup — just real data making cross-border estimates more trustworthy for everyone.</div>
-        <a href="updates.html" class="wh-read-more">Read all updates →</a>
+    <div class="wh-stage" id="whStage">
+      <div class="wh-card wh-slide active" data-slide="0">
+        <div class="wh-badge">Program</div>
+        <div class="wh-content">
+          <div class="wh-title">Accuracy Proof Initiative - Now Open</div>
+          <div class="wh-desc">We're inviting active US↔EU sellers to run their next shipment through our calculator, then share the actual customs invoice. We compare, document the gap, and publish the result publicly. No commitment, no signup, just real data making cross-border estimates more trustworthy for everyone.</div>
+          <a href="updates.html" class="wh-read-more">Read all updates →</a>
+        </div>
+        <div class="wh-date">May 2026</div>
       </div>
-      <div class="wh-date">May 2026</div>
+      <div class="wh-card wh-slide" data-slide="1">
+        <div class="wh-badge">Partners</div>
+        <div class="wh-content">
+          <div class="wh-title">Early Design Partners - Now Open</div>
+          <div class="wh-desc">We're working with a small group of distinctive brands to shape GlobeCart before launch: early access, direct founder input, and priority onboarding. Collaborate now, sell when we go live. A handful of founding spots are open.</div>
+          <a href="design-partners.html" class="wh-read-more">Become a design partner →</a>
+        </div>
+        <div class="wh-date">2026</div>
+      </div>
+    </div>
+    <div class="wh-dots" id="whDots">
+      <span class="wh-dot active" data-dot="0" role="button" tabindex="0" aria-label="Show update 1"></span>
+      <span class="wh-dot" data-dot="1" role="button" tabindex="0" aria-label="Show update 2"></span>
     </div>
   </div>
 </div>
 
-<!-- PROBLEM -->
-<section id="problem">
-  <div class="problem-grid">
-    <div class="reveal">
-      <div class="section-label">The Problem</div>
-      <h2 class="section-h2">Cross-border breaks because <em>trust breaks</em> — on both sides.</h2>
-      <ul class="problem-list">
-        <li class="problem-item reveal reveal-delay-1">
-          <span class="problem-icon">💸</span>
-          <div class="problem-text">
-            <strong>Buyers get blindsided at delivery</strong>
-            <p>Surprise duties, VAT, and customs holds at delivery. Refused deliveries cost sellers both-way shipping and often the product itself.</p>
-          </div>
-        </li>
-        <li class="problem-item reveal reveal-delay-2">
-          <span class="problem-icon">📉</span>
-          <div class="problem-text">
-            <strong>Margins bleed across invisible layers</strong>
-            <p>FX, VAT timing, returns, fee stacking, fulfillment structure — margin doesn't vanish in one fee. It erodes everywhere. Reconciliation across 4-6 tools is the real pain.</p>
-          </div>
-        </li>
-        <li class="problem-item reveal reveal-delay-3">
-          <span class="problem-icon">📦</span>
-          <div class="problem-text">
-            <strong>Returns are broken or abandoned entirely</strong>
-            <p>$30 product, $45 return shipping. Sellers refund without returns because reverse logistics is economically irrational. Returns are manually optimized, localized, or avoided.</p>
-          </div>
-        </li>
-        <li class="problem-item reveal reveal-delay-4">
-          <span class="problem-icon">🔒</span>
-          <div class="problem-text">
-            <strong>"Localize or don't expand"</strong>
-            <p>When outcomes are uncertain, sellers choose the safest strategy: avoid the market entirely. Most US sellers aren't on EU, and EU brands aren't reaching US buyers. Uncertainty — not cost — is what stops them.</p>
-          </div>
-        </li>
-      </ul>
+<!-- WHO IT'S FOR -->
+<section id="who">
+  <div class="whofor-section">
+    <div class="reveal" style="text-align:center; max-width:680px; margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">Who It's For</div>
+      <h2 class="section-h2" style="text-align:center;">One marketplace, <em>both sides protected.</em></h2>
+      <p style="font-size:0.82rem; color:var(--muted); line-height:1.8;">GlobeCart is built for the two people every cross-border order depends on: the brand selling it, and the buyer receiving it.</p>
     </div>
-
+    <div class="whofor-grid">
+      <div class="whofor-card reveal">
+        <svg class="whofor-icon" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1-4H5z"/><path d="M4 9a2.4 2.4 0 0 0 5 0 2.4 2.4 0 0 0 5 0 2.4 2.4 0 0 0 5 0"/><path d="M5 11.5V19h14v-7.5"/><path d="M10 19v-4h4v4"/></svg>
+        <div class="whofor-badge">For Brands &amp; Sellers</div>
+        <h3>Sell into new markets, <em>keep more margin.</em></h3>
+        <ul class="whofor-list">
+          <li>Keep 88 to 92 percent of every sale, not 65 to 75 percent</li>
+          <li>Know your true landed cost and real margin before you list</li>
+          <li>Replace the Shopify, carrier, and broker patchwork with one platform</li>
+          <li>Reach buyers who want distinctive products they can't get at home</li>
+          <li>Trust and protection built into every transaction, so the risk isn't yours alone</li>
+        </ul>
+      </div>
+      <div class="whofor-card reveal reveal-delay-1">
+        <svg class="whofor-icon" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1 13H5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <div class="whofor-badge">For Buyers</div>
+        <h3>Shop the world, <em>with zero surprises.</em></h3>
+        <ul class="whofor-list">
+          <li>Discover unique, proven products you can't find at home</li>
+          <li>One honest final price at checkout, duties and taxes included</li>
+          <li>No surprise fees at the door, no refused-package headaches</li>
+          <li>Every order protected, with clear resolution if anything goes wrong</li>
+          <li>Cross-border shopping that finally feels as safe as buying local</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features" class="features-section">
+<!-- PROBLEM (journey flow) -->
+<section id="problem">
+  <div class="journey-section">
+    <div class="reveal" style="text-align:center; max-width:680px; margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">The Problem</div>
+      <h2 class="section-h2" style="text-align:center;">Where cross-border <em>breaks.</em></h2>
+      <p style="font-size:0.82rem; color:var(--muted); line-height:1.8;">Follow a single order across the border. Trust breaks at every stage, for both the seller and the buyer.</p>
+    </div>
+    <div class="journey-flow reveal">
+      <div class="journey-line"></div>
+      <div class="journey-stage">
+        <div class="journey-node">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 11.83V2h9.83l8.76 8.76a2 2 0 0 1 0 2.83z"/><circle cx="6.8" cy="6.8" r="1.3"/><text x="12.7" y="13.2" font-size="8" fill="#c9a84c" stroke="none" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600" text-anchor="middle" dominant-baseline="central">$</text></svg>
+        </div>
+        <div class="journey-step">01</div>
+        <div class="journey-title">Listing &amp; Pricing</div>
+        <div class="journey-desc">The seller can't see true landed cost, so they guess. Margin is at risk before anything even ships.</div>
+      </div>
+      <div class="journey-stage">
+        <div class="journey-node">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9" width="8" height="7" rx="1"/><path d="M14 3v18" stroke-dasharray="2 2.2"/><path d="M17 7h4.5v9H17z"/><path d="M19.2 7V5.2M19.2 17.8V16"/></svg>
+        </div>
+        <div class="journey-step">02</div>
+        <div class="journey-title">Checkout &amp; Border</div>
+        <div class="journey-desc">The buyer is hit with surprise duties and VAT at delivery. Refused packages cost the seller shipping both ways.</div>
+      </div>
+      <div class="journey-stage">
+        <div class="journey-node">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5.5h11v9h-11z"/><path d="M12.5 8.5h4l3 3v3h-7z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M8 17.5h6.5"/></svg>
+        </div>
+        <div class="journey-step">03</div>
+        <div class="journey-title">Delivery &amp; Tracking</div>
+        <div class="journey-desc">No visibility across the border. Neither side knows where the order is, or who is accountable when it stalls.</div>
+      </div>
+      <div class="journey-stage">
+        <div class="journey-node">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v4h-4"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+        </div>
+        <div class="journey-step">04</div>
+        <div class="journey-title">Returns &amp; Resolution</div>
+        <div class="journey-desc">A return costs more than the product. Disputes drag on with no structure. Trust collapses on both sides.</div>
+      </div>
+    </div>
+    <div class="journey-payoff reveal">
+      <p>Five tools, no one accountable. The barrier was never cost, it's <em>uncertainty.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT UNCERTAINTY COSTS -->
+<section id="cost" class="cost-section">
+  <div class="cost-inner">
+    <div class="reveal" style="max-width:680px; margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">What It Costs</div>
+      <h2 class="section-h2" style="text-align:center;">Uncertainty is <em>expensive.</em></h2>
+      <p style="font-size:0.82rem; color:var(--muted); line-height:1.8;">It doesn't show up as one line item. It shows up as the growth, and the trust, that never happened.</p>
+    </div>
+    <div class="ledger reveal">
+      <div class="ledger-head">
+        <span class="ledger-head-title">The Cost of Uncertainty</span>
+        <span class="ledger-head-meta">Itemized</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-label">Expansion delayed</span>
+        <span class="ledger-leader"></span>
+        <span class="ledger-value">months of ground lost to rivals</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-label">Margin eroded</span>
+        <span class="ledger-leader"></span>
+        <span class="ledger-value">profit you never priced for</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-label">Plans abandoned</span>
+        <span class="ledger-leader"></span>
+        <span class="ledger-value">markets left on the table</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-label">Customers lost</span>
+        <span class="ledger-leader"></span>
+        <span class="ledger-value">first orders that never repeat</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-label">Buyers drop off</span>
+        <span class="ledger-leader"></span>
+        <span class="ledger-value">shoppers who stop crossing borders</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-label">Operational drag</span>
+        <span class="ledger-leader"></span>
+        <span class="ledger-value">time no one ever gets back</span>
+      </div>
+      <div class="ledger-total">
+        <span class="ledger-total-label">Total</span>
+        <span class="ledger-total-value">The growth, and the trust, that never happened.</span>
+      </div>
+    </div>
+    <p class="cost-closer reveal">Loss is tolerable. <em>Uncertainty is not.</em></p>
+  </div>
+</section>
+
+<!-- WHY GLOBECART -->
+<section id="why" class="why-section">
+  <div class="why-inner">
+    <div class="reveal" style="text-align:center; max-width:680px; margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">Why GlobeCart</div>
+      <h2 class="section-h2" style="text-align:center;">The same global reach. <em>None of the guesswork.</em></h2>
+      <p style="font-size:0.82rem; color:var(--muted); line-height:1.8;">What changes when trust is built into the marketplace, instead of left for you to figure out.</p>
+    </div>
+    <div class="why-compare reveal">
+      <table class="why-table">
+        <thead>
+          <tr>
+            <th class="why-th-metric"></th>
+            <th class="why-th-old">Current platforms</th>
+            <th class="why-th-new">GlobeCart</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="why-td-metric">What you keep</td>
+            <td class="why-td-old">65 to 75 percent, after a 25 to 35 percent all-in cut</td>
+            <td class="why-td-new"><strong>88 to 92 percent</strong>, full stack included</td>
+          </tr>
+          <tr>
+            <td class="why-td-metric">Who carries the risk</td>
+            <td class="why-td-old">You do, when an order breaks at the border</td>
+            <td class="why-td-new">Protected on <strong>both sides</strong></td>
+          </tr>
+          <tr>
+            <td class="why-td-metric">How many tools</td>
+            <td class="why-td-old">Four to six, reconciled by hand</td>
+            <td class="why-td-new"><strong>One</strong> marketplace that owns the outcome</td>
+          </tr>
+          <tr>
+            <td class="why-td-metric">When something goes wrong</td>
+            <td class="why-td-old">No one is accountable, disputes drag on</td>
+            <td class="why-td-new"><strong>Structured resolution</strong> at every step</td>
+          </tr>
+          <tr>
+            <td class="why-td-metric">For the buyer</td>
+            <td class="why-td-old">Surprise duties and fees at the door</td>
+            <td class="why-td-new"><strong>One honest price</strong> at checkout</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- THE SIX TRUST LAYERS (animated core) -->
+<section id="features" class="core-section">
   <div class="features-header reveal">
     <div class="section-label" style="justify-content:center;">The Platform</div>
-    <h2 class="section-h2" style="text-align:center;">A complete cross-border marketplace with <em>trust built in.</em></h2>
+    <h2 class="section-h2" style="text-align:center;">Six trust layers, <em>one living system.</em></h2>
+    <p style="font-size:0.82rem; color:var(--muted); line-height:1.8; max-width:600px; margin:0 auto;">Every order runs through all six. Together they are the trust infrastructure at the core of the marketplace, the part other platforms never built.</p>
   </div>
-  <div class="features-grid">
-    <div class="feature-card reveal">
-      <div class="feature-visual">
-        <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="18" y="14" width="58" height="12" rx="2" fill="#c9a84c" opacity="0.08" stroke="#c9a84c" stroke-width="0.5"/>
-          <text x="24" y="23" font-size="6" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif">Duty</text>
-          <text x="56" y="23" font-size="6" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif">$4.20</text>
-          <rect x="18" y="30" width="58" height="12" rx="2" fill="#c9a84c" opacity="0.08" stroke="#c9a84c" stroke-width="0.5"/>
-          <text x="24" y="39" font-size="6" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif">VAT</text>
-          <text x="56" y="39" font-size="6" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif">$8.50</text>
-          <rect x="18" y="46" width="58" height="12" rx="2" fill="#c9a84c" opacity="0.08" stroke="#c9a84c" stroke-width="0.5"/>
-          <text x="24" y="55" font-size="6" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif">Ship</text>
-          <text x="56" y="55" font-size="6" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif">$6.80</text>
-          <rect x="18" y="62" width="58" height="12" rx="2" fill="#c9a84c" opacity="0.08" stroke="#c9a84c" stroke-width="0.5"/>
-          <text x="24" y="71" font-size="6" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif">FX</text>
-          <text x="56" y="71" font-size="6" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif">$1.50</text>
-          <path d="M80 44 C92 44 92 44 98 44" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
-          <path d="M95 40 L100 44 L95 48" stroke="#c9a84c" stroke-width="0.8" fill="none" opacity="0.4"/>
-          <rect x="104" y="28" width="62" height="34" rx="4" stroke="#c9a84c" stroke-width="1.2" fill="#c9a84c" fill-opacity="0.06"/>
-          <text x="114" y="42" font-size="7" fill="#c9a84c" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif">Total</text>
-          <text x="114" y="54" font-size="12" fill="#c9a84c" font-weight="600" font-family="Syne,sans-serif">$47.00</text>
-          <circle cx="90" cy="92" r="8" stroke="#c9a84c" stroke-width="0.8" fill="none" opacity="0.5"/>
-          <path d="M86 92 L89 95 L95 88" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
-          <text x="102" y="95" font-size="6" fill="#c9a84c" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif">One clear price</text>
-        </svg>
-      </div>
-      <span class="feature-number">01</span>
-      <div class="feature-title">Full Price Upfront</div>
-      <p class="feature-desc">Duties, VAT, shipping, FX — calculated before checkout. Buyers see one final price. Sellers see their real margin. No surprises for anyone.</p>
-      <span class="feature-tag">Core — Both sides</span>
+  <div class="core-wrap">
+    <div class="core-stage reveal">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle class="core-orbit" cx="200" cy="200" r="150"/>
+        <!-- connectors -->
+        <line class="core-line" x1="200" y1="50"  x2="200" y2="200"/>
+        <line class="core-line" x1="329.9" y1="125" x2="200" y2="200"/>
+        <line class="core-line" x1="329.9" y1="275" x2="200" y2="200"/>
+        <line class="core-line" x1="200" y1="350" x2="200" y2="200"/>
+        <line class="core-line" x1="70.1" y1="275" x2="200" y2="200"/>
+        <line class="core-line" x1="70.1" y1="125" x2="200" y2="200"/>
+        <!-- nerve pulses travelling into the core -->
+        <line class="core-pulse" x1="200" y1="50"  x2="200" y2="200" style="animation-delay:0s"/>
+        <line class="core-pulse" x1="329.9" y1="125" x2="200" y2="200" style="animation-delay:0.45s"/>
+        <line class="core-pulse" x1="329.9" y1="275" x2="200" y2="200" style="animation-delay:0.9s"/>
+        <line class="core-pulse" x1="200" y1="350" x2="200" y2="200" style="animation-delay:1.35s"/>
+        <line class="core-pulse" x1="70.1" y1="275" x2="200" y2="200" style="animation-delay:1.8s"/>
+        <line class="core-pulse" x1="70.1" y1="125" x2="200" y2="200" style="animation-delay:2.25s"/>
+        <!-- core -->
+        <circle class="core-center-glow" cx="200" cy="200" r="62"/>
+        <circle class="core-center" cx="200" cy="200" r="46"/>
+        <text x="200" y="197" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="13" fill="#f0ede6" letter-spacing="0.5">GlobeCart</text>
+        <text x="200" y="212" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="6.5" fill="#c9a84c" letter-spacing="2">CORE</text>
+        <circle class="core-center-hit" cx="200" cy="200" r="46" fill="transparent"/>
+        <!-- nodes -->
+        <g class="core-node active" data-i="0"><circle class="core-node-ring" cx="200" cy="50" r="30"/><text class="core-node-num" x="200" y="57" text-anchor="middle">01</text></g>
+        <g class="core-node" data-i="1"><circle class="core-node-ring" cx="329.9" cy="125" r="30"/><text class="core-node-num" x="329.9" y="132" text-anchor="middle">02</text></g>
+        <g class="core-node" data-i="2"><circle class="core-node-ring" cx="329.9" cy="275" r="30"/><text class="core-node-num" x="329.9" y="282" text-anchor="middle">03</text></g>
+        <g class="core-node" data-i="3"><circle class="core-node-ring" cx="200" cy="350" r="30"/><text class="core-node-num" x="200" y="357" text-anchor="middle">04</text></g>
+        <g class="core-node" data-i="4"><circle class="core-node-ring" cx="70.1" cy="275" r="30"/><text class="core-node-num" x="70.1" y="282" text-anchor="middle">05</text></g>
+        <g class="core-node" data-i="5"><circle class="core-node-ring" cx="70.1" cy="125" r="30"/><text class="core-node-num" x="70.1" y="132" text-anchor="middle">06</text></g>
+      </svg>
     </div>
-    <div class="feature-card reveal reveal-delay-1">
-      <div class="feature-visual">
-        <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="22" y="18" width="36" height="44" rx="3" stroke="#c9a84c" stroke-width="0.8" fill="#c9a84c" fill-opacity="0.04"/>
-          <rect x="28" y="24" width="24" height="18" rx="2" fill="#c9a84c" opacity="0.1"/>
-          <rect x="26" y="47" width="28" height="3" rx="1.5" fill="#c9a84c" opacity="0.15"/>
-          <rect x="26" y="53" width="18" height="3" rx="1.5" fill="#c9a84c" opacity="0.1"/>
-          <circle cx="40" y="18" r="4" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
-          <circle cx="40" y="18" r="1.5" fill="#c9a84c" opacity="0.5"/>
-          <text x="24" y="72" font-size="5.5" fill="#4a9c6f" opacity="0.8" font-family="Syne,sans-serif" font-weight="600">SCAN 1</text>
-          <circle cx="52" cy="70" r="4" stroke="#4a9c6f" stroke-width="0.7" fill="none"/>
-          <path d="M50 70 L51 71 L54 68" stroke="#4a9c6f" stroke-width="0.9" fill="none"/>
-          <path d="M68 40 L82 40" stroke="#c9a84c" stroke-width="0.6" opacity="0.3" stroke-dasharray="3,2"/>
-          <rect x="86" y="30" width="20" height="20" rx="2" fill="#c9a84c" fill-opacity="0.05" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="2,2"/>
-          <text x="89" y="43" font-size="5" fill="#c9a84c" opacity="0.3" font-family="Plus Jakarta Sans,sans-serif">ship</text>
-          <path d="M112 40 L126 40" stroke="#c9a84c" stroke-width="0.6" opacity="0.3" stroke-dasharray="3,2"/>
-          <rect x="130" y="18" width="36" height="44" rx="3" stroke="#c9a84c" stroke-width="0.8" fill="#c9a84c" fill-opacity="0.04"/>
-          <rect x="136" y="24" width="24" height="18" rx="2" fill="#c9a84c" opacity="0.1"/>
-          <rect x="134" y="47" width="28" height="3" rx="1.5" fill="#c9a84c" opacity="0.15"/>
-          <rect x="134" y="53" width="18" height="3" rx="1.5" fill="#c9a84c" opacity="0.1"/>
-          <circle cx="148" y="18" r="4" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
-          <circle cx="148" y="18" r="1.5" fill="#c9a84c" opacity="0.5"/>
-          <text x="132" y="72" font-size="5.5" fill="#4a9c6f" opacity="0.8" font-family="Syne,sans-serif" font-weight="600">SCAN 2</text>
-          <circle cx="160" cy="70" r="4" stroke="#4a9c6f" stroke-width="0.7" fill="none"/>
-          <path d="M158 70 L159 71 L162 68" stroke="#4a9c6f" stroke-width="0.9" fill="none"/>
-          <rect x="40" y="84" width="100" height="16" rx="8" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.05"/>
-          <text x="90" y="95" font-size="6" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Match verified — safe to deliver</text>
-        </svg>
+    <div class="core-readout reveal">
+      <div class="core-readout-label">The Trust Layers</div>
+      <div class="core-readout-wrap">
+        <div class="core-readout-item active" data-i="0">
+          <div class="core-readout-viz">
+            <svg width="220" height="64" viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="14" y="8" width="70" height="10" rx="2" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.06"/>
+              <text x="20" y="15.5" font-size="6" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.7">Duty</text>
+              <rect x="14" y="22" width="70" height="10" rx="2" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.06"/>
+              <text x="20" y="29.5" font-size="6" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.7">VAT</text>
+              <rect x="14" y="36" width="70" height="10" rx="2" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.06"/>
+              <text x="20" y="43.5" font-size="6" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.7">Ship + FX</text>
+              <path d="M90 27 L104 27" stroke="#c9a84c" stroke-width="0.7" opacity="0.4"/>
+              <path d="M101 24 L105 27 L101 30" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.4"/>
+              <rect x="110" y="14" width="96" height="26" rx="4" stroke="#c9a84c" stroke-width="1" fill="#c9a84c" fill-opacity="0.06"/>
+              <text x="118" y="26" font-size="6" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.6">One price</text>
+              <text x="118" y="36" font-size="11" fill="#c9a84c" font-family="Cormorant Garamond,serif" font-weight="600">$165.60<animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/></text>
+            </svg>
+          </div>
+          <div class="core-readout-num">01</div>
+          <div class="core-readout-title">Pricing</div>
+          <div class="core-readout-desc">The full landed cost, calculated upfront. Duties, VAT, shipping, and FX, so the seller knows their margin and the buyer sees one final price.</div>
+        </div>
+        <div class="core-readout-item" data-i="1">
+          <div class="core-readout-viz">
+            <svg width="220" height="64" viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="42" y="10" width="42" height="44" rx="3" stroke="#c9a84c" stroke-width="0.7" fill="#c9a84c" fill-opacity="0.04"/>
+              <rect x="49" y="18" width="20" height="3" rx="1.5" fill="#c9a84c" opacity="0.25"/>
+              <rect x="49" y="25" width="28" height="2.5" rx="1.25" fill="#c9a84c" opacity="0.18"/>
+              <rect x="49" y="31" width="24" height="2.5" rx="1.25" fill="#c9a84c" opacity="0.18"/>
+              <text x="49" y="46" font-size="6" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.5">HS code</text>
+              <path d="M92 32 L108 32" stroke="#c9a84c" stroke-width="0.7" opacity="0.4" stroke-dasharray="2,2"/>
+              <path d="M124 18 L132 22 L132 34 L124 44 L116 34 L116 22 Z" stroke="#4a9c6f" stroke-width="1" fill="#4a9c6f" fill-opacity="0.08"/>
+              <path d="M120 31 L123 34 L128 27" stroke="#4a9c6f" stroke-width="1.2" fill="none"><animate attributeName="opacity" values="0.3;1;0.3" dur="2.4s" repeatCount="indefinite"/></path>
+              <text x="146" y="35" font-size="6.5" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.6">Cleared</text>
+            </svg>
+          </div>
+          <div class="core-readout-num">02</div>
+          <div class="core-readout-title">Compliance</div>
+          <div class="core-readout-desc">Customs, HS codes, and country rules handled automatically. No manual classification, no unexpected duty charges at the border.</div>
+        </div>
+        <div class="core-readout-item" data-i="2">
+          <div class="core-readout-viz">
+            <svg width="220" height="64" viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="18" width="34" height="28" rx="3" stroke="#c9a84c" stroke-width="0.7" fill="#c9a84c" fill-opacity="0.04"/>
+              <circle cx="47" cy="29" r="5" stroke="#4a9c6f" stroke-width="0.7" fill="none"/>
+              <path d="M45 29 L46.5 30.5 L49.5 27" stroke="#4a9c6f" stroke-width="0.9" fill="none"/>
+              <text x="34" y="52" font-size="5.5" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.5">Pre-ship</text>
+              <path d="M70 32 L150 32" stroke="#c9a84c" stroke-width="0.6" opacity="0.3" stroke-dasharray="3,3"/>
+              <circle cx="110" cy="32" r="3.5" fill="#c9a84c" opacity="0.7"><animate attributeName="cx" values="74;146;74" dur="3.4s" repeatCount="indefinite"/></circle>
+              <rect x="156" y="18" width="34" height="28" rx="3" stroke="#c9a84c" stroke-width="0.7" fill="#c9a84c" fill-opacity="0.04"/>
+              <circle cx="173" cy="29" r="5" stroke="#4a9c6f" stroke-width="0.7" fill="none"/>
+              <path d="M171 29 L172.5 30.5 L175.5 27" stroke="#4a9c6f" stroke-width="0.9" fill="none"/>
+              <text x="160" y="52" font-size="5.5" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.5">At delivery</text>
+            </svg>
+          </div>
+          <div class="core-readout-num">03</div>
+          <div class="core-readout-title">Product</div>
+          <div class="core-readout-desc">Condition verified before shipping and at delivery. A clear evidence chain means fewer disputes and far less fraud.</div>
+        </div>
+        <div class="core-readout-item" data-i="3">
+          <div class="core-readout-viz">
+            <svg width="220" height="64" viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 44 Q70 14 110 32 Q150 50 196 20" stroke="#c9a84c" stroke-width="0.9" fill="none" stroke-dasharray="4,3" opacity="0.5"/>
+              <circle cx="24" cy="44" r="4" fill="#c9a84c" opacity="0.35"/><circle cx="24" cy="44" r="1.6" fill="#c9a84c"/>
+              <text x="16" y="56" font-size="5.5" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.5">US</text>
+              <circle cx="196" cy="20" r="4" fill="#c9a84c" opacity="0.35"/><circle cx="196" cy="20" r="1.6" fill="#c9a84c"/>
+              <text x="188" y="34" font-size="5.5" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.5">EU</text>
+              <circle r="3.5" fill="#c9a84c"><animateMotion path="M24 44 Q70 14 110 32 Q150 50 196 20" dur="3.6s" repeatCount="indefinite"/></circle>
+              <text x="92" y="60" font-size="5.5" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.5">Live tracking</text>
+            </svg>
+          </div>
+          <div class="core-readout-num">04</div>
+          <div class="core-readout-title">Delivery</div>
+          <div class="core-readout-desc">Real-time tracking across every border. Both sides see exactly where an order is, and who is accountable at each step.</div>
+        </div>
+        <div class="core-readout-item" data-i="4">
+          <div class="core-readout-viz">
+            <svg width="220" height="64" viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="98" y="8" width="24" height="16" rx="2" stroke="#c9a84c" stroke-width="0.7" fill="#c9a84c" fill-opacity="0.05"/>
+              <text x="110" y="34" font-size="5.5" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.55" text-anchor="middle">Return</text>
+              <path d="M110 24 L110 30 M88 38 L110 30 L132 38" stroke="#c9a84c" stroke-width="0.6" opacity="0.4" fill="none"/>
+              <rect x="58" y="42" width="58" height="14" rx="3" stroke="#4a9c6f" stroke-width="0.7" fill="#4a9c6f" fill-opacity="0.05"/>
+              <text x="87" y="51" font-size="6" fill="#4a9c6f" font-family="Inter,sans-serif" opacity="0.8" text-anchor="middle">Keep + refund</text>
+              <rect x="124" y="42" width="44" height="14" rx="3" stroke="#c9a84c" stroke-width="0.7" fill="#c9a84c" fill-opacity="0.05"/>
+              <text x="146" y="51" font-size="6" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.7" text-anchor="middle">Local hub</text>
+              <circle cx="110" cy="30" r="2" fill="#c9a84c"><animate attributeName="opacity" values="1;0.2;1" dur="2.2s" repeatCount="indefinite"/></circle>
+            </svg>
+          </div>
+          <div class="core-readout-num">05</div>
+          <div class="core-readout-title">Returns</div>
+          <div class="core-readout-desc">Structured, scenario-based resolution instead of a margin drain. Returns become a decision the system handles, not a loss.</div>
+        </div>
+        <div class="core-readout-item" data-i="5">
+          <div class="core-readout-viz">
+            <svg width="220" height="64" viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="40" y="20" font-size="6" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.55" text-anchor="middle">Buyer</text>
+              <circle cx="40" cy="36" r="9" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+              <text x="180" y="20" font-size="6" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.55" text-anchor="middle">Seller</text>
+              <circle cx="180" cy="36" r="9" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+              <path d="M110 22 L122 28 L122 40 L110 50 L98 40 L98 28 Z" stroke="#c9a84c" stroke-width="1" fill="#c9a84c" fill-opacity="0.06"/>
+              <path d="M105 35 L109 39 L116 30" stroke="#4a9c6f" stroke-width="1.3" fill="none"><animate attributeName="opacity" values="0.3;1;0.3" dur="2.6s" repeatCount="indefinite"/></path>
+              <path d="M49 36 L97 36" stroke="#c9a84c" stroke-width="0.6" opacity="0.3" stroke-dasharray="2,2"/>
+              <path d="M123 36 L171 36" stroke="#c9a84c" stroke-width="0.6" opacity="0.3" stroke-dasharray="2,2"/>
+              <text x="110" y="60" font-size="5.5" fill="#c9a84c" font-family="Inter,sans-serif" opacity="0.5" text-anchor="middle">Held until delivered</text>
+            </svg>
+          </div>
+          <div class="core-readout-num">06</div>
+          <div class="core-readout-title">Protection</div>
+          <div class="core-readout-desc">Payment held until delivery is confirmed. Every transaction is protected, for the seller and the buyer alike.</div>
+        </div>
       </div>
-      <span class="feature-number">02</span>
-      <div class="feature-title">Product Inspection</div>
-      <p class="feature-desc">Dot-verified condition checks before shipping and at delivery. If damage happens in transit, there's a clear record of when and where. Trust built into every order.</p>
-      <span class="feature-tag">Trust Layer</span>
-    </div>
-    <div class="feature-card reveal reveal-delay-2">
-      <div class="feature-visual">
-        <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M25 55 Q50 20 90 40 Q130 60 155 30" stroke="#c9a84c" stroke-width="1" fill="none" stroke-dasharray="4,3"/>
-          <circle cx="25" cy="55" r="5" fill="#c9a84c" opacity="0.3"/>
-          <circle cx="25" cy="55" r="2" fill="#c9a84c"/>
-          <text x="15" y="70" font-family="Plus Jakarta Sans,sans-serif" font-size="5.5" fill="#c9a84c" opacity="0.5">US</text>
-          <circle cx="90" cy="40" r="4" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.4"/>
-          <text x="80" y="52" font-family="Plus Jakarta Sans,sans-serif" font-size="5" fill="#c9a84c" opacity="0.35">CUSTOMS</text>
-          <circle cx="155" cy="30" r="5" fill="#c9a84c" opacity="0.3"/>
-          <circle cx="155" cy="30" r="2" fill="#c9a84c"/>
-          <text x="147" y="44" font-family="Plus Jakarta Sans,sans-serif" font-size="5.5" fill="#c9a84c" opacity="0.5">EU</text>
-          <circle cx="60" cy="46" r="3.5" fill="#c9a84c" opacity="0.7">
-            <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          <rect x="45" y="75" width="90" height="25" rx="4" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.05"/>
-          <rect x="52" y="80" width="28" height="4" rx="2" fill="#c9a84c" opacity="0.2"/>
-          <rect x="52" y="87" width="40" height="4" rx="2" fill="#c9a84c" opacity="0.15"/>
-          <rect x="52" y="94" width="20" height="3" rx="1.5" fill="#c9a84c" opacity="0.1"/>
-          <text x="100" y="86" font-family="Plus Jakarta Sans,sans-serif" font-size="6" fill="#c9a84c" opacity="0.5">LIVE</text>
-          <circle cx="96" cy="84" r="2" fill="#c9a84c" opacity="0.6">
-            <animate attributeName="opacity" values="0.6;0.1;0.6" dur="1.5s" repeatCount="indefinite"/>
-          </circle>
-        </svg>
-      </div>
-      <span class="feature-number">03</span>
-      <div class="feature-title">Real-Time Tracking</div>
-      <p class="feature-desc">Buyers track their order from checkout to doorstep, across every border. Sellers see shipment status and customs clearance in real-time. Full visibility for both sides.</p>
-      <span class="feature-tag">Transparency</span>
-    </div>
-    <div class="feature-card reveal reveal-delay-3">
-      <div class="feature-visual">
-        <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="62" y="2" width="56" height="26" rx="4" stroke="#c9a84c" stroke-width="0.7" fill="#c9a84c" fill-opacity="0.05"/>
-          <rect x="82" y="6" width="16" height="10" rx="2" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
-          <line x1="82" y1="9" x2="98" y2="9" stroke="#c9a84c" stroke-width="0.3" opacity="0.3"/>
-          <text x="90" y="24" font-size="5" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Returned product</text>
-          <line x1="90" y1="28" x2="90" y2="34" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
-          <line x1="90" y1="34" x2="48" y2="34" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
-          <line x1="90" y1="34" x2="132" y2="34" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
-          <line x1="48" y1="34" x2="48" y2="42" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
-          <line x1="132" y1="34" x2="132" y2="42" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
-          <rect x="28" y="42" width="40" height="12" rx="3" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
-          <text x="48" y="51" font-size="5" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Low value</text>
-          <rect x="112" y="42" width="40" height="12" rx="3" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
-          <text x="132" y="51" font-size="5" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">High value</text>
-          <line x1="48" y1="54" x2="48" y2="60" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
-          <line x1="132" y1="54" x2="132" y2="60" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
-          <rect x="14" y="60" width="68" height="30" rx="5" stroke="#4a9c6f" stroke-width="0.8" fill="#4a9c6f" fill-opacity="0.04"/>
-          <circle cx="34" cy="75" r="8" stroke="#c9a84c" stroke-width="0.5" fill="none"/>
-          <text x="34" y="78" font-size="7" fill="#c9a84c" opacity="0.6" font-family="Syne,sans-serif" text-anchor="middle">$</text>
-          <path d="M27 70 C23 73 23 77 27 80" stroke="#c9a84c" stroke-width="0.4" fill="none" opacity="0.35"/>
-          <path d="M41 70 C45 73 45 77 41 80" stroke="#c9a84c" stroke-width="0.4" fill="none" opacity="0.35"/>
-          <text x="60" y="73" font-size="5.5" fill="#4a9c6f" opacity="0.8" font-family="Syne,sans-serif" font-weight="600">Keep it</text>
-          <text x="60" y="83" font-size="5" fill="#4a9c6f" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif">+ refund</text>
-          <rect x="98" y="60" width="68" height="30" rx="5" stroke="#c9a84c" stroke-width="0.8" fill="#c9a84c" fill-opacity="0.04"/>
-          <rect x="118" y="67" width="14" height="11" rx="2" stroke="#c9a84c" stroke-width="0.5" fill="#c9a84c" fill-opacity="0.06"/>
-          <rect x="120" y="72" width="4" height="5" rx="0.5" fill="#c9a84c" opacity="0.12"/>
-          <rect x="126" y="72" width="4" height="5" rx="0.5" fill="#c9a84c" opacity="0.12"/>
-          <rect x="120" y="70" width="10" height="2" rx="0.5" fill="#c9a84c" opacity="0.08"/>
-          <text x="144" y="73" font-size="5.5" fill="#c9a84c" opacity="0.8" font-family="Syne,sans-serif" font-weight="600">Return</text>
-          <text x="144" y="83" font-size="5" fill="#c9a84c" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif">to hub</text>
-          <rect x="45" y="96" width="90" height="11" rx="5.5" stroke="#c9a84c" stroke-width="0.4" fill="#c9a84c" fill-opacity="0.03"/>
-          <text x="90" y="104" font-size="5" fill="#c9a84c" opacity="0.45" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Margin protected on every return</text>
-        </svg>
-      </div>
-      <span class="feature-number">04</span>
-      <div class="feature-title">Smart Returns</div>
-      <p class="feature-desc">SKU-based return logic — keep-it refunds for low-value, local consolidation for high-value. Returns become a decision engine, not a margin drain. Easy for buyers, efficient for sellers.</p>
-      <span class="feature-tag">Returns</span>
-    </div>
-    <div class="feature-card reveal reveal-delay-4">
-      <div class="feature-visual">
-        <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="24" height="18" rx="2" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.06"/>
-          <rect x="10" y="7" width="24" height="18" rx="2" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.04"/>
-          <rect x="14" y="13" width="14" height="2" rx="1" fill="#c9a84c" opacity="0.2"/>
-          <rect x="14" y="17" width="10" height="2" rx="1" fill="#c9a84c" opacity="0.15"/>
-          <text x="20" y="32" font-size="4" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Docs</text>
-          <rect x="8" y="42" width="28" height="16" rx="3" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.06"/>
-          <text x="22" y="53" font-size="6" fill="#c9a84c" opacity="0.6" font-family="Syne,sans-serif" font-weight="600" text-anchor="middle">HS</text>
-          <text x="22" y="63" font-size="4" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Code</text>
-          <rect x="8" y="72" width="28" height="16" rx="3" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.06"/>
-          <rect x="14" y="76" width="6" height="4" rx="1" fill="#c9a84c" opacity="0.2"/>
-          <rect x="22" y="76" width="6" height="4" rx="1" fill="#c9a84c" opacity="0.15"/>
-          <text x="22" y="93" font-size="4" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Rules</text>
-          <path d="M38 18 C48 18 52 45 62 45" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.4"/>
-          <path d="M38 50 L62 50" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.4"/>
-          <path d="M38 80 C48 80 52 55 62 55" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.4"/>
-          <circle cx="40" cy="18" r="1.5" fill="#c9a84c" opacity="0.5"/>
-          <circle cx="40" cy="50" r="1.5" fill="#c9a84c" opacity="0.5"/>
-          <circle cx="40" cy="80" r="1.5" fill="#c9a84c" opacity="0.5"/>
-          <rect x="62" y="32" width="36" height="36" rx="5" stroke="#c9a84c" stroke-width="0.8" fill="#c9a84c" fill-opacity="0.06"/>
-          <circle cx="80" cy="50" r="12" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.3"/>
-          <circle cx="80" cy="50" r="6" stroke="#c9a84c" stroke-width="0.8" fill="#c9a84c" fill-opacity="0.1"/>
-          <circle cx="80" cy="50" r="2" fill="#c9a84c" opacity="0.5"/>
-          <path d="M80 36 L82 39 L78 39 Z" fill="#c9a84c" opacity="0.3"/>
-          <path d="M80 64 L78 61 L82 61 Z" fill="#c9a84c" opacity="0.3"/>
-          <path d="M66 50 L69 48 L69 52 Z" fill="#c9a84c" opacity="0.3"/>
-          <path d="M94 50 L91 52 L91 48 Z" fill="#c9a84c" opacity="0.3"/>
-          <path d="M100 50 L118 50" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
-          <circle cx="104" cy="50" r="1.5" fill="#c9a84c" opacity="0.5"/>
-          <circle cx="110" cy="50" r="1.5" fill="#c9a84c" opacity="0.4"/>
-          <circle cx="116" cy="50" r="1.5" fill="#c9a84c" opacity="0.3"/>
-          <rect x="120" y="30" width="50" height="40" rx="5" stroke="#c9a84c" stroke-width="0.8" fill="#c9a84c" fill-opacity="0.05"/>
-          <path d="M145 40 L151 44 L151 54 L145 58 L139 54 L139 44 Z" stroke="#4a9c6f" stroke-width="1" fill="#4a9c6f" fill-opacity="0.1"/>
-          <path d="M142 48 L144 50 L148 46" stroke="#4a9c6f" stroke-width="1" fill="none"/>
-          <text x="145" y="66" font-size="5.5" fill="#c9a84c" opacity="0.7" font-family="Syne,sans-serif" font-weight="600" text-anchor="middle">Cleared</text>
-          <text x="90" y="106" font-size="5" fill="#4a9c6f" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Fully automated compliance</text>
-        </svg>
-      </div>
-      <span class="feature-number">05</span>
-      <div class="feature-title">Compliance Automation</div>
-      <p class="feature-desc">HS codes, customs documentation, IOSS registration, country-specific restrictions — handled automatically. No manual classification. No unexpected duty charges.</p>
-      <span class="feature-tag">Compliance</span>
-    </div>
-    <div class="feature-card reveal reveal-delay-5">
-      <div class="feature-visual">
-        <svg width="180" height="110" viewBox="0 0 180 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="90" cy="48" r="32" stroke="#c9a84c" stroke-width="0.8" fill="none" opacity="0.25"/>
-          <circle cx="90" cy="48" r="22" stroke="#c9a84c" stroke-width="0.4" fill="none" opacity="0.15"/>
-          <ellipse cx="90" cy="48" rx="14" ry="32" stroke="#c9a84c" stroke-width="0.3" fill="none" opacity="0.15"/>
-          <ellipse cx="90" cy="48" rx="32" ry="12" stroke="#c9a84c" stroke-width="0.3" fill="none" opacity="0.12"/>
-          <line x1="58" y1="48" x2="122" y2="48" stroke="#c9a84c" stroke-width="0.25" opacity="0.12"/>
-          <line x1="90" y1="16" x2="90" y2="80" stroke="#c9a84c" stroke-width="0.25" opacity="0.12"/>
-          <circle cx="72" cy="38" r="4" fill="#c9a84c" opacity="0.6"/>
-          <circle cx="108" cy="42" r="4" fill="#c9a84c" opacity="0.6"/>
-          <circle cx="88" cy="58" r="3" fill="#c9a84c" opacity="0.35"/>
-          <circle cx="98" cy="34" r="2.5" fill="#c9a84c" opacity="0.25"/>
-          <path d="M72 38 Q90 30 108 42" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.4" stroke-dasharray="2,2"/>
-          <text x="65" y="34" font-size="4.5" fill="#c9a84c" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif">US</text>
-          <text x="112" y="40" font-size="4.5" fill="#c9a84c" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif">EU</text>
-          <rect x="10" y="28" width="30" height="10" rx="2" stroke="#c9a84c" stroke-width="0.5" fill="#c9a84c" fill-opacity="0.06"/>
-          <text x="25" y="35" font-size="4.5" fill="#c9a84c" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Sellers</text>
-          <line x1="40" y1="33" x2="58" y2="38" stroke="#c9a84c" stroke-width="0.4" opacity="0.3" stroke-dasharray="2,1.5"/>
-          <rect x="140" y="28" width="30" height="10" rx="2" stroke="#e07a5f" stroke-width="0.5" fill="#e07a5f" fill-opacity="0.06"/>
-          <text x="155" y="35" font-size="4.5" fill="#e07a5f" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Buyers</text>
-          <line x1="140" y1="33" x2="122" y2="42" stroke="#e07a5f" stroke-width="0.4" opacity="0.3" stroke-dasharray="2,1.5"/>
-          <rect x="10" y="48" width="30" height="10" rx="2" stroke="#c9a84c" stroke-width="0.5" fill="#c9a84c" fill-opacity="0.06"/>
-          <text x="25" y="55" font-size="4.5" fill="#c9a84c" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Brands</text>
-          <line x1="40" y1="53" x2="58" y2="50" stroke="#c9a84c" stroke-width="0.4" opacity="0.3" stroke-dasharray="2,1.5"/>
-          <rect x="140" y="48" width="30" height="10" rx="2" stroke="#e07a5f" stroke-width="0.5" fill="#e07a5f" fill-opacity="0.06"/>
-          <text x="155" y="55" font-size="4.5" fill="#e07a5f" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Buyers</text>
-          <line x1="140" y1="53" x2="122" y2="50" stroke="#e07a5f" stroke-width="0.4" opacity="0.3" stroke-dasharray="2,1.5"/>
-          <rect x="55" y="88" width="70" height="16" rx="4" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.05"/>
-          <text x="62" y="99" font-size="5.5" fill="#c9a84c" opacity="0.6" font-family="Syne,sans-serif" font-weight="600">GLOBECART</text>
-          <circle cx="138" cy="95" r="3" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.3"/>
-          <circle cx="138" cy="95" r="1" fill="#c9a84c" opacity="0.4"/>
-        </svg>
-      </div>
-      <span class="feature-number">06</span>
-      <div class="feature-title">Global Marketplace</div>
-      <p class="feature-desc">List your products. Reach international buyers directly. Emerging brands and proven products — all in one marketplace built for cross-border from day one. No separate tools needed.</p>
-      <span class="feature-tag">Marketplace</span>
+      <div class="core-hint">Tap any layer to explore it. Tap the core to auto-cycle.</div>
     </div>
   </div>
 </section>
@@ -823,24 +1105,48 @@
 <section id="calc-cta" style="padding: 5rem 4rem; background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center;">
   <div class="reveal" style="max-width: 650px; margin: 0 auto;">
     <div class="section-label" style="justify-content: center;">Free Tool</div>
-    <h2 class="section-h2" style="text-align: center;">Try the Landed Cost <em>Calculator</em></h2>
-    <p style="font-size: 0.78rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem;">Know your real cost before you sell. Duties, VAT, shipping, FX — one clear breakdown for US ↔ EU corridors. Free, instant, downloadable.</p>
-    <div style="display: flex; gap: 2rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap;">
-      <div style="text-align: center;">
-        <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--gold); font-weight: 300;">4</div>
-        <div style="font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);">Countries</div>
+    <h2 class="section-h2" style="text-align: center;">See your real cost <em>before you sell.</em></h2>
+    <p style="font-size: 0.78rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem;">Duties, VAT, shipping, and FX, in one clear breakdown for US ↔ EU. Watch it work, then try it yourself. Free, instant, downloadable.</p>
+  </div>
+  <div class="calc-demo-wrap reveal" id="calcDemo">
+    <div class="calc-screen">
+      <div class="calc-chrome">
+        <span class="calc-dot"></span><span class="calc-dot"></span><span class="calc-dot"></span>
+        <span class="calc-chrome-label">globecart.one / calculator</span>
       </div>
-      <div style="text-align: center;">
-        <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--gold); font-weight: 300;">14</div>
-        <div style="font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);">Categories</div>
-      </div>
-      <div style="text-align: center;">
-        <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--gold); font-weight: 300;">PDF</div>
-        <div style="font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);">Download Report</div>
+      <div class="calc-body">
+        <div class="calc-field" data-f="0"><span>Product category</span><span class="calc-val">Home &amp; Decor</span></div>
+        <div class="calc-field" data-f="1"><span>Destination</span><span class="calc-val">Germany</span></div>
+        <div class="calc-field" data-f="2"><span>Order value</span><span class="calc-val">$120.00</span></div>
+        <div class="calc-rows">
+          <div class="calc-line" data-l="0"><span>Duty</span><span class="calc-amt">$5.40</span></div>
+          <div class="calc-line" data-l="1"><span>VAT</span><span class="calc-amt">$23.90</span></div>
+          <div class="calc-line" data-l="2"><span>Shipping</span><span class="calc-amt">$14.20</span></div>
+          <div class="calc-line" data-l="3"><span>FX &amp; fees</span><span class="calc-amt">$2.10</span></div>
+          <div class="calc-total"><span class="calc-total-label">Landed cost</span><span class="calc-total-amt">$165.60</span></div>
+        </div>
       </div>
     </div>
-    <a href="calculator.html" style="display: inline-block; background: var(--gold); color: var(--bg); padding: 0.9rem 2.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s;" onmouseover="this.style.background='#e8c97a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#c9a84c'; this.style.transform='translateY(0)'">Calculate Your Landed Cost →</a>
-    <p style="font-size: 0.58rem; color: var(--muted); margin-top: 1rem; letter-spacing: 0.08em;">Estimates only · globecart.one</p>
+  </div>
+  <div class="calc-stats reveal" style="margin-bottom: 2.5rem;">
+    <div class="calc-stat" data-s="0"><div class="calc-stat-num">4</div><div class="calc-stat-label">Countries</div></div>
+    <div class="calc-stat" data-s="1"><div class="calc-stat-num">14</div><div class="calc-stat-label">Categories</div></div>
+    <div class="calc-stat" data-s="2"><div class="calc-stat-num">PDF</div><div class="calc-stat-label">Download Report</div></div>
+  </div>
+  <a href="calculator.html" style="display: inline-block; background: var(--gold); color: var(--bg); padding: 0.9rem 2.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s;" onmouseover="this.style.background='#e8c97a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#c9a84c'; this.style.transform='translateY(0)'">Calculate Your Landed Cost →</a>
+  <p style="font-size: 0.58rem; color: var(--muted); margin-top: 1rem; letter-spacing: 0.08em;">Estimates only · globecart.one</p>
+
+  <div class="tool-signal reveal">
+    <div class="tool-signal-head">
+      <span class="tool-signal-eyebrow"><span class="tool-signal-dot"></span> Unprompted feedback from real sellers</span>
+      <span class="tool-signal-title">What sellers are saying</span>
+    </div>
+    <div class="tool-signal-grid">
+      <div class="tool-chip"><p>Consistently 8 to 12% lower than what we actually paid.</p><span>Seller, US</span></div>
+      <div class="tool-chip"><p>Calculator said 15% duties. Customs hit me with 23%.</p><span>Seller, US ↔ NL</span></div>
+      <div class="tool-chip"><p>Your calculator sounds like a good tool for that.</p><span>Seller, US</span></div>
+      <div class="tool-chip"><p>Whoever solves predictability wins, not whoever is cheapest.</p><span>Seller, US ↔ EU</span></div>
+    </div>
   </div>
 </section>
 
@@ -850,7 +1156,7 @@
     <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
       <div class="section-label" style="justify-content:center;">Pricing</div>
       <h2 class="section-h2" style="text-align:center;">Start free.<br><em>Grow with us.</em></h2>
-      <p style="font-size:0.78rem; color:var(--muted); line-height:1.8; margin-bottom:0.5rem;">Amazon takes 25-35%. We take 8-12%. Full cross-border stack included. Pay only when you sell.</p>
+      <p style="font-size:0.78rem; color:var(--muted); line-height:1.8; margin-bottom:0.5rem;">Current platforms take 25-35%. We take 8-12%. Full cross-border stack included. Pay only when you sell.</p>
     </div>
     <div class="pricing-grid">
       <div class="price-card reveal">
@@ -861,7 +1167,7 @@
         <ul class="price-features">
           <li>List products on GlobeCart marketplace</li>
           <li>Full landed cost calculator (duties, VAT, shipping, FX)</li>
-          <li>Buyer sees one final price — no surprises</li>
+          <li>Buyer sees one final price - no surprises</li>
           <li>Up to 50 transactions/month</li>
           <li>Basic compliance automation</li>
           <li>Email support + onboarding guide</li>
@@ -881,7 +1187,7 @@
           <li>Real-time shipment tracking for buyers</li>
           <li>Smart returns engine (keep-it vs ship-back logic)</li>
           <li>Margin dashboard + weekly analytics</li>
-          <li>3PL partner network access</li>
+          <li>Fulfillment partner network access</li>
           <li>Priority support</li>
         </ul>
         <a href="#signup" class="price-cta price-cta-primary" onclick="trackPricing('growth')">Get Started</a>
@@ -907,7 +1213,19 @@
       </div>
     </div>
     <div class="pricing-footer reveal">
-      <p><strong>Compare:</strong> Amazon charges 25-35% all-in (referral + FBA + storage + hidden fees). Etsy takes 20-25%. eBay takes 13-15%. GlobeCart gives you the full cross-border stack for 8-12% — with complete transparency.</p>
+      <div class="compare-track">
+        <div class="compare-card compare-old">
+          <div class="compare-tag">Current platforms</div>
+          <div class="compare-rate">25-35%</div>
+          <div class="compare-note">All-in, once you stack referral, fulfillment, storage, and the fees you don't see. The cross-border risk stays on you.</div>
+        </div>
+        <div class="compare-vs">vs</div>
+        <div class="compare-card compare-new">
+          <div class="compare-tag">GlobeCart</div>
+          <div class="compare-rate">8-12%</div>
+          <div class="compare-note">The full cross-border stack included, complete transparency, and protection built into every transaction.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -924,12 +1242,12 @@
         <span class="aud-badge">For Sellers & Brands</span>
         <h3>Stop losing margin to <em>guesswork.</em></h3>
         <ul class="aud-list">
-          <li>See your real profit per SKU, per country — before you sell</li>
+          <li>See your real profit per SKU, per country - before you sell</li>
           <li>Weekly margin packets: know exactly why margin moved and what driver caused it</li>
           <li>Scenario planning: remote vs localized EU fulfillment, side by side</li>
           <li>Smart returns: automated keep-it / ship-back decisions by SKU value</li>
           <li>Expand to new markets without rebuilding your entire ops stack</li>
-          <li>DDP made accessible — reduce the multi-party coordination burden</li>
+          <li>DDP made accessible - reduce the multi-party coordination burden</li>
           <li>Seller protection built into every transaction</li>
         </ul>
       </div>
@@ -937,9 +1255,9 @@
         <span class="aud-badge">For Buyers</span>
         <h3>Shop globally. Pay exactly what you <em>expect.</em></h3>
         <ul class="aud-list">
-          <li>Full price shown at checkout — duties, taxes, shipping, everything included</li>
+          <li>Full price shown at checkout - duties, taxes, shipping, everything included</li>
           <li>No surprise charges at delivery. No customs holds. No refused packages.</li>
-          <li>Easy returns — clear process, fair refunds, no runaround</li>
+          <li>Easy returns - clear process, fair refunds, no runaround</li>
           <li>Buy from international sellers with the same trust as local brands</li>
           <li>Buyer protection built into every transaction</li>
           <li>Track your order from checkout to doorstep, across every border</li>
@@ -976,11 +1294,11 @@
     <div class="how-steps">
       <div class="how-step reveal">
         <div class="how-visual"><svg width="140" height="90" viewBox="0 0 140 90" fill="none"><rect x="35" y="8" width="70" height="48" rx="4" stroke="#c9a84c" stroke-width="0.8" fill="#c9a84c" fill-opacity="0.04"/><circle cx="70" cy="24" r="10" stroke="#c9a84c" stroke-width="0.6" fill="#c9a84c" fill-opacity="0.06"/><rect x="65" y="20" width="10" height="8" rx="1.5" stroke="#c9a84c" stroke-width="0.5" fill="none"/><line x1="65" y1="23" x2="75" y2="23" stroke="#c9a84c" stroke-width="0.3" opacity="0.3"/><rect x="44" y="40" width="18" height="3" rx="1.5" fill="#c9a84c" opacity="0.2"/><rect x="44" y="46" width="28" height="3" rx="1.5" fill="#c9a84c" opacity="0.15"/><rect x="78" y="38" width="20" height="14" rx="3" fill="#c9a84c" opacity="0.1"/><text x="88" y="47" font-size="5" fill="#c9a84c" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">LIST</text><path d="M70 60 L70 68" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/><path d="M66 65 L70 70 L74 65" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.4"/><rect x="44" y="72" width="52" height="12" rx="6" stroke="#4a9c6f" stroke-width="0.6" fill="#4a9c6f" fill-opacity="0.06"/><text x="70" y="81" font-size="5" fill="#4a9c6f" opacity="0.6" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Product live</text></svg></div>
-        <span class="step-num">01</span><div class="step-title">List your products</div><p class="step-desc">Sellers and brands list products on GlobeCart. Set your price — our system handles duties, VAT, shipping, and FX automatically.</p>
+        <span class="step-num">01</span><div class="step-title">List your products</div><p class="step-desc">Sellers and brands list products on GlobeCart. Set your price - our system handles duties, VAT, shipping, and FX automatically.</p>
       </div>
       <div class="how-step reveal reveal-delay-1">
         <div class="how-visual"><svg width="140" height="90" viewBox="0 0 140 90" fill="none"><rect x="20" y="10" width="100" height="50" rx="4" stroke="#c9a84c" stroke-width="0.8" fill="#c9a84c" fill-opacity="0.03"/><rect x="28" y="18" width="40" height="4" rx="2" fill="#c9a84c" opacity="0.12"/><rect x="28" y="26" width="28" height="3" rx="1.5" fill="#c9a84c" opacity="0.08"/><line x1="20" y1="36" x2="120" y2="36" stroke="#c9a84c" stroke-width="0.4" opacity="0.15"/><text x="28" y="46" font-size="5" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif">Product</text><text x="100" y="46" font-size="5" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif" text-anchor="end">$26.00</text><text x="28" y="54" font-size="4" fill="#c9a84c" opacity="0.3" font-family="Plus Jakarta Sans,sans-serif">Duty + VAT + Ship</text><text x="100" y="54" font-size="4" fill="#c9a84c" opacity="0.3" font-family="Plus Jakarta Sans,sans-serif" text-anchor="end">$12.50</text><rect x="70" y="15" width="42" height="16" rx="3" fill="#c9a84c" opacity="0.1"/><text x="91" y="26" font-size="7" fill="#c9a84c" opacity="0.7" font-family="Syne,sans-serif" font-weight="600" text-anchor="middle">$38.50</text><rect x="35" y="68" width="70" height="14" rx="7" stroke="#4a9c6f" stroke-width="0.7" fill="#4a9c6f" fill-opacity="0.06"/><text x="70" y="78" font-size="5.5" fill="#4a9c6f" opacity="0.7" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Zero surprises</text></svg></div>
-        <span class="step-num">02</span><div class="step-title">Buyer sees the real price</div><p class="step-desc">Full landed cost at checkout — duties, taxes, shipping, everything included. One price. No surprises at delivery.</p>
+        <span class="step-num">02</span><div class="step-title">Buyer sees the real price</div><p class="step-desc">Full landed cost at checkout - duties, taxes, shipping, everything included. One price. No surprises at delivery.</p>
       </div>
       <div class="how-step reveal reveal-delay-2">
         <div class="how-visual"><svg width="140" height="90" viewBox="0 0 140 90" fill="none"><rect x="15" y="12" width="34" height="26" rx="3" stroke="#c9a84c" stroke-width="0.7" fill="#c9a84c" fill-opacity="0.04"/><circle cx="32" cy="25" r="5" stroke="#4a9c6f" stroke-width="0.7" fill="none"/><path d="M30 25 L31 26 L34 23" stroke="#4a9c6f" stroke-width="0.8" fill="none"/><text x="32" y="44" font-size="4" fill="#4a9c6f" opacity="0.5" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Verified</text><path d="M52 25 L88 25" stroke="#c9a84c" stroke-width="0.5" opacity="0.3" stroke-dasharray="3,2"/><circle cx="70" cy="25" r="3" fill="#c9a84c" opacity="0.6"><animate attributeName="opacity" values="0.6;0.15;0.6" dur="1.8s" repeatCount="indefinite"/></circle><rect x="91" y="12" width="34" height="26" rx="3" stroke="#c9a84c" stroke-width="0.7" fill="#c9a84c" fill-opacity="0.04"/><path d="M104 18 L112 18 L112 32 L104 32 Z" stroke="#c9a84c" stroke-width="0.4" fill="none" opacity="0.25"/><text x="108" y="44" font-size="4" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">Delivered</text><rect x="25" y="56" width="90" height="24" rx="4" stroke="#c9a84c" stroke-width="0.5" fill="#c9a84c" fill-opacity="0.03"/><rect x="32" y="62" width="50" height="3" rx="1.5" fill="#c9a84c" opacity="0.15"/><rect x="32" y="68" width="35" height="3" rx="1.5" fill="#c9a84c" opacity="0.1"/><circle cx="100" cy="67" r="2" fill="#c9a84c" opacity="0.5"><animate attributeName="opacity" values="0.5;0.15;0.5" dur="1.5s" repeatCount="indefinite"/></circle><text x="96" y="75" font-size="3.5" fill="#c9a84c" opacity="0.4" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">LIVE</text></svg></div>
@@ -1000,7 +1318,7 @@
     <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
       <div class="section-label" style="justify-content:center;">Validation</div>
       <h2 class="section-h2" style="text-align:center;">Built on <em>real evidence.</em></h2>
-      <p style="font-size:0.78rem; color:var(--muted); line-height:1.8; margin-bottom:1rem;">Not assumptions — validated patterns from real cross-border operators, brands, and sellers across multiple ICP segments.</p>
+      <p style="font-size:0.78rem; color:var(--muted); line-height:1.8; margin-bottom:1rem;">Not assumptions - validated patterns from real cross-border operators, brands, and sellers across multiple ICP segments.</p>
     </div>
     <div class="proof-grid reveal">
       <div class="proof-card"><div class="proof-num">37+</div><div class="proof-label">Seller & Buyer<br>Datapoints</div></div>
@@ -1022,11 +1340,11 @@
     <div class="voices-grid reveal">
       <div class="voice-card">
         <div class="voice-quote">It's just scary for small and new business to mess up anything that has the word duties or taxes in.</div>
-        <div class="voice-src">Growing Brand Founder</div>
+        <div class="voice-src">Early-stage seller · US</div>
       </div>
       <div class="voice-card">
         <div class="voice-quote">It is death by small percentages layered on top of each other.</div>
-        <div class="voice-src">Amazon FBA seller · US ↔ EU</div>
+        <div class="voice-src">FBA seller · US ↔ EU</div>
       </div>
       <div class="voice-card">
         <div class="voice-quote">Data exists. Reconciling it is the pain.</div>
@@ -1038,10 +1356,10 @@
       </div>
       <div class="voice-card">
         <div class="voice-quote">EU has not been so great experience... unclear what gonna come next. Loss is tolerable. Uncertainty is not.</div>
-        <div class="voice-src">Mid scale Seller</div>
+        <div class="voice-src">Multi-million dollar international seller</div>
       </div>
       <div class="voice-card">
-        <div class="voice-quote">Refused deliveries are brutal — you eat the shipping cost both ways and often lose the product too.</div>
+        <div class="voice-quote">Refused deliveries are brutal - you eat the shipping cost both ways and often lose the product too.</div>
         <div class="voice-src">EU seller · IOSS operator</div>
       </div>
       <div class="voice-card">
@@ -1062,54 +1380,26 @@
 
 <!-- FOUNDER -->
 <section id="founder" class="founder-section">
-  <div class="founder-container">
-    <div class="reveal section-label" style="justify-content:center; margin-bottom:3rem;">The Founder</div>
-    <div class="founder-grid">
-
-      <!-- Left: photo + identity -->
-      <div class="reveal founder-photo-col">
-        <div style="width:200px; height:200px; border-radius:50%; margin:0 auto 1.5rem; overflow:hidden; border:2px solid var(--border); box-shadow:0 0 0 6px rgba(201,168,76,0.12);">
-          <img src="prasad.png" alt="Prasad Reddy — Founder & CEO, GlobeCart" style="width:100%; height:100%; object-fit:cover; object-position:center top;">
-        </div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.3rem; color:var(--white); letter-spacing:0.02em;">Prasad Reddy</div>
-        <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-top:0.5rem;">Founder &amp; CEO</div>
-        <div style="display:flex; gap:1.2rem; justify-content:center; margin-top:1.2rem; flex-wrap:wrap;">
-          <a href="https://x.com/PReddy2689" target="_blank" rel="noopener" style="color:var(--muted); text-decoration:none; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">X</a>
-          <a href="https://substack.com/@prasadreddy2" target="_blank" rel="noopener" style="color:var(--muted); text-decoration:none; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">Substack</a>
-          <a href="https://www.linkedin.com/in/prasad-reddy-11554b392/" target="_blank" rel="noopener" style="color:var(--muted); text-decoration:none; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">LinkedIn</a>
-          <a href="https://bsky.app/profile/globecart.one" target="_blank" rel="noopener" style="color:var(--muted); text-decoration:none; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">Bluesky</a>
-          <a href="mailto:prasad@globecart.one" style="color:var(--muted); text-decoration:none; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">Email</a>
-        </div>
+  <div class="founder-wrap">
+    <div class="founder-photo-col reveal">
+      <img class="founder-photo" src="prasad.png" alt="Prasad Reddy, Founder and CEO of GlobeCart" loading="lazy">
+      <div class="founder-name">Prasad Reddy</div>
+      <div class="founder-role">Founder &amp; CEO</div>
+      <div class="founder-social">
+        <a href="https://x.com/PReddy2689" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://substack.com/@prasadreddy2" target="_blank" rel="noopener" aria-label="Substack"><svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+        <a href="https://www.linkedin.com/in/prasad-reddy-11554b392/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://bsky.app/profile/globecart.one" target="_blank" rel="noopener" aria-label="Bluesky"><svg viewBox="0 0 24 24"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.627 3.553 3.503 6.173 3.268-4.637.567-6.141 3.044-3.456 5.502C6.623 21.897 9.652 19.6 12 15.69c2.348 3.91 5.377 6.207 8.659 3.327 2.685-2.458 1.18-4.935-3.456-5.502 2.62.235 5.388-.641 6.173-3.268C23.622 9.418 24 4.458 24 3.768c0-.69-.139-1.861-.902-2.203-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/></svg></a>
+        <a href="mailto:prasad@globecart.one" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M1.5 4.5h21A1.5 1.5 0 0124 6v12a1.5 1.5 0 01-1.5 1.5h-21A1.5 1.5 0 010 18V6a1.5 1.5 0 011.5-1.5zm.34 1.5L12 12.6 22.16 6H1.84zM22.5 18V7.3l-10.5 6.8L1.5 7.3V18h21z"/></svg></a>
       </div>
-
-      <!-- Right: story -->
-      <div class="reveal reveal-delay-1">
-        <h2 class="section-h2" style="font-size:clamp(1.8rem,3.5vw,2.8rem); margin-bottom:1.5rem;">I build <em>trust infrastructure.</em></h2>
-        <p style="font-size:0.85rem; color:var(--muted); line-height:1.9; margin-bottom:1.2rem;">
-          It started with something that should have been simple. I wanted to order a few products that weren't available in India — found them after a long search on Amazon Global, and then the seller couldn't deliver to my address. I tried other products, other platforms. Same wall every time. I couldn't trust the seller, the quality, or whether it would even arrive. So I gave up on the order. Then I started hearing the same story from people around me — and I realised this wasn't my problem. It was everyone's.
-        </p>
-        <p style="font-size:0.85rem; color:var(--muted); line-height:1.9; margin-bottom:1.2rem;">
-          I've always been wired this way — when something's broken, I can't leave it alone until I understand why. So I went and talked to 37+ sellers, operators, and logistics professionals across the US and EU. One line stuck with me: <span style="color:var(--white); font-style:italic;">"Loss is tolerable. Uncertainty is not."</span> That became the thesis. The problem isn't cost — it's uncertainty. And the trust layer that fixes it simply didn't exist.
-        </p>
-        <p style="font-size:0.85rem; color:var(--muted); line-height:1.9; margin-bottom:2rem;">
-          So I started building it. I've taken GlobeCart from that first frustration to a validated thesis, a full architecture, and a live product — from the ground up. I believe the most valuable infrastructure of the next decade won't move goods or data. It'll move trust.
-        </p>
-        <div style="display:flex; gap:2.5rem; flex-wrap:wrap; border-top:1px solid var(--border); padding-top:1.5rem;">
-          <div>
-            <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold); line-height:1;">37+</div>
-            <div style="font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:0.4rem;">Validation datapoints</div>
-          </div>
-          <div>
-            <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold); line-height:1;">US ↔ EU</div>
-            <div style="font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:0.4rem;">Bidirectional corridor</div>
-          </div>
-          <div>
-            <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold); line-height:1;">Live</div>
-            <div style="font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:0.4rem;">Product shipping today</div>
-          </div>
-        </div>
-      </div>
-
+    </div>
+    <div class="founder-body reveal reveal-delay-1">
+      <div class="section-label">The Founder</div>
+      <h2>I started GlobeCart because I lived <em>the problem.</em></h2>
+      <p>It started with something that should have been simple. I wanted to order a few products that weren't available in India, found them after a long search on Amazon Global, and then the seller couldn't deliver to my address. I tried other products, other platforms. Same wall every time. I couldn't trust the seller, the quality, or whether it would even arrive. So I gave up on the order. Then I started hearing the same story from people around me, and I realised this wasn't my problem. It was everyone's.</p>
+      <p>I've always been wired this way: when something's broken, I can't leave it alone until I understand why. So I went and talked to 37+ sellers, operators, and logistics professionals across the US and EU. The thesis became clear:</p>
+      <div class="founder-quote">The problem isn't cost. It's uncertainty. And the trust layer that fixes it simply didn't exist.</div>
+      <p>So I started building it. I've taken GlobeCart from that first frustration to a validated thesis, a full architecture, and a live product, from the ground up. I believe the most valuable infrastructure of the next decade won't move goods or data. It'll move trust.</p>
     </div>
   </div>
 </section>
@@ -1118,31 +1408,21 @@
 <section id="signup" class="signup-section">
   <div class="signup-container">
     <div class="reveal" style="text-align:center; max-width:650px; margin:0 auto;">
-      <div class="section-label" style="justify-content:center;">Join GlobeCart</div>
-      <h2 class="section-h2" style="text-align:center;">Tell us who you are.<br>We'll build <em>with you.</em></h2>
-      <p style="font-size:0.78rem; color:var(--muted); line-height:1.8; margin-bottom:0.5rem;">We're building Phase 1 with design partners. Select your role — we'll reach out with the right onboarding.</p>
+      <div class="section-label" style="justify-content:center;">Investors &amp; Buyers</div>
+      <h2 class="section-h2" style="text-align:center;">Backing us, or buying <em>with us?</em></h2>
+      <p style="font-size:0.78rem; color:var(--muted); line-height:1.8; margin-bottom:0.5rem;">Investors and early buyers, tell us who you are and we'll reach out. <br>Selling or a brand? <a href="design-partners.html" style="color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.3);">Apply to the Design Partner program →</a></p>
     </div>
 
     <div class="role-grid reveal" id="roleGrid">
-      <div class="role-card" data-role="seller" onclick="selectRole(this)">
-        <span class="role-icon">🏪</span>
-        <div class="role-name">Seller / Brand</div>
-        <div class="role-desc">Selling or planning to sell cross-border</div>
-      </div>
-      <div class="role-card" data-role="buyer" onclick="selectRole(this)">
-        <span class="role-icon">🛍️</span>
-        <div class="role-name">Buyer</div>
-        <div class="role-desc">Shopping internationally, want transparency</div>
-      </div>
-      <div class="role-card" data-role="3pl" onclick="selectRole(this)">
-        <span class="role-icon">📦</span>
-        <div class="role-name">3PL / Logistics</div>
-        <div class="role-desc">Fulfillment partner for cross-border sellers</div>
-      </div>
       <div class="role-card" data-role="investor" onclick="selectRole(this)">
-        <span class="role-icon">💼</span>
+        <span class="role-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12.5h18"/></svg></span>
         <div class="role-name">Investor</div>
         <div class="role-desc">Angel, VC, or strategic partner</div>
+      </div>
+      <div class="role-card" data-role="buyer" onclick="selectRole(this)">
+        <span class="role-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1 13H5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span>
+        <div class="role-name">Buyer</div>
+        <div class="role-desc">Shopping internationally, want transparency</div>
       </div>
     </div>
 
@@ -1153,7 +1433,7 @@
       </div>
       <input type="text" id="signup-company" class="signup-input" placeholder="Company / brand name (optional)">
       <button class="signup-btn" onclick="handleSignup()">Request Early Access</button>
-      <div class="signup-trust">Direct founder access · No spam · Design partner priority</div>
+      <div class="signup-trust">Direct founder access · No spam · We reply within 48 hours</div>
     </div>
 
     <div id="signupSuccess" class="signup-success">
@@ -1168,22 +1448,62 @@
 <!-- FOOTER -->
 <footer>
   <div class="logo"><span class="logo-dot"></span> GlobeCart</div>
+  <div class="footer-social">
+    <a href="https://x.com/PReddy2689" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      X
+    </a>
+    <a href="https://bsky.app/profile/globecart.one" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.627 3.553 3.503 6.173 3.268-4.637.567-6.141 3.044-3.456 5.502C6.623 21.897 9.652 19.6 12 15.69c2.348 3.91 5.377 6.207 8.659 3.327 2.685-2.458 1.18-4.935-3.456-5.502 2.62.235 5.388-.641 6.173-3.268C23.622 9.418 24 4.458 24 3.768c0-.69-.139-1.861-.902-2.203-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/></svg>
+      Bluesky
+    </a>
+    <a href="https://www.linkedin.com/in/prasad-reddy-11554b392/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://substack.com/@prasadreddy2" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+      Substack
+    </a>
+  </div>
   <div class="footer-tagline">One world, One border.</div>
   <div class="footer-copy">© 2026 GlobeCart · globecart.one</div>
 </footer>
 
 <script>
   // ── Custom cursor ──
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`; });
-  function animateRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`; requestAnimationFrame(animateRing); }
-  animateRing();
-  document.querySelectorAll('a, button, .market-card, .feature-card, .problem-item, .role-card, .audience-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(201,168,76,0.8)'; });
-    el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(201,168,76,0.5)'; });
-  });
+  (function() {
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    const finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+    if (!cursor || !ring || !finePointer) {
+      if (cursor) cursor.style.display = 'none';
+      if (ring) ring.style.display = 'none';
+      document.documentElement.style.cursor = 'auto';
+      return;
+    }
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+    let rx = mx, ry = my;
+    let seen = false;
+    window.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      if (!seen) { seen = true; rx = mx; ry = my; }
+    }, { passive: true });
+    function frame() {
+      // dot follows the pointer exactly - responsive, no trailing ghost
+      cursor.style.transform = `translate3d(${mx - 5}px, ${my - 5}px, 0)`;
+      // ring eases toward the pointer for a soft trailing feel
+      rx += (mx - rx) * 0.16;
+      ry += (my - ry) * 0.16;
+      ring.style.transform = `translate3d(${rx - 18}px, ${ry - 18}px, 0)`;
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    document.querySelectorAll('a, button, .market-card, .feature-card, .problem-item, .role-card, .audience-card, .core-node, .core-center-hit').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(201,168,76,0.8)'; });
+      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(201,168,76,0.5)'; });
+    });
+  })();
 
   // ── Scroll reveal ──
   const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
@@ -1254,7 +1574,7 @@
     const payload = { name, email, company, role: selectedRole, timestamp: new Date().toISOString() };
 
     try {
-      // Google Sheets — hidden form + iframe (bypasses CORS redirect issue)
+      // Google Sheets - hidden form + iframe (bypasses CORS redirect issue)
       var iframe = document.createElement('iframe');
       iframe.name = 'gc_submit_frame';
       iframe.style.display = 'none';
@@ -1308,7 +1628,7 @@
     }
   }
 
-  // ── Export signups (for you as founder) — open console and run exportSignups() ──
+  // ── Export signups (for you as founder) - open console and run exportSignups() ──
   window.exportSignups = function() {
     const data = JSON.parse(localStorage.getItem('globecart_signups') || '[]');
     console.table(data);
@@ -1320,7 +1640,7 @@
     return data;
   };
 
-  // ── Simple visitor counter (localStorage based — for demo) ──
+  // ── Simple visitor counter (localStorage based - for demo) ──
   (function() {
     const visits = parseInt(localStorage.getItem('globecart_visits') || '0') + 1;
     localStorage.setItem('globecart_visits', visits);
@@ -1329,7 +1649,7 @@
     localStorage.setItem(sessionKey, todayVisits);
   })();
 
-  // ── Founder dashboard — open console and run dashboard() ──
+  // ── Founder dashboard - open console and run dashboard() ──
   window.dashboard = function() {
     const signups = JSON.parse(localStorage.getItem('globecart_signups') || '[]');
     const totalVisits = parseInt(localStorage.getItem('globecart_visits') || '0');
@@ -1429,6 +1749,111 @@
       try { localStorage.setItem('gc_announce_v1', 'dismissed'); } catch(e) {}
     });
   }
+})();
+</script>
+
+<!-- WHAT'S HAPPENING ROTATOR -->
+<script>
+(function() {
+  var slides = document.querySelectorAll('#whStage .wh-slide');
+  var dots = document.querySelectorAll('#whDots .wh-dot');
+  if (slides.length < 2) return;
+  var current = 0, timer;
+  function show(i) {
+    slides.forEach(function(s, idx) { s.classList.toggle('active', idx === i); });
+    dots.forEach(function(d, idx) { d.classList.toggle('active', idx === i); });
+    current = i;
+  }
+  function next() { show((current + 1) % slides.length); }
+  function start() { timer = setInterval(next, 8000); }
+  function reset() { clearInterval(timer); start(); }
+  dots.forEach(function(d, idx) {
+    d.addEventListener('click', function() { show(idx); reset(); });
+    d.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { show(idx); reset(); } });
+  });
+  start();
+})();
+</script>
+
+<!-- SIX-LAYER CORE ROTATOR -->
+<script>
+(function() {
+  var nodes = document.querySelectorAll('#features .core-node');
+  var items = document.querySelectorAll('#features .core-readout-item');
+  var center = document.querySelector('#features .core-center-hit');
+  if (!nodes.length || !items.length) return;
+  var i = 0, timer = null;
+  function paint(idx) {
+    nodes.forEach(function(n, k) { n.classList.toggle('active', k === idx); });
+    items.forEach(function(it, k) { it.classList.toggle('active', k === idx); });
+    i = idx;
+  }
+  function tick() { paint((i + 1) % nodes.length); }
+  function startAuto() { if (timer) return; timer = setInterval(tick, 2800); }
+  function stopAuto() { clearInterval(timer); timer = null; }
+  nodes.forEach(function(n, k) {
+    n.addEventListener('click', function() { stopAuto(); paint(k); });
+  });
+  if (center) center.addEventListener('click', function() { if (timer) { stopAuto(); } else { startAuto(); } });
+  paint(0);
+  startAuto();
+})();
+</script>
+
+<!-- CALCULATOR DEMO -->
+<script>
+(function() {
+  var demo = document.getElementById('calcDemo');
+  if (!demo) return;
+  var section = document.getElementById('calc-cta');
+  var fields = demo.querySelectorAll('.calc-field');
+  var lines = demo.querySelectorAll('.calc-line');
+  var total = demo.querySelector('.calc-total');
+  var stats = section.querySelectorAll('.calc-stat');
+  var timers = [];
+  var started = false;
+
+  function showStats() { stats.forEach(function(s){ s.classList.add('show'); }); }
+  function fillAll() {
+    fields.forEach(function(f){ f.classList.add('filled'); });
+    lines.forEach(function(l){ l.classList.add('show'); });
+    if (total) total.classList.add('show');
+    showStats();
+  }
+  // clears only the breakdown - stats stay on the page once shown
+  function clearBreakdown() {
+    fields.forEach(function(f){ f.classList.remove('filled'); });
+    lines.forEach(function(l){ l.classList.remove('show'); });
+    if (total) total.classList.remove('show');
+  }
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) { fillAll(); return; }
+
+  function run() {
+    timers.forEach(clearTimeout); timers = [];
+    clearBreakdown();
+    var t = 500;
+    fields.forEach(function(f){ timers.push(setTimeout(function(){ f.classList.add('filled'); }, t)); t += 600; });
+    t += 250;
+    lines.forEach(function(l){ timers.push(setTimeout(function(){ l.classList.add('show'); }, t)); t += 380; });
+    t += 150;
+    timers.push(setTimeout(function(){ if (total) total.classList.add('show'); }, t)); t += 650;
+    // stats appear once, then persist for the rest of the session
+    timers.push(setTimeout(showStats, t)); t += 240;
+    // hold, gently clear only the breakdown, then replay (stats remain visible)
+    t += 2400;
+    timers.push(setTimeout(clearBreakdown, t));
+    t += 900;
+    timers.push(setTimeout(run, t));
+  }
+
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !started) { started = true; run(); io.disconnect(); }
+    });
+  }, { threshold: 0.35 });
+  io.observe(demo);
 })();
 </script>
 

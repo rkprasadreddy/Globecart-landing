@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Apply — Accuracy Proof Initiative | GlobeCart</title>
+  <title>Apply, Accuracy Proof Initiative | GlobeCart</title>
   <meta name="description" content="Apply to join the GlobeCart Accuracy Proof Initiative. Test our landed cost estimates against real shipment data and get a free side-by-side cost analysis."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://globecart.one/apply.html"/>
   <link rel="icon" href="favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +29,7 @@
     }
 
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+    body { background: var(--bg); color: var(--white); font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
 
     /* ── NAV ── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.4rem 4rem; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(12px); background: rgba(8,11,16,0.85); border-bottom: 1px solid var(--border); }
@@ -79,7 +79,7 @@
       background: var(--bg);
       border: 1px solid var(--border);
       color: var(--white);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       font-size: 0.85rem;
       padding: 0.85rem 1rem;
       transition: border-color 0.2s, background 0.2s;
@@ -175,7 +175,7 @@
     <div id="formView">
       <div class="page-tag"><span class="live-dot"></span> Accuracy Proof Initiative</div>
       <h1>Apply to participate<br>in the <em>Initiative.</em></h1>
-      <p class="lead">A small group of active US↔EU sellers will test our calculator against real shipment data. We compare, document, and publish results publicly. You get a free side-by-side cost analysis. Apply below — takes 2 minutes.</p>
+      <p class="lead">A small group of active US↔EU sellers will test our calculator against real shipment data. We compare, document, and publish results publicly. You get a free side-by-side cost analysis. Apply below, takes 2 minutes.</p>
       <div class="gold-line"></div>
 
       <!-- PROGRAM SUMMARY -->
@@ -331,7 +331,7 @@
         <ul class="success-next-list">
           <li>I'll personally email you within 48 hours to introduce myself and explain the comparison process</li>
           <li>When you have an upcoming US↔EU shipment, run it through the calculator first</li>
-          <li>After it clears customs, share the actual invoice — I'll prepare your side-by-side analysis</li>
+          <li>After it clears customs, share the actual invoice, I'll prepare your side-by-side analysis</li>
           <li>If we publish your data, you decide if it's anonymous or named</li>
         </ul>
       </div>
@@ -445,6 +445,27 @@
     });
   });
 })();
+</script>
+
+<!-- Supabase Analytics -->
+<script>
+(function(){
+  var SB_URL = 'https://fetgmwvzhdufpebmmlzx.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZldGdtd3Z6aGR1ZnBlYm1tbHp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjI2ODgsImV4cCI6MjA5MTk5ODY4OH0.5os9LgPleevYp5elpDVISfOoq-ZDtClsTMCgAtgf6zM';
+  function getSessionId(){var s=sessionStorage.getItem('gc_sid');if(!s){s=Date.now().toString(36)+Math.random().toString(36).substr(2,9);sessionStorage.setItem('gc_sid',s);}return s;}
+  function getDevice(){var w=window.innerWidth;if(w<768)return'mobile';if(w<1024)return'tablet';return'desktop';}
+  function getUTM(){var p=new URLSearchParams(window.location.search);return{utm_source:p.get('utm_source')||null,utm_medium:p.get('utm_medium')||null,utm_campaign:p.get('utm_campaign')||null};}
+  function getCountry(){try{var l=navigator.language||'';return l.split('-')[1]||Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[0]||'unknown';}catch(e){return'unknown';}}
+  function trackInsert(table,data){try{fetch(SB_URL+'/rest/v1/'+table,{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify(data)});}catch(e){}}
+  window.trackPageView=function(page){var u=getUTM();trackInsert('page_views',{page:page,referrer:document.referrer||null,utm_source:u.utm_source,utm_medium:u.utm_medium,utm_campaign:u.utm_campaign,country:getCountry(),language:navigator.language||null,device:getDevice(),screen_width:window.innerWidth,user_agent:navigator.userAgent.substring(0,500),session_id:getSessionId()});};
+  window.trackEvent=function(type,data,page){trackInsert('events',{session_id:getSessionId(),page:page||'unknown',event_type:type,event_data:data||{},device:getDevice(),country:getCountry()});};
+  window.initScrollTracking=function(page){var th=[25,50,75,100],tr={};window.addEventListener('scroll',function(){var pct=Math.round(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100);th.forEach(function(t){if(pct>=t&&!tr[t]){tr[t]=true;trackEvent('scroll_depth',{depth:t},page);}});},{passive:true});};
+})();
+</script>
+
+<script>
+  trackPageView('accuracy-apply');
+  initScrollTracking('accuracy-apply');
 </script>
 
 </body>
