@@ -141,6 +141,14 @@
     .success-next-list li { display: flex; gap: 0.8rem; padding: 0.6rem 0; font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
     .success-next-list li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-weight: 700; }
     .success-cta { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold); color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 1.8rem; text-decoration: none; font-weight: 700; transition: background 0.2s; }
+    .dp-bridge { padding: 4rem 1.5rem; background: var(--bg2); border-top: 1px solid var(--border); }
+    .dp-bridge-wrap { max-width: 640px; margin: 0 auto; text-align: center; }
+    .dp-bridge-eyebrow { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .dp-bridge-h { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--white); line-height: 1.18; margin-bottom: 1rem; }
+    .dp-bridge-h em { font-style: italic; color: var(--gold); }
+    .dp-bridge-body { font-size: 0.82rem; line-height: 1.85; color: var(--muted); max-width: 500px; margin: 0 auto 1.8rem; }
+    .dp-bridge-cta { display: inline-block; border: 1px solid var(--gold); color: var(--gold); padding: 0.85rem 2rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; font-weight: 700; transition: background 0.3s, color 0.3s; }
+    .dp-bridge-cta:hover { background: var(--gold); color: var(--bg); }
     .success-cta:hover { background: var(--gold-light); }
 
     /* ── FOOTER ── */
@@ -342,6 +350,16 @@
 
   </div>
 </main>
+
+<!-- BECOME A DESIGN PARTNER (reverse bridge) -->
+<section class="dp-bridge">
+  <div class="dp-bridge-wrap">
+    <div class="dp-bridge-eyebrow">Interested in shaping GlobeCart?</div>
+    <h2 class="dp-bridge-h">Participants may be invited to become <em>Design Partners.</em></h2>
+    <p class="dp-bridge-body">The Accuracy Proof Initiative is often the first step. Sellers who test our estimates and want to go further can help shape the future marketplace from the inside, with founding-partner terms and a direct line to the founder.</p>
+    <a href="design-partners.html" class="dp-bridge-cta">Become a Design Partner →</a>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
