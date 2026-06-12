@@ -1507,15 +1507,8 @@ function downloadPDF() {
   const footerY = 275;
   doc.setDrawColor(...gold); doc.setLineWidth(0.3);
   doc.line(margin, footerY, margin + contentW, footerY);
-  doc.setFillColor(...gold); doc.circle(margin + 2.5, footerY + 7, 1.8, 'F');
-  doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...white);
-  doc.text('GlobeCart', margin + 7, footerY + 8);
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...muted);
-  doc.text('globecart.one', margin + 30, footerY + 8);
-  doc.setFont('helvetica', 'italic'); doc.setFontSize(7);
-  doc.text('One World, One Border.', margin + 7, footerY + 13);
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(6.5);
-  doc.text('© 2026 globecart.one', pageW - margin, footerY + 13, { align: 'right' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(6.5); doc.setTextColor(...muted);
+  doc.text('© 2026 globecart.one', margin, footerY + 8);
 
   // Track to Supabase
   if (typeof trackPDFDownload === 'function') {
