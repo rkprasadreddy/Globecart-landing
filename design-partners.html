@@ -181,6 +181,29 @@
 
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* WHY-SIGN-UP FAQ */
+  .why-section { background: var(--bg); }
+  .why-grid { max-width: 920px; margin: 2.5rem auto 0; display: flex; flex-direction: column; gap: 0.8rem; }
+  .why-item { border: 1px solid var(--border); background: rgba(201,168,76,0.02); border-radius: 6px; overflow: hidden; transition: border-color 0.3s, background 0.3s; }
+  .why-item:hover { border-color: rgba(201,168,76,0.45); background: rgba(201,168,76,0.04); }
+  .why-item summary { list-style: none; cursor: pointer; padding: 1.4rem 1.6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--white); letter-spacing: 0.01em; }
+  .why-item summary::-webkit-details-marker { display: none; }
+  .why-item summary .why-q-icon { flex-shrink: 0; width: 22px; height: 22px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 0.9rem; transition: transform 0.3s; font-family: 'Inter', sans-serif; }
+  .why-item[open] summary .why-q-icon { transform: rotate(45deg); }
+  .why-item .why-a { padding: 0 1.6rem 1.5rem; color: var(--muted); font-size: 0.82rem; line-height: 1.85; }
+  .why-item .why-a strong { color: var(--white); font-weight: 600; }
+  .why-item .why-a .tag-good { color: var(--green); font-weight: 600; }
+  .why-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 0.6rem; }
+  .why-col { border: 1px solid var(--border); border-radius: 6px; padding: 1rem 1.2rem; }
+  .why-col h4 { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.7rem; }
+  .why-col.now h4 { color: var(--gold); }
+  .why-col.others h4 { color: var(--muted); }
+  .why-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .why-col li { font-size: 0.78rem; line-height: 1.6; color: var(--muted); padding-left: 1.1rem; position: relative; }
+  .why-col.now li::before { content: '\2713'; position: absolute; left: 0; color: var(--green); }
+  .why-col.others li::before { content: '\2715'; position: absolute; left: 0; color: rgba(224,122,95,0.7); }
+  @media (max-width: 720px) { .why-cols { grid-template-columns: 1fr; } .why-item summary { font-size: 0.86rem; padding: 1.2rem 1.2rem; } }
+
   .reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.2s; }
 
   @media (prefers-reduced-motion: reduce) { .logo-dot { animation: none; } }
@@ -218,6 +241,7 @@
     <li><a href="index.html#features">Platform</a></li>
     <li><a href="calculator.html">Calculator</a></li>
     <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="#why">Why Join</a></li>
     <li><a href="updates.html">Updates</a></li>
   </ul>
   <a href="#apply" class="nav-cta">Apply to Partner</a>
@@ -329,6 +353,87 @@
         <li>No cost and no lock-in. You're a partner, not a customer being sold to.</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- WHY SIGN UP -->
+<section class="why-section" id="why">
+  <div style="text-align:center; max-width:720px; margin:0 auto;" class="reveal">
+    <div class="section-label" style="justify-content:center;">Before You Decide</div>
+    <h2 class="section-h2">Why brands sign up, <em>plainly.</em></h2>
+    <p style="font-size:0.82rem; color:var(--muted); line-height:1.8; margin-top:1rem;">The honest answers to what you're probably already wondering. No fine print, no spin.</p>
+  </div>
+  <div class="why-grid">
+
+    <details class="why-item reveal" open>
+      <summary>Why should my brand sign up? <span class="why-q-icon">+</span></summary>
+      <div class="why-a">
+        <p>Because you reach a market you've been avoiding, without taking on the part that makes cross-border scary. Most brands don't skip the US or EU because they don't want the customers. They skip it because customs, duties, returns, and delivery risk make it feel like more trouble than it's worth. <strong>GlobeCart handles that layer for you</strong>, so expanding stops being a gamble.</p>
+        <div class="why-cols">
+          <div class="why-col now">
+            <h4>What you get with us</h4>
+            <ul>
+              <li>A new market (US or EU) without the operational headache</li>
+              <li>Keep 8&ndash;12% instead of losing 25&ndash;35% to the big platforms</li>
+              <li>One platform that owns the outcome, not five tools you stitch together</li>
+              <li>Your brand stays yours, a branded storefront, not a faceless listing</li>
+            </ul>
+          </div>
+          <div class="why-col others">
+            <h4>What current platforms don't give you</h4>
+            <ul>
+              <li>They solve discovery, almost none solve trust</li>
+              <li>No upfront landed cost, you learn your real margin too late</li>
+              <li>The seller carries all the cross-border risk alone</li>
+              <li>Buyer-biased disputes and returns you can't get back</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="why-item reveal">
+      <summary>What exactly do I get as an early design partner? <span class="why-q-icon">+</span></summary>
+      <div class="why-a">
+        <p>A direct line to the founder and real influence over what gets built, <strong>founding-partner terms</strong> when the marketplace opens, first access to sell into the corridor, and a trust-first way into a market you've been hesitant to enter. <span class="tag-good">No cost and no lock-in.</span> You're a partner shaping the product, not a customer being sold to.</p>
+      </div>
+    </details>
+
+    <details class="why-item reveal">
+      <summary>Will I get a flood of buyers on day one? <span class="why-q-icon">+</span></summary>
+      <div class="why-a">
+        <p>No, and I won't pretend otherwise. We're pre-launch. What I'm offering right now is a front-row seat to shape the platform, the best terms as a first partner, and first-mover position when we open. <strong>I'd rather under-promise and earn your trust</strong> than inflate numbers I can't yet deliver. The buyers come because of distinctive brands like yours, that's the whole model.</p>
+      </div>
+    </details>
+
+    <details class="why-item reveal">
+      <summary>How is this different from Amazon, Alibaba, or doing it myself? <span class="why-q-icon">+</span></summary>
+      <div class="why-a">
+        <p>Amazon and Alibaba solve <strong>discovery</strong>. Very few solve <strong>trust</strong>, which is the part that actually breaks cross-border. On those platforms you carry the risk yourself and pay 25&ndash;35% for it. Doing it yourself means duct-taping a store, a carrier, a customs broker, and a returns workaround, five moving parts and no one accountable when something goes wrong. GlobeCart is one marketplace that owns the whole journey, for 8&ndash;12%.</p>
+      </div>
+    </details>
+
+    <details class="why-item reveal">
+      <summary>What does it cost, and is my brand protected? <span class="why-q-icon">+</span></summary>
+      <div class="why-a">
+        <p>Joining as a design partner is <span class="tag-good">free, with no obligation to sell later</span>. When the marketplace opens, pricing is 8&ndash;12% all-in per transaction (vs 25&ndash;35% on the big platforms), across Starter, Growth, and Brand tiers. Your brand relationship stays yours through a branded storefront, and every transaction is protected for both sides, not weighted against the seller.</p>
+      </div>
+    </details>
+
+    <details class="why-item reveal">
+      <summary>What about returns, the thing that usually kills cross-border margin? <span class="why-q-icon">+</span></summary>
+      <div class="why-a">
+        <p>Returns are built into the platform as a structured, scenario-based system, not a margin drain you manage alone. Each return is routed by what actually happened (changed mind, damage, or fraud), with evidence-based resolution so you're not refunding blindly or eating both-way shipping by default. <strong>It's designed to protect your margin, not quietly erode it.</strong></p>
+      </div>
+    </details>
+
+    <details class="why-item reveal">
+      <summary>What do I actually have to do right now? <span class="why-q-icon">+</span></summary>
+      <div class="why-a">
+        <p>Very little, and that's intentional. A few honest conversations about how cross-border works for you today, occasional feedback as layers go live, and a willingness to run a real order or two when the time is right. <strong>We keep it light, a few focused conversations, not a second job.</strong></p>
+      </div>
+    </details>
+
   </div>
 </section>
 
