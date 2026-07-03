@@ -543,6 +543,49 @@
   .tool-chip span::before { content: ''; width: 0.9rem; height: 1px; background: var(--gold); opacity: 0.5; }
 
   .voices-section { background: var(--bg); border-top: 1px solid var(--border); }
+
+  /* EXPERT BAND (slim, under hero) */
+  .expert-band { background: rgba(201,168,76,0.04); border-bottom: 1px solid var(--border); padding: 1.6rem 4rem; }
+  .expert-band-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.6rem; }
+  .eb-label { font-family: 'Syne', sans-serif; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); white-space: nowrap; flex-shrink: 0; display: flex; align-items: center; gap: 0.6rem; }
+  .eb-label::before { content: ''; width: 1.2rem; height: 1px; background: var(--gold); display: block; }
+  .eb-quote { flex: 1; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.5; color: var(--white); }
+  .eb-cite { font-family: 'Syne', sans-serif; font-style: normal; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+  .eb-cite a { color: var(--gold); text-decoration: none; }
+  .eb-cite a:hover { text-decoration: underline; }
+  @media (max-width: 860px) {
+    .expert-band { padding: 1.4rem 1.5rem; }
+    .expert-band-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    .eb-quote { font-size: 0.95rem; }
+  }
+
+  /* INDUSTRY PERSPECTIVES (full section) */
+  .perspectives-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .persp-featured { max-width: 980px; margin: 3rem auto 0; border: 1px solid var(--border); border-radius: 12px; background: rgba(201,168,76,0.025); overflow: hidden; display: grid; grid-template-columns: 280px 1fr; }
+  .persp-photo-wrap { position: relative; }
+  .persp-photo { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 320px; }
+  .persp-body { padding: 2.6rem 2.8rem; display: flex; flex-direction: column; justify-content: center; }
+  .persp-cat { font-family: 'Syne', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+  .persp-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.45rem; line-height: 1.55; color: var(--white); margin-bottom: 1.6rem; }
+  .persp-quote::before { content: '\201C'; color: var(--gold); margin-right: 0.1rem; }
+  .persp-quote::after { content: '\201D'; color: var(--gold); }
+  .persp-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--white); letter-spacing: 0.01em; }
+  .persp-role { font-size: 0.74rem; color: var(--muted); margin-top: 0.35rem; line-height: 1.5; }
+  .persp-links { margin-top: 1.2rem; display: flex; gap: 1.4rem; }
+  .persp-links a { font-family: 'Syne', sans-serif; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: gap 0.2s; }
+  .persp-links a:hover { gap: 0.6rem; }
+  .persp-context { max-width: 980px; margin: 1.4rem auto 0; font-size: 0.72rem; color: var(--muted); text-align: center; letter-spacing: 0.02em; }
+  /* Layer 3 founder note — visually separate */
+  .persp-note { max-width: 760px; margin: 3rem auto 0; padding: 2rem 2.4rem; border-left: 2px solid var(--gold); background: rgba(201,168,76,0.03); border-radius: 0 8px 8px 0; }
+  .persp-note-label { font-family: 'Syne', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .persp-note p { font-size: 0.82rem; line-height: 1.85; color: rgba(240,237,230,0.7); }
+  @media (max-width: 760px) {
+    .persp-featured { grid-template-columns: 1fr; }
+    .persp-photo { min-height: 280px; max-height: 360px; }
+    .persp-body { padding: 2rem 1.6rem; }
+    .persp-quote { font-size: 1.2rem; }
+    .persp-note { padding: 1.6rem 1.4rem; }
+  }
   .voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); max-width: 1100px; margin: 3rem auto 0; }
   .voice-card { background: var(--bg); padding: 2.2rem 2rem; display: flex; flex-direction: column; justify-content: space-between; }
   .voice-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--white); line-height: 1.6; margin-bottom: 1.2rem; flex-grow: 1; }
@@ -711,6 +754,15 @@
     <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
   </div>
 </section>
+
+<!-- EXPERT BAND (slim credibility, under hero) -->
+<div class="expert-band">
+  <div class="expert-band-inner">
+    <div class="eb-label">Industry View</div>
+    <div class="eb-quote">"Many businesses… hesitate to expand internationally due to uncertainty around costs, regulations, and market requirements."</div>
+    <div class="eb-cite">Samarah Gemaque · <a href="#perspectives">Industry Perspectives →</a></div>
+  </div>
+</div>
 
 <!-- WHAT'S HAPPENING -->
 <div class="whats-happening" id="updates-preview">
@@ -1397,6 +1449,39 @@
         <div class="voice-quote">Not possible to handle by themselves. It's a team work. That's why there are forwarders in the world.</div>
         <div class="voice-src">Logistics operator</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY PERSPECTIVES -->
+<section class="perspectives-section" id="perspectives">
+  <div style="max-width:1000px; margin:0 auto;">
+    <div class="reveal" style="text-align:center; max-width:680px; margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">Industry Perspectives</div>
+      <h2 class="section-h2" style="text-align:center;">What the experts <em>are seeing.</em></h2>
+      <p style="font-size:0.78rem; color:var(--muted); line-height:1.8; margin-top:1rem;">Perspectives from sourcing specialists, trade advisors, logistics operators, and ecommerce professionals on the problem we're solving.</p>
+    </div>
+
+    <div class="persp-featured reveal">
+      <div class="persp-photo-wrap">
+        <img src="samarah.jpg" alt="Samarah Gemaque, Founder of S-Global Sourcing & Trade Solutions" class="persp-photo" loading="lazy">
+      </div>
+      <div class="persp-body">
+        <div class="persp-cat">Global Sourcing &amp; International Trade</div>
+        <div class="persp-quote">Many businesses, especially SMEs and emerging brands, hesitate to expand internationally due to uncertainty around costs, regulations, and market requirements… more accurate and transparent information helps reduce risk, improve planning, and enables companies to make more confident international expansion decisions.</div>
+        <div class="persp-name">Samarah Gemaque</div>
+        <div class="persp-role">Founder, S-Global Sourcing &amp; Trade Solutions</div>
+        <div class="persp-links">
+          <a href="https://www.s-global.net" target="_blank" rel="noopener">Website ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="persp-context reveal">We're actively speaking with experts across sourcing, customs, tax, logistics, and ecommerce.</p>
+
+    <div class="persp-note reveal">
+      <div class="persp-note-label">What We're Learning</div>
+      <p>Across conversations with sourcing specialists, operators, and trade professionals, a consistent theme keeps emerging: businesses don't just need cost estimates, they need confidence in those estimates before committing to international expansion. This is one of the reasons GlobeCart is built around transparency, validation, and trust on every cross-border order.</p>
     </div>
   </div>
 </section>
